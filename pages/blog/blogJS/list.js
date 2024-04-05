@@ -121,7 +121,7 @@ var blogData = {
             "filename": "0019-kt-006.html"
         },
         {
-            "title": "# 【教程】Kotlin语言（五）——Lambda表达式与条件控制",
+            "title": "【教程】Kotlin语言（五）——Lambda表达式与条件控制",
             "subject": "IT",
             "tag": ["IT", "Kotlin"],
             "img": "kotlin.png",
