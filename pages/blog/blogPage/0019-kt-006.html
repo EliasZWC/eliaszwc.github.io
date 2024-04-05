@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【教程】Kotlin语言（六）——泛型</h1>
+
+<p>在 Kotlin 中，<strong>泛型（Generics）</strong> 是一种参数化类型的概念，它允许在定义类、接口和函数时使用类型参数，以在使用时指定具体的类型。泛型的引入使得代码更具灵活性和重用性，同时提高了类型安全性。</p>
+
+<h2>一、泛型接口</h2>
+
+<p><strong>泛型接口</strong> 的含义是指在定义接口时使用泛型类型参数，使得接口中的方法或属性可以适用于多种类型。通过泛型接口，可以在接口中定义通用的方法或属性，而具体的实现类可以根据需要指定具体的类型，从而实现灵活性和通用性的代码设计。</p>
+
+<p>以下是定义泛型接口的示例，展示了如何定义和使用泛型接口。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 定义一个泛型接口</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nc">Color</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getValue</span><span class="p">():</span><span class="w"> </span><span class="n">T</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">T</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 实现泛型接口</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Red</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Color</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">value</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getValue</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">value</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">setValue</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">redColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Red</span><span class="p">()</span>
+<span class="w">    </span><span class="n">redColor</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="s">&quot;Color is red!&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">redColor</span><span class="p">.</span><span class="na">getValue</span><span class="p">())</span><span class="w"> </span><span class="c1">// 输出：Color is red!</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>在上面的示例中定义了一个泛型接口 <code>Color&lt;T&gt;</code>，它包含了一个泛型类型参数 <code>T</code>，其中定义了两个方法：</p>
+
+<ul>
+<li><code>getValue()</code> 方法用于获取该类型的值，返回的类型就是泛型接口设置的泛型类型。</li>
+<li><code>setValue()</code> 方法用于设置该类型的值，形参的值类型也是泛型接口设置的泛型类型。</li>
+</ul>
+
+<p>接着，通过该接口定义了一个具体类 <code>Red</code>，并指定了泛型类型为<code>String</code>字符串类型。首先定义一个私有变量<code>value</code>为字符串，然后设置 <code>getValue()</code>的返回值为作为字符串的<code>value</code>，向 <code>setValue()</code>传入了<code>value</code>的值，从而实现了 <code>Color&lt;String&gt;</code> 接口。通过实现接口中的方法 <code>getValue()</code> 和 <code>setValue()</code>，我们可以对泛型类型为 <code>String</code> 的值进行操作。</p>
+
+<p>在 <code>main</code> 函数中，我们通过<code>Red</code>类创建了一个对象作为<code>redColor</code>变量，将字符串<code>“Color is red!”</code>设置到对象中，并通过 <code>getValue()</code> 方法获取该值并输出。</p>
+
+<h2>二、泛型方法</h2>
+
+<p><strong>泛型方法</strong> 是一种可以在不同类型之间共享代码逻辑的方法，而无需针对每种类型编写不同的方法。它们可以在函数或者方法中使用泛型类型参数，从而使得这些函数或方法可以接受不同类型的参数，并且在编译时会进行类型检查保证类型安全性。以下是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 定义一个泛型函数</span>
+<span class="kd">fun</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">printItem</span><span class="p">(</span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 使用泛型函数打印不同类型的数据</span>
+<span class="w">    </span><span class="n">printItem</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出：5</span>
+<span class="w">    </span><span class="n">printItem</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出：Hello</span>
+<span class="w">    </span><span class="n">printItem</span><span class="p">(</span><span class="m">3.14</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出：3.14</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里直接对函数定义泛型，使得方法可以不受到数据类型限制而使用。</p>
+
+<h2>三、泛型约束</h2>
+
+<p><strong>泛型约束</strong> 是一种在泛型编程中限制泛型类型参数的能力的机制。通过泛型约束，我们可以指定泛型类型参数必须满足的条件，以确保在泛型代码中使用这些类型参数时的安全性和有效性。</p>
+
+<p>在 Kotlin 中，泛型约束使用 <code>:</code> 符号来指定。如果你需要对同一个类型参数施加多个约束，可以使用 <code>where</code> 关键字。</p>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 定义一个泛型函数，该函数接受一个泛型类型参数 T，该参数必须是 Number 或者其子类型，并且实现了 Comparable 接口</span>
+<span class="kd">fun</span><span class="w"> </span><span class="o">&lt;</span><span class="n">T</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Number</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="n">value</span><span class="p">:</span><span class="w"> </span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Performing operation with </span><span class="si">$</span><span class="n">value</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">test</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="c1">// 合法，因为 Int 是 Number 的子类型，并且实现了 Comparable 接口</span>
+<span class="w">    </span><span class="c1">// performOperation(&quot;Hello&quot;) // 编译错误，因为 String 不是 Number 的子类型</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>在以上的代码中，定义了一个名为<code>test</code>的函数，使用泛型并指定必须是数字型，使用comparable接口——这里的comparable接口定义了一个对象如何进行比较的标准，允许对象之间进行自然排序。</p>
+
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【技术】Github环境配置指南</h1>
+
+<p><strong>Github</strong>是一个基于Git版本控制系统的代码托管平台，旨在帮助开发者协作、管理和追踪其软件项目的变化。</p>
+
+<p>在这个平台，你可以找到各种代码资源，几乎所有程序员都在Github上建立过代码仓库，你甚至可以找到Linux创始人Linus大神或者DHH等一系列极客的仓库，所有开源项目如今也都会选择在Github平台发布。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/39aa25ca531947499929e450b897ccb7.png" alt="在这里插入图片描述" /></p>
+
+<p>而作为如今最流行的代码托管平台，Github的强大之处体现在以下特点：</p>
+
+<ol>
+<li><strong>版本控制</strong>： GitHub建立在Git版本控制系统之上，使开发者能够跟踪代码的变化、协作处理冲突以及恢复先前的版本。</li>
+<li><strong>代码托管</strong>： 开发者可以在GitHub上创建存储库（Repositories），将其代码存储在这些存储库中，并与团队成员或全球开发者社区分享。</li>
+<li><strong>分支管理</strong>： GitHub提供强大的分支管理功能，使开发者能够在不影响主要代码的情况下进行并行开发和实验性工作。</li>
+<li><strong>问题跟踪</strong>： 通过GitHub的问题跟踪系统，开发者可以报告问题、讨论新功能、提出建议，并在整个团队中进行透明的协作。</li>
+<li><strong>合并请求</strong>： 开发者可以通过合并请求向项目的主分支提交更改，同时进行讨论、审查代码，并最终将更改合并到主代码库中。</li>
+<li><strong>团队协作</strong>： GitHub支持多用户协作，允许开发者在同一项目中合作，并通过权限系统控制对存储库的访问权限。</li>
+<li><strong>自动化工具</strong>： GitHub集成了各种自动化工具和服务，如持续集成（Continuous Integration）和持续部署（Continuous Deployment），以简化开发流程。</li>
+<li><strong>社交网络</strong>： 开发者可以在GitHub上关注其他用户、项目或组织，以保持对感兴趣的项目的最新动态。</li>
+</ol>
+
+<p>然而对于使用的初始阶段，Github也需要进行一些环境的初始化搭建，以下将逐步展示初始化的具体操作。</p>
+
+<h2>一、Github初始设置</h2>
+
+<h3>（一）登入Github</h3>
+
+<p>进入<strong>Github官方网站</strong>（<a href="https://github.com/">https://github.com/</a>），注册或者登录自己的Github账号。具体登录和注册步骤非常简单，这里不作演示。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/3f1743521d714229b1a995b47ce71508.png" alt="在这里插入图片描述" /></p>
+
+<h3>（二）新建仓库</h3>
+
+<p>登录后即可进入<strong>Dashboard</strong>（看板）页面。由于代码需要用仓库储存，所以首先需要做的就是新建一个仓库。点击新建即可进入新建仓库页面。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/711f1d0e2bf5484e8024294a07535321.png" alt="在这里插入图片描述" /></p>
+
+<p>根据指引，新建一个仓库。我这里新建的库名叫做test，描述则为测试github。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/ce493740fd3e49649793689b195fac97.png" alt="在这里插入图片描述" /></p>
+
+<p>创建完成自己的库后，下面就需要克隆在Github创建完成的库到本地，以便于自己电脑上的代码可以同步到GitHub所创建的库当中。</p>
+
+<h2>二、本地Git配置</h2>
+
+<h3>（一）安装Git</h3>
+
+<p>进入<strong>Git官网</strong>（<a href="https://git-scm.com/">https://git-scm.com/</a>）下载Git安装包。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/43f0de16bcdc498b81c65a96f1a84025.png" alt="在这里插入图片描述" /></p>
+
+<p>具体安装不再演示，可以设置一下安装的路径，其他设置均保持默认即可。</p>
+
+<h3>（二）进入Git Bash</h3>
+
+<p>无论通过任务栏搜索还是创建快捷方式在桌面，进入Git Bash后将看到如下页面。在绿色的文字中，@前是是你的电脑用户名，@后面则是你的计算机型号，紫色文字则是你的系统型号。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/a92a83d7854a43b9b1421fa7d2dc1f89.png" alt="在这里插入图片描述" /></p>
+
+<h3>（三）配置用户</h3>
+
+<p>本地连接Github需要先配置用户，使用的bash命令如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;github上注册的用户名&quot;</span><span class="w"> </span><span class="c1"># 配置用户名</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;github上注册的邮箱&quot;</span><span class="w"> </span><span class="c1"># 配置用户邮箱</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="c1"># 查看配置的用户名</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="c1"># 查看配置的用户邮箱</span>
+</code></pre>
+</div>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/0ae67278e65c4d4380efba4add1ccc16.png" alt="在这里插入图片描述" /></p>
+
+<h3>（四）获取SSH密钥</h3>
+
+<p>想要本地同Github连接，必须先获取SSH密钥，获取密钥的Bash命令如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-C<span class="w"> </span><span class="s2">&quot;GitHub上注册时的邮箱 &quot;</span>
+</code></pre>
+</div>
+
+<p>此命令执行进程中需要用户的确认。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/4e35a6c3706f4477a4be743c00e98aa6.png" alt="在这里插入图片描述" /></p>
+
+<p>按照文件路径，即可找到SSH密钥的保存文件。值得注意的是，SSH密钥分为公钥和私钥，只有公钥才是我们需要的。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/71f0f260ad36450da24925e3212d5491.png" alt="在这里插入图片描述" /></p>
+
+<p>打开公钥文件（使用记事本就可以打开）可以看到公钥是一串以<code>ssh-rsa</code>为开头，你注册的邮箱为结尾的代码。将这串公钥复制，下一步将使用这串公钥。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/a9187148a7834693a73157c4d3b031ec.png" alt="在这里插入图片描述" /></p>
+
+<h2>三、SSH连接Github</h2>
+
+<h3>（一）设置Github密钥</h3>
+
+<p>进入Github，点击左边的头像进入设置页面。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/69f81cc447cd46c38edc72e8fb695e9e.png" alt="在这里插入图片描述" /></p>
+
+<p>选择SSH与GPG密钥配置页面，建立新SSH密钥。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/83805313b5f14926a7c47707de71f071.png" alt="在这里插入图片描述" /></p>
+
+<p>这里的标题是命名这个SSH密钥方便管理，我命名此密钥为笔记本（laptop），密钥则是刚才复制的SSH公钥。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/28224c9bc52b45baa1566ef9e4cc5e5a.png" alt="在这里插入图片描述" /></p>
+
+<p>点击添加SSH密钥（Add SSH key）即可成功添加密钥。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/26140d4b6699496983aefbdf0dbd6643.png" alt="在这里插入图片描述" /></p>
+
+<h3>（二）绑定SSH连接</h3>
+
+<p>由于Github获得了本地电脑SSH连接的密钥，所以理论上将只要使用就可以连接。返回Git Bash界面，使用以下Bash命令即可绑定与Github的连接。</p>
+
+<div class="codehilite">
+<pre><span></span><code>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</code></pre>
+</div>
+
+<p>过程中会需要用户确定绑定，输入yes即可确定。返回以下结果即代表已成功绑定。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/9acb75a2a7284e40a4adf0209a9d6779.png" alt="在这里插入图片描述" /></p>
+
+<p>对于已经绑定好的Github，接下来还需要进行克隆（下载）到本地和上传到Github两方面的测试来确定一下功能是否可以正常使用。</p>
+
+<h2>四、测试下载Github仓库</h2>
+
+<h3>（一）获取仓库HTTPS链接</h3>
+
+<p>进入刚才建立的仓库，在代码选项中即可看到HTTPS链接，复制下来。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/a17b5ccb21d144e4932c17ee753db10a.png" alt="在这里插入图片描述" /></p>
+
+<h3>（二）仓库下载</h3>
+
+<p>对于下载的仓库，会需要一个文件路径来承载，本人习惯下载到E盘专门建立的github文件夹，方便管理。选择下载路径通过Bash命令进入那个你想要下载的文件路径下才可以。进入那个目录下就可以下载（克隆）Github仓库了。</p>
+
+<p>另外，转移到某个目录下不确定有什么目录和文件也可以用<code>ls</code>命令来看一下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/E/github<span class="w"> </span><span class="c1"># 转移到E盘的github目录下</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/EliasZWC/test.git<span class="w"> </span><span class="c1"># 通过HTTPS链接克隆仓库到此文件夹下</span>
+</code></pre>
+</div>
+
+<p>出现以下返回结果则显示成功克隆仓库。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/085899b46ece423d9bf6f28fb979422b.png" alt="在这里插入图片描述" /></p>
+
+<p>此时打开下载仓库的路径，就可以看到下载好的仓库，仓库中的readme文件也都下载了下来。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/3612c6c5fb4d4bc093280a10ecb2482d.png" alt="在这里插入图片描述" /></p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/416b35135a1e4e40871b1397caf9c866.png" alt="在这里插入图片描述" /></p>
+
+<h2>五、测试上传Github仓库</h2>
+
+<h3>（一）修改仓库文件</h3>
+
+<p>当本地仓库中的项目结构发生了改变，发生的改变想要上传同步都必须存入Git暂存区。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/310d41e4611b4d47bf89889d354592b3.png" alt="在这里插入图片描述" /></p>
+
+<p>例如这里我建立了一个test.txt文件，希望上传时则必须存入Git暂存区，Bash命令如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">cd</span><span class="w"> </span>./test<span class="w"> </span><span class="c1"># 进入到test这个仓库文件目录下</span>
+git<span class="w"> </span>add<span class="w"> </span>test.txt
+</code></pre>
+</div>
+
+<p>值得注意的是，我仅改变了一个文件，所以直接使用文件名添加指定文件到Git暂存区即可；但如果修改了多项文件，可以将文件名这里改为<code>.</code>即可将所有修改过的文件添加到暂存区。</p>
+
+<h3>（二）提交仓库文件</h3>
+
+<p>当文件存入暂存区后，还需要将修改项目从暂存区提交更改到本地仓库，这里需要使用<code>git commit</code>命令。</p>
+
+<div class="codehilite">
+<pre><span></span><code>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;for test&quot;</span><span class="w"> </span><span class="c1"># 提交信息为for test</span>
+</code></pre>
+</div>
+
+<p>使用<code>-m</code>参数可以添加字符串作为提交信息，即注释。出现以下返回结果说明提交成功。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/5d8b93fb39114ec7859768267f0d87cc.png" alt="在这里插入图片描述" /></p>
+
+<h3>（三）推送仓库文件</h3>
+
+<p>当仓库的更改项都已经提交到本地仓库中，此时就可以将更改后的仓库推送到远程Github仓库中了，Bash命令如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre>
+</div>
+
+<p>这里使用了Git系统的<code>push</code>命令，<code>origin</code>是远程仓库的默认别名，<code>main</code>则是进入test仓库文件夹时可以看到的本地分支名称。回车使用后会出现以下Github登录页面。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/2d648c8dcffd4a4ca02ecbe9a6451143.png" alt="在这里插入图片描述" /></p>
+
+<p>两个登录方式都可以，我这里用了浏览器登录（其实另一个验证码登录也需要进入浏览器）。选择账户继续（continue）授权。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/4c9ce67601d748ebb5142e89722c9424.png" alt="在这里插入图片描述" /></p>
+
+<p>令Github账户授权给Git库。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/e5fe6da5ffc64b29a9f7c15a2293ea71.png" alt="在这里插入图片描述" /></p>
+
+<p>出现此页面即授权成功。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/dfe75d2e93de4ee6bf7837f4ab0643c6.png" alt="在这里插入图片描述" /></p>
+
+<p>回到Git Bash页面，查看各种上传数据，果然成功。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/839dcb350bd342c3be1ae663e3204d68.png" alt="在这里插入图片描述" /></p>
+
+<p>进入Github中的test仓库也可以看到test.txt成功上传，进入个人主页也可以看到贡献值绿了，这说明上传成功。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/15a8e8a116664256968c0086ca7dd880.png" alt="在这里插入图片描述" /></p>
+
+<p>日后同样使用Git的<code>add</code>、<code>commit</code>和<code>push</code>这三个命令按同样原理上传文件（仓库)即可。</p>
+
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

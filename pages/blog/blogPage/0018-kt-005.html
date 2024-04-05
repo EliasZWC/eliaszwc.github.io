@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【教程】Kotlin语言（五）——Lambda表达式与条件控制</h1>
+
+<h2>一、Lambda表达式</h2>
+
+<p>在Kotlin中，<strong>Lambda表达式</strong>是一种轻量级的匿名函数，它可以作为参数传递给其他函数。Lambda表达式的语法形式如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="err">参数列表</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="err">函数体</span><span class="w"> </span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>其中，参数列表是可选的，函数体可以是一个表达式或者代码块。Lambda表达式的类型是函数类型，可以通过声明一个变量或参数的方式来存储它。</p>
+
+<p>Lambda表达式的主要优点之一是它的简洁性和灵活性。它允许在需要函数作为参数的地方以一种简洁、直观的方式来定义函数行为。Lambda表达式常用于Kotlin中的函数式编程，例如在集合操作中使用<code>map</code>、<code>filter</code>、<code>reduce</code>等高阶函数时经常会用到Lambda表达式。</p>
+
+<p>下面是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 自定义函数：使用Lambda表达式来判断一个数字是否为偶数</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">isEven</span><span class="p">(</span><span class="n">number</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">check</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">check</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+
+<span class="w">    </span><span class="c1">// 使用Lambda表达式作为参数，判断一个数字是否为偶数</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isEven</span><span class="p">(</span><span class="n">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">it</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">number</span><span class="s"> 是偶数&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">number</span><span class="s"> 是奇数&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>阅读示例代码，可以看到首先自定义的<code>isEven</code>函数中就使用了Lambda表达式，其函数定义逻辑为定义一个名为isEven的函数，形参设有两个，分别是<code>number</code>和<code>check</code>，其中<code>number</code>要求传入的是整型变量，而<code>check</code>则是一个函数，这个函数并没有通过传统方式定义，而是通过Lambda表达式，表示传入一个整型变量，返回一个布尔值，这个<code>check</code>函数在函数内部使用，作为返回值，定义函数返回值类型为布尔值——整个函数定义表达式的含义就是输入整型变量，返回一个布尔值。</p>
+
+<p>而在接下来的输出函数中，设定<code>number</code>变量为10，使用<code>isEven</code>函数令<code>number</code>返回一个布尔值，这里又使用了一个Lambda表达式来判断返回的值是否除以2无余数，是则为真，否则为假，接着就使用了一个<code>if</code>判断语句将偶数判断结果打印出来。</p>
+
+<p>可以看到，在Lambda表达式中<code>-&gt;</code>左边是参数列表，而右边则是Lambda函数的具体函数和操作。</p>
+
+<p>其中要注意的是，<code>it</code>在Lambda表达式中只有参数仅有一个的时候才可以使用；同时，<code>it</code>不作为关键字，却同样可以在调用变量（比如函数定义）中作为单个变量的隐式名称，从而简洁语句编写。</p>
+
+<h2>二、条件控制</h2>
+
+<p>条件控制语句在每门编程语言中都是必不可少的部分，在Kotlin语言中是使用<code>if-else</code>语句和<code>when</code>语句来实施条件控制。</p>
+
+<p>那么设计一个简单的逻辑，要求输入两个数字，输出较大的那一个。</p>
+
+<p>如果使用<code>if</code>语句，则设计的语句可以是这样。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+
+<span class="w">    </span><span class="c1">// 使用 if-else 控制结构</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 大于 y&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 小于 y&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 等于 y&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>同其他语言的<code>if</code>语句一样，使用<code>if</code>关键字设定条件，同时<code>else if</code>设置第二个条件，剩余情况则在<code>else</code>下输出。</p>
+
+<p>而如果使用<code>when</code>判断语句设计，则是这样的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+
+<span class="w">    </span><span class="c1">// 使用 when 表达式进行条件控制</span>
+<span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 大于 y&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 小于 y&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 等于 y&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// 使用 when 表达式带参数的形式进行条件控制</span>
+<span class="w">    </span><span class="k">when</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="m">10</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 等于 10&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="m">20</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 等于 20&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;x 既不等于 10 也不等于 20&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>可以看到，如果使用<code>when</code>语句对于多结果可能性的判断情况更为合适。<code>-&gt;</code>左边是判断条件，右边则是满足该条件的情况下执行的逻辑；与<code>if</code>语句一样，也有<code>else</code>关键字代表剩余判断情况。</p>
+
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

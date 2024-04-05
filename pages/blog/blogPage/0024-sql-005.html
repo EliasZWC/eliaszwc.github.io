@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【教程】MySQL数据库学习笔记（四）——数据操作语言DML</h1>
+
+<h2>一、DML介绍</h2>
+
+<p><strong>DML（Data Manipulation Language，数据操作语言）</strong>，它用于与数据库中的数据进行交互和操作，即增删改。</p>
+
+<ul>
+<li><strong>插入insert</strong>：用于向数据库中插入新的数据行</li>
+<li><strong>删除delete</strong>：用于从数据库中删除满足条件的数据行</li>
+<li><strong>更新update</strong>：用于更新数据库中已有的数据行，可以根据条件选择要更新的数据</li>
+</ul>
+
+<h2>二、DDL操作</h2>
+
+<h3>（一）数据插入</h3>
+
+<p>对于数据插入，其基本语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">表</span><span class="p">(</span><span class="err">列名</span><span class="mi">1</span><span class="p">,</span><span class="err">列名</span><span class="mi">2</span><span class="p">,...)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="err">值</span><span class="mi">1</span><span class="p">,</span><span class="err">值</span><span class="mi">2</span><span class="p">,...);</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">向特定列插入行</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="err">表</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="err">值</span><span class="mi">1</span><span class="p">,</span><span class="err">值</span><span class="mi">2</span><span class="p">,...);</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">向表全部列插入行</span>
+</code></pre>
+</div>
+
+<p>以下是指定列名插入数据的简单示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- （一）数据插入</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">birth</span><span class="p">,</span><span class="n">address</span><span class="p">,</span><span class="n">score</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1001</span><span class="p">,</span><span class="s1">&#39;张三&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s1">&#39;2001-12-23&#39;</span><span class="p">,</span><span class="s1">&#39;北京&#39;</span><span class="p">,</span><span class="mi">85</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">gender</span><span class="p">,</span><span class="n">age</span><span class="p">,</span><span class="n">birth</span><span class="p">,</span><span class="n">address</span><span class="p">,</span><span class="n">score</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1002</span><span class="p">,</span><span class="s1">&#39;李四&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="s1">&#39;2000-11-11&#39;</span><span class="p">,</span><span class="s1">&#39;上海&#39;</span><span class="p">,</span><span class="mi">95</span><span class="p">.</span><span class="mi">5</span><span class="p">),</span>
+<span class="w">        </span><span class="p">(</span><span class="mi">1003</span><span class="p">,</span><span class="s1">&#39;王五&#39;</span><span class="p">,</span><span class="s1">&#39;男&#39;</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="s1">&#39;2002-10-21&#39;</span><span class="p">,</span><span class="s1">&#39;杭州&#39;</span><span class="p">,</span><span class="mi">75</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">sid</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1004</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>可以看到，使用<code>INSERT INTO</code>既可以单行插入数据，也可以多行插入数据，还可以仅插入单个值。</p>
+
+<p>返回结果如下。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//eec5b422642c4d09b2748d065c339591.png" alt="在这里插入图片描述" /></p>
+
+<p>另一个则是不指定列名的数据插入。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1005</span><span class="p">,</span><span class="s1">&#39;刘六&#39;</span><span class="p">,</span><span class="s1">&#39;女&#39;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="s1">&#39;2001-11-11&#39;</span><span class="p">,</span><span class="s1">&#39;深圳&#39;</span><span class="p">,</span><span class="mi">93</span><span class="p">.</span><span class="mi">5</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>这样的话，会按顺序填入数据。同样，也可以填入多行数据，这里不再演示。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//409ee3c67a2b4b3294f5def809c6d2e0.png" alt="在这里插入图片描述" /></p>
+
+<h3>（二）数据修改</h3>
+
+<p>对于数据修改，其基本语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="err">字段名</span><span class="o">=</span><span class="err">值</span><span class="p">,</span><span class="err">字段名</span><span class="o">=</span><span class="err">值</span><span class="p">...;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">全部行的数据都修改</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="err">字段名</span><span class="o">=</span><span class="err">值</span><span class="p">,</span><span class="err">字段名</span><span class="o">=</span><span class="err">值</span><span class="p">...</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="err">条件</span><span class="p">;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">满足条件的数据才修改</span>
+</code></pre>
+</div>
+
+<p>以下是简单示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 将所有学生的地址修改为重庆</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;重庆&#39;</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//cd31e094efdd45b4ba510189f1e4c797.png" alt="在这里插入图片描述" /></p>
+
+<p>可以看到，使用上述语句会将所有学生的地址全部改为重庆。</p>
+
+<p>那么当需要修改特定学生的数据时，就需要添加<code>WHERE</code>的条件判断。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 将sid为1003的学生的地址修改为广州</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;广州&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1003</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用这样的语句就可以修改满足特定条件的数据。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//bcc72b900cdb4e16b88e0fa116de0be2.png" alt="在这里插入图片描述" /></p>
+
+<p>同样，寻找的条件和更改的数据也可以增加，中间以<code>,</code>分隔。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 将sid为1003的学生的地址修改为武汉，成绩修改为100</span>
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;武汉&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1003</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//6bfd85c50bf041d59ed8271d8bf03acb.png" alt="在这里插入图片描述" /></p>
+
+<h3>（二）数据删除</h3>
+
+<p>对于数据修改，其基本语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="p">[</span><span class="k">WHERE</span><span class="w"> </span><span class="err">条件</span><span class="p">]</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">删除满足条件的数据，否则删除表所有数据</span>
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="p">[</span><span class="k">TABLE</span><span class="p">]</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="err">清空表内容，但与</span><span class="n">DELETE语句的原理不同</span>
+</code></pre>
+</div>
+
+<p>需要注意的是，如果需要删除数据库，删除关键字一般是<code>DROP</code>，而如果是表或者具体的数据内容则使用<code>DELETE</code>关键字。</p>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 删除sid为1004的学生数据</span>
+<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1004</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>查看表结果如下。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg//6c80dba2f1e044eca74fc63871526ccb.png" alt="在这里插入图片描述" /></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 删除表所有数据</span>
+<span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
+<span class="c1">-- 清空表数据</span>
+<span class="k">TRUNCATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>这两个语句都可以直接清空表所有数据，但不同的是前者是清空所有数据，而后者则是直接删除表，然后再创建一个新表，这样看后者更为彻底。</p>
+
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EliasChang - Blog</title>
-    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/fonts.css">
     <link rel="stylesheet" href="../../css/md.css">
@@ -17,7 +17,7 @@
 
         <!-- 1.1.页首栏 -->
         <div id="headbar">
-            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
             <b id="pageTitle">BLOG</b>
         </div>
 
@@ -26,7 +26,7 @@
     <!-- 2.内容 -->
     <main>
         <div id="markdownContent">
-        <h1>【解决】Ubuntu环境下更换网络下载源</h1>
+            <h1>【解决】Ubuntu环境下更换网络下载源</h1>
 
 <p>准备做一下线性规划的模型发现需要用到pulp，本来是挺简单的</p>
 
@@ -44,10 +44,10 @@
 </ul>
 
 <div class="codehilite">
-<pre><span></span><code>mkdir<span class="w"> </span>~/.pip<span class="w"> </span><span class="c1">#如果有这个文件夹的不需要建立</span>
-<span class="nb">cd</span><span class="w"> </span>~/.pip<span class="w"> </span><span class="c1">#转到.pip这个文件夹</span>
-touch<span class="w"> </span>pip.conf<span class="w"> </span><span class="c1">#建立这个文件</span>
-sudo<span class="w"> </span>vi<span class="w"> </span>~/.pip/pip.conf<span class="w"> </span><span class="c1">#用vim编辑器编辑这个文件</span>
+<pre><span></span><code>mkdir<span class="w"> </span>~/.pip<span class="w"> </span><span class="c1"># 如果有这个文件夹的不需要建立</span>
+<span class="nb">cd</span><span class="w"> </span>~/.pip<span class="w"> </span><span class="c1"># 转到.pip这个文件夹</span>
+touch<span class="w"> </span>pip.conf<span class="w"> </span><span class="c1"># 建立这个文件</span>
+sudo<span class="w"> </span>vi<span class="w"> </span>~/.pip/pip.conf<span class="w"> </span><span class="c1"># 用vim编辑器编辑这个文件</span>
 </code></pre>
 </div>
 
@@ -57,9 +57,9 @@ sudo<span class="w"> </span>vi<span class="w"> </span>~/.pip/pip.conf<span class
 
 <div class="codehilite">
 <pre><span></span><code><span class="o">[</span>global<span class="o">]</span>
-index-url<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn/simple<span class="w"> </span><span class="c1">#改为清华镜像源</span>
+index-url<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn/simple<span class="w"> </span><span class="c1"># 改为清华镜像源</span>
 <span class="o">[</span>install<span class="o">]</span>
-trusted-host<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn<span class="w"> </span><span class="c1">#此参数为了保证受信任，避免麻烦</span>
+trusted-host<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn<span class="w"> </span><span class="c1"># 此参数为了保证受信任，避免麻烦</span>
 </code></pre>
 </div>
 
@@ -69,7 +69,7 @@ trusted-host<span class="w"> </span><span class="o">=</span><span class="w"> </s
 
         </div>
     </main>
-
+    
     <!-- JS文件 -->
     <script src="../../js/main.js"></script>
     <script src="../../js/md.js"></script>

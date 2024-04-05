@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EliasChang - Blog</title>
-    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/fonts.css">
     <link rel="stylesheet" href="../../css/md.css">
@@ -17,7 +17,7 @@
 
         <!-- 1.1.页首栏 -->
         <div id="headbar">
-            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
             <b id="pageTitle">BLOG</b>
         </div>
 
@@ -26,7 +26,7 @@
     <!-- 2.内容 -->
     <main>
         <div id="markdownContent">
-        <h1>【解决】Github Pages搭建的网页访问加载缓慢</h1>
+            <h1>【解决】Github Pages搭建的网页访问加载缓慢</h1>
 
 <p>众所周知，使用Github Pages搭建网页是非常方便的，缺点是只能搭建静态网页（但其实也可以尝试动态网页的搭建，功能不强大而已），而且我发现在国内访问搭建的网页加载非常缓慢，访问体验很差。</p>
 
@@ -56,39 +56,57 @@
 
 <h3>（一）添加网站</h3>
 
-<p>注册账号不必多言，注册完成后选择开始添加网站。
-<img src="https://img-blog.csdnimg.cn/direct/e08621588e8740268f5e391bec3db206.png#pic_center" alt="在这里插入图片描述" />
-然后添加你的网站域名，注意，一定是Github Pages给你生成的原域名。
-<img src="https://img-blog.csdnimg.cn/direct/c138210fa9944f30933074015252aca6.png#pic_center" alt="在这里插入图片描述" /></p>
+<p>注册账号不必多言，注册完成后选择开始添加网站。</p>
 
-<p>发现左上角已经显示你的网站名，说明已经添加完成。然后贫穷的我们选择免费服务。
-<img src="https://img-blog.csdnimg.cn/direct/fcec742d678b45c98f35e33803b570e1.png#pic_center" alt="在这里插入图片描述" />
-接着Cloudflare会自动扫描你的DNS解析服务（我之前用的是阿里云），然后进入这样的界面。
-<img src="https://img-blog.csdnimg.cn/direct/e038172e0ef14bd2b44d00bec93651e7.png#pic_center" alt="在这里插入图片描述" />
-下一步我们就需要修改原本的网络服务了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/e08621588e8740268f5e391bec3db206.png" alt="在这里插入图片描述" /></p>
+
+<p>然后添加你的网站域名，注意，一定是Github Pages给你生成的原域名。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/c138210fa9944f30933074015252aca6.png" alt="在这里插入图片描述" /></p>
+
+<p>发现左上角已经显示你的网站名，说明已经添加完成。然后贫穷的我们选择免费服务。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/fcec742d678b45c98f35e33803b570e1.png" alt="在这里插入图片描述" /></p>
+
+<p>接着Cloudflare会自动扫描你的DNS解析服务（我之前用的是阿里云），然后进入这样的界面。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/e038172e0ef14bd2b44d00bec93651e7.png" alt="在这里插入图片描述" /></p>
+
+<p>下一步我们就需要修改原本的网络服务了。</p>
 
 <h3>（二）修改原网络服务</h3>
 
-<p>按照Cloudflare给的提示，首先应该进入你的域名注册机构（我的是阿里云），然后修改DNS服务更新到Cloudflare给出的DNS服务器。
-<img src="https://img-blog.csdnimg.cn/direct/33d835087d8d487287dc052b21bfa61a.png#pic_center" alt="在这里插入图片描述" />
-一般来讲，购买完域名就会配置DNS服务器，由于我的域名是在阿里云买的，搜索一直接进入阿里云域名服务-域名列表。点击管理进入修改界面。
-<img src="https://img-blog.csdnimg.cn/direct/4615161aac8b4b4d82230156d1971061.png#pic_center" alt="在这里插入图片描述" />
-在注册信息一栏可以修改DNS。
-<img src="https://img-blog.csdnimg.cn/direct/3e5f9d45dcf042279b7df5c17754569f.png#pic_center" alt="在这里插入图片描述" />
-点击修改DNS进入修改页面，并将之前在Cloudflare给出的两个DNS服务器地址填入。点击确定验证手机号完成修改。
-<img src="https://img-blog.csdnimg.cn/direct/f0240f5d9c4d4c8fa260d9f6c06541a0.png#pic_center" alt="在这里插入图片描述" /></p>
+<p>按照Cloudflare给的提示，首先应该进入你的域名注册机构（我的是阿里云），然后修改DNS服务更新到Cloudflare给出的DNS服务器。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/33d835087d8d487287dc052b21bfa61a.png" alt="在这里插入图片描述" /></p>
+
+<p>一般来讲，购买完域名就会配置DNS服务器，由于我的域名是在阿里云买的，搜索一直接进入阿里云域名服务-域名列表。点击管理进入修改界面。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/4615161aac8b4b4d82230156d1971061.png" alt="在这里插入图片描述" /></p>
+
+<p>在注册信息一栏可以修改DNS。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/3e5f9d45dcf042279b7df5c17754569f.png" alt="在这里插入图片描述" /></p>
+
+<p>点击修改DNS进入修改页面，并将之前在Cloudflare给出的两个DNS服务器地址填入。点击确定验证手机号完成修改。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/f0240f5d9c4d4c8fa260d9f6c06541a0.png" alt="在这里插入图片描述" /></p>
 
 <h3>（三）Cloudflare配置DNS服务</h3>
 
-<p>回到Cloudflare的激活页面，点击查看设置进入“快速入门指南”。
-<img src="https://img-blog.csdnimg.cn/direct/fbb8491ae3c248e3b64892d50e0519d0.png#pic_center" alt="在这里插入图片描述" />
-进入之后是一些配置安全性和优化性能的设置，自己配置就行，不配置也无所谓。
-<img src="https://img-blog.csdnimg.cn/direct/e95be17b0ff54eccab6e569466281d34.png#pic_center" alt="在这里插入图片描述" />
-最后，等待阿里云更新DNS服务器完成就可以激活Cloudflare服务了，Cloudflare官方会给你发一封邮件提示激活成功。至于更改时长各有不同，一般来说会在半个小时内生效，可以进入服务商那里测试是否生效来查看。具体邮件内容就不再附上。</p>
+<p>回到Cloudflare的激活页面，点击查看设置进入“快速入门指南”。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/fbb8491ae3c248e3b64892d50e0519d0.png" alt="在这里插入图片描述" /></p>
+
+<p>进入之后是一些配置安全性和优化性能的设置，自己配置就行，不配置也无所谓。</p>
+
+<p><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/e95be17b0ff54eccab6e569466281d34.png" alt="在这里插入图片描述" /></p>
+
+<p>最后，等待阿里云更新DNS服务器完成就可以激活Cloudflare服务了，Cloudflare官方会给你发一封邮件提示激活成功。至于更改时长各有不同，一般来说会在半个小时内生效，可以进入服务商那里测试是否生效来查看。具体邮件内容就不再附上。</p>
 
         </div>
     </main>
-
+    
     <!-- JS文件 -->
     <script src="../../js/main.js"></script>
     <script src="../../js/md.js"></script>

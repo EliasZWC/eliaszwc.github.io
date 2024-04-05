@@ -13,10 +13,6 @@
 3. 删除了无用的filterBoard.png、right_black.png、rightButton.png
 4. 将知识导图的源文件复制了一份到scienceBranch目录
 
-## （三）lib目录
-
-1. lib中新增了vue和vue的国际化插件vue-i18n.js，为以后vue技术升级铺垫
-
 # 二、HTML更新
 
 1. 删除了“知识”页面尾部的轮播图HTML结构

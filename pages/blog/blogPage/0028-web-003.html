@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【解决】使用Jekyll框架进入网页终端返回找不到.min.js或者类似Rollup模块化构建js失败问题</h1>
+
+<p><strong>Jekyll</strong>是非常好用的静态网页生成框架，但由于社区资源不算非常丰富，导致很多bug难以解决，而且由于Jekyll框架是基于Ruby语言的，导致很多没有Ruby开发经验的人连项目结构都难以认识。我使用Jekyll框架的时候不得不说只有fork主题仓库的第一步比较轻松，包括将Jekyll项目部署到网上，都遭遇了大大小小的问题，这是其中我认为必须说一下的一个问题。</p>
+
+<h2>一、问题表现</h2>
+
+<p>当你使用<code>bundle exec jekyll serve</code>命令去构建本地的Jekyll环境进行调试的时候（或者项目已经部署到网上），你会发现一些JS功能出现了问题，就比如主题作者定制的白天/黑夜切换按钮之类的功能出现了问题，或者说其他的你发现的非网页结构与显示问题的功能问题。</p>
+
+<p>此时查看终端就会发现返回以下报错信息。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">ERROR</span> <span class="p">`/</span><span class="n">assets</span><span class="p">/</span><span class="n">js</span><span class="p">/</span><span class="n">dist</span><span class="p">/</span><span class="n">home</span><span class="p">.</span><span class="n">min</span><span class="p">.</span><span class="n">js</span><span class="err">&#39;</span> <span class="n">not</span> <span class="n">found</span><span class="p">.</span>
+</code></pre>
+</div>
+
+<p>通过查看<code>rollup.config.js</code>这个Rollup配置文件，就会发现这其实是开发者为了模块化网页功能，通过某个函数（比如我这里就是一个<code>build(filename)</code>的函数），将某个文件目录作为输入目录，然后通过引用Rollup这个专门模块化JS代码的库来模块化构建JS代码输出到另一个目录，我这里的输入目录就是JS代码模块目录<code>_javascript</code>，输出目录是到<code>assets/js/dist</code>，然后原文件和构建后的输出文件的差别是从后缀<code>.js</code>更改为<code>.min.js</code>。当然，根据模板主题项目开发者的不同，其设定也许不同，你需要仔细查看<code>rollup.config.js</code>的代码逻辑。</p>
+
+<p>此时通过解读代码逻辑就明白了报错的原因其实是这个Rollup功能并没有正确构建然后输出到输出目录。</p>
+
+<h2>二、问题解决</h2>
+
+<h3>（一）检查输出目录</h3>
+
+<p>首先是查看一下输出目录是否存在，比如我这里的输出目录为<code>assets/js/dist</code>，但assets的js目录下并没有dist这个目录，于是就需要手动创建一个。</p>
+
+<h3>（二）启动Rollup构建</h3>
+
+<p>如果Rollup不能构建的话，就需要自己手动构建。无论是Linux还是MacOS、Windows都必须先下载Rollup库。我使用的是Windows系统，所以就用npm工具下载Rollup库。终端使用以下npm命令。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">npm</span> <span class="n">install</span> <span class="n">rollup</span>
+</code></pre>
+</div>
+
+<p>下载完成后检查一下是否下载成功。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">npx</span> <span class="n">rollup</span> <span class="p">-</span><span class="n">-version</span>
+</code></pre>
+</div>
+
+<p>接着打开根目录的<code>package.json</code>文件，这个文件是Node.js项目中用来描述项目信息和依赖关系的配置文件。然后进入找到<code>"standard-version"</code>字段（通常在最后），在字段中添加以下内容。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;module&quot;</span>
+</code></pre>
+</div>
+
+<p>然后再将<code>rollup.config.js</code>这个Rollup配置文件的后缀名改为<code>.cjs</code>，然后进入终端开始启动Rollup，使用以下命令。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">npx</span> <span class="n">rollup</span> <span class="n">-c</span> <span class="p">-</span><span class="n">-bundleConfigAsCjs</span>
+</code></pre>
+</div>
+
+<p>如此你就能看到此时的<code>rollup.config.cjs</code>的内容被正确启动，内部的构建函数成功将<code>.min.js</code>的系列文件输出到输出目录。重新使用bundle工具构建本地Jeckyll环境，进入网页再查看就发现功能都恢复正常了，终端也不再报错。</p>
+
+<p>另外就是如果<code>.gitignore</code>文件存在这个输出路径，应该注释或者删除输出目录这一项，否则使用Git上传的时候会自动略过，导致本地调试成功但网站部署不成功。</p>
+
+<h2>三、补充</h2>
+
+<p>本人也是第一次使用Jekyll框架，按我的想法这应该类似是动态Rollup构建的操作，所以我不清楚在本地将输出结果文件直接保存到项目文件结构中是否会干扰网站正常的进程，毕竟我只是有前端基础，但并不熟悉Ruby语言的Jekyll主题开发，所以对于主题的开发者是怎样设计功能的也不够了解，如果有大佬能够提出更优秀的解决方案还请不吝赐教！</p>
+
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>
