@@ -16,7 +16,7 @@ main {
     height: auto;
     display: flex;
     justify-content: center;
-    background-image: url("../../images/background/knowledgeCover.png");
+    background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/background/knowledgeCover.png");
     background-size: cover;
     background-position: center;
 }
