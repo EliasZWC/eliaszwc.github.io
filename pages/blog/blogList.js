@@ -1,5 +1,10 @@
 // 信息储存#分类储存
 const tags = {
+    Literature: [
+        { name: "Category", tags: [] },
+        { name: "Genre", tags: [] },
+        { name: "Country", tags: [] }
+    ],
     History: [
         { name: "Era", tags: ["Prehistory", "Ancient", "Modern", "Contemporary"] },
         { name: "Region", tags: ["Africa", "America", "Asia", "Europe"] },
@@ -7,14 +12,9 @@ const tags = {
     ],
     IT: [
         { name: "Direction", tags: ["Algorithm", "Android", "Security", "Test", "Web"] },
-        { name: "Language", tags: ["Bash", "C", "C++", "CSS", "Go", "HTML", "Java", "JavaScript", "Kotlin", "Python", "SQL", "XML"] },
+        { name: "Language", tags: ["Bash", "C", "C++", "CSS", "Go", "HTML", "Java", "JavaScript", "Kotlin", "Python", "Shell", "SQL", "XML"] },
         { name: "System", tags: ["Git", "Linux", "Windows"] }
     ],
-    Literature: [
-        { name: "Category", tags: [] },
-        { name: "Genre", tags: [] },
-        { name: "Country", tags: [] }
-    ]
 };
 
 // *******************************************************************************************
