@@ -11,7 +11,7 @@ const tags = {
         { name: "Country", tags: ["Britain", "China", "Egypt", "France", "Germany", "India", "Iran", "Japan", "Russia", "USA"] }
     ],
     IT: [
-        { name: "Direction", tags: ["Algorithm", "Android", "Security", "Test", "Web"] },
+        { name: "Direction", tags: ["Algorithm", "Android", "Configuration", "Security", "Test", "Web"] },
         { name: "Language", tags: ["Bash", "C", "C++", "CSS", "Go", "HTML", "Java", "JavaScript", "Kotlin", "Python", "Shell", "SQL", "XML"] },
         { name: "System", tags: ["Git", "Linux", "Windows"] }
     ],
@@ -33,20 +33,20 @@ const tags = {
 var blogData = {
     "blogs": [
         {
+            "title": "【古代史】中国王朝君主更迭史（一）——夏朝",
+            "subject": "IT",
+            "tag": ["Ancient", "Asia", "China"],
+            "img": "cnhist.png",
+            "intro": "中国王朝君主更迭历史第一部分，夏朝的君主更迭。",
+            "filename": "0032-cnhist-001.html"
+        },
+        {
             "title": "【解决】Github Pages搭建的网页访问加载缓慢",
             "subject": "IT",
             "tag": ["IT", "Web"],
             "img": "github.png",
             "intro": "使用Cloudflare的CDN服务加速网站访问进程。",
             "filename": "solve-003.html"
-        },
-        {
-            "title": "【技术】Github环境配置指南",
-            "subject": "IT",
-            "tag": ["IT", "Bash", "Git"],
-            "img": "github.png",
-            "intro": "初次使用Github的环境配置步骤。",
-            "filename": "bash-001.html"
         },
         {
             "title": "【笔记】Kotlin语言（四）——方法",
@@ -134,7 +134,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第十部分，了解结构体定义方式，使用结构体的指针、数组和嵌套。",
-            "filename": "cpp-010.html"
+            "filename": "0013-cpp-010.html"
         },
         {
             "title": "【笔记】C++语言基础（九）——指针",
@@ -142,7 +142,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第九部分，了解指针定义方式，认识特殊指针的各种类型，探究指针与数组、指针与函数的关系。",
-            "filename": "cpp-009.html"
+            "filename": "0012-cpp-009.html"
         },
         {
             "title": "【笔记】C++语言基础（八）——函数",
@@ -150,7 +150,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第八部分，了解函数定义方式、函数值传递方式与常见的函数形式。",
-            "filename": "cpp-008.html"
+            "filename": "0011-cpp-008.html"
         },
         {
             "title": "【笔记】C++语言基础（七）——Array数组",
@@ -158,7 +158,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第七部分，以维数划分，认识数组的定义方式与基本的算法。",
-            "filename": "cpp-007.html"
+            "filename": "0010-cpp-007.html"
         },
         {
             "title": "【笔记】C++语言基础（六）——String字符串",
@@ -166,7 +166,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第六部分，掌握String容器的初始化与String字符串常用的操作，认识String的成员函数。",
-            "filename": "cpp-006.html"
+            "filename": "0009-cpp-006.html"
         },
         {
             "title": "【笔记】C++语言基础（五）——Vector向量",
@@ -174,7 +174,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第五部分，掌握Vector向量的初始化，以及了解Vector向量常用的成员函数。",
-            "filename": "cpp-005.html"
+            "filename": "0008-cpp-005.html"
         },
         {
             "title": "【笔记】C++语言基础（四）——流程控制",
@@ -182,7 +182,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第四部分，了解作用域与块的概念，并在了解语句分类的基础上认识条件、循环、跳转三大语句。",
-            "filename": "cpp-003.html"
+            "filename": "0007-cpp-003.html"
         },
         {
             "title": "【笔记】C++语言基础（三）——运算符",
@@ -190,7 +190,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第三部分，认识各类运算符与具体分类，以及运算符的优先级别。",
-            "filename": "cpp-003.html"
+            "filename": "0006-cpp-003.html"
         },
         {
             "title": "【笔记】C++语言基础（二）——数据类型",
@@ -198,7 +198,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第二部分，认识基本数据类型，以及常量与变量的定义。",
-            "filename": "cpp-002.html"
+            "filename": "0005-cpp-002.html"
         },
         {
             "title": "【笔记】C++语言基础（一）——项目与程序结构",
@@ -206,15 +206,7 @@ var blogData = {
             "tag": ["IT", "C++"],
             "img": "c++.png",
             "intro": "C++语言基础笔记第一部分，初始化与认识项目与程序结构。",
-            "filename": "cpp-001.html"
-        },
-        {
-            "title": "【解决】Ubuntu环境下更换网络下载源",
-            "subject": "IT",
-            "tag": ["IT", "Bash"," Linux"],
-            "img": "ubuntu.png",
-            "intro": "在Ubuntu环境下使用Vim编辑pip.conf文件来改变pip下载源。",
-            "filename": "solve-001.html"
+            "filename": "0004-cpp-001.html"
         },
         {
             "title": "【解决】Android Studio建立apk报错Execution failed for task ':app:checkDebugAarMetadata'",
@@ -222,7 +214,23 @@ var blogData = {
             "tag": ["IT", "Android", "Kotlin", "Windows"],
             "img": "android.png",
             "intro": "Kotlin语言环境下解决Android Studio建立apk报错':app:checkDebugAarMetadata'问题。",
-            "filename": "solve-002.html"
+            "filename": "0003-config-003.html"
+        },
+        {
+            "title": "【技术】Github环境配置指南",
+            "subject": "IT",
+            "tag": ["IT", "Bash", "Git"],
+            "img": "github.png",
+            "intro": "初次使用Github的环境配置步骤。",
+            "filename": "0002-config-002.html"
+        },
+        {
+            "title": "【解决】Ubuntu环境下更换网络下载源",
+            "subject": "IT",
+            "tag": ["IT", "Bash"," Linux"],
+            "img": "ubuntu.png",
+            "intro": "在Ubuntu环境下使用Vim编辑pip.conf文件来改变pip下载源。",
+            "filename": "0001-solve-001.html"
         }
     ]
 };

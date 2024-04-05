@@ -2,9 +2,9 @@
 
 # 一、项目结构更新
 
-## （一）根目录
+## （一）pages目录
 
-
+1. 将blog目录下的文件分到了不同子目录，blogCover用于储存博客文章封面，blogJS用于储存博客JS文件，blogImg作为博客图床，blogPage用于储存转换为html文件的md博客文章图片
 
 ## （二）images目录
 

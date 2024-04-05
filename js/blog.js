@@ -2,7 +2,7 @@
 function renderBlogList(blogs) {
     var blogList = document.querySelector('#blogList');
     blogList.innerHTML = ''; // 清空当前的列表
-    var localPath = "./blog/";
+    var localPath = "./blog/blogpage/";
     var imgPath = "https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogCover/";
     var fragment = document.createDocumentFragment(); // 使用文档片段减少DOM操作
 
@@ -41,7 +41,6 @@ function renderBlogList(blogs) {
 
     blogList.appendChild(fragment); // 一次性将所有元素添加到DOM中
 }
-
 // *******************************************************************************************
 
 // 筛选器#初始化标签下拉列表
@@ -111,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     initTagOptions(subjectSelect.value);
 });
-
 // *******************************************************************************************
 
 // 搜索器
