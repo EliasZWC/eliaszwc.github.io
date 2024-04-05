@@ -2,7 +2,7 @@
 function renderBlogList(blogs) {
     var blogList = document.querySelector('#blogList');
     blogList.innerHTML = ''; // 清空当前的列表
-    var localPath = "./blog/blogpage/";
+    var localPath = "./blog/blogPage/";
     var imgPath = "https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogCover/";
     var fragment = document.createDocumentFragment(); // 使用文档片段减少DOM操作
 
