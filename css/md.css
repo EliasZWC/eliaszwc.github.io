@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url("../images/header/blogHeader.png");
+    background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/header/blogHeader.png");
     background-size: cover;
     background-position: center center;
 }
