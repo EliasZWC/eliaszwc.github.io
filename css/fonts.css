@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'ClassicalChinese';
-    src: url('../fonts/汉仪金陵刻经.ttf') format('truetype');
+    src: url('../fonts/classicalChinese.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
