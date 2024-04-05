@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】MySQL数据库（三）——数据定义语言DDL</h1>
+
+<h2>一、DDL介绍</h2>
+
+<p><strong>DDL（Data Definition Language，数据定义语言）</strong> 是用于定义和管理数据库对象（如表、视图、索引等）的语言。它是一种结构化查询语言（SQL）的子集。该语言部分包括以下内容：</p>
+
+<ul>
+<li>对数据库的常用操作</li>
+<li>对表结构的常用操作</li>
+<li>修改表结构</li>
+</ul>
+
+<h2>二、DDL数据库操作</h2>
+
+<p>以下是DDL对数据库的常用操作。</p>
+
+<table>
+<thead>
+<tr>
+  <th>功能</th>
+  <th>SQL语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>查看所有数据库</td>
+  <td><code>SHOW DATABASES;</code></td>
+</tr>
+<tr>
+  <td>创建数据库</td>
+  <td><code>CREATE DATABASE [IF NOT EXISTS] 数据库 [CHARSET=utf8];</code></td>
+</tr>
+<tr>
+  <td>切换据库</td>
+  <td><code>USE 数据库;</code></td>
+</tr>
+<tr>
+  <td>删除数据库</td>
+  <td><code>DROP DATABASE [IF EXISTS] 数据库;</code></td>
+</tr>
+<tr>
+  <td>修改数据库编码</td>
+  <td><code>ALTER DATABASE 数据库 CHARACTER SET 编码样式;</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>需要指出的是，由于SQL语言大小写不敏感，所以为了可读性一般会将标识符大写，但使用小写也不影响程序运行。另外，使用<code>[]</code>内的语句代表着可选。</p>
+
+<h3>（一）查看数据库</h3>
+
+<p>下面是代码实验。进入Navicat后，点击左侧连接好的MySQL，会发现有一些默认数据库，点击“新建查询”，即可输入SQL语言代码进行操作。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 查看数据库</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">DATABASES</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>此时在弹出的结果栏可以查看目前MySQL存在的数据库。</p>
+
+<h3>（二）创建数据库</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 创建数据库</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>运行后可以看到结果栏中出现<code>mydb1</code>这个新创建的数据库。同时，在左侧的库显示栏右键刷新后也可以看到新创建的库。
+但当重复运行创建数据库的语句时，会报错“&gt; 1007 - Can't create database 'mydb1'; database exists”，即数据库已存在，不可创建。所以会加上<code>IF NOT EXISTS</code>的判断语句，这样就不会报错。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3>（三）选择数据库</h3>
+
+<p>当选择使用哪一个数据库进行编辑时，使用如下语句。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 选择使用数据库</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3>（四）删除数据库</h3>
+
+<p>而当要删除此处已经创建的<code>mydb1</code>数据库时，则使用以下语句。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 删除数据库</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>刷新即可发现创建的数据库<code>mydb1</code>已经被删除。
+然而当重复运行删除数据库的语句时，会报错“&gt; 1008 - Can't drop database 'mydb1'; database doesn't exist”，即数据库不存在，不可删除。所以加上<code>IF EXISTS</code>的判断语句就可以不报错。</p>
+
+<h3>（五）转换数据库编码</h3>
+
+<p>至于转换编码则一般不需要，因为在初始化的时候已经默认将MySQL设置为utf8编码了，但如果进行操作时，语句也一般如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 修改数据库的编码</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">mydb1</span><span class="w"> </span><span class="nb">CHARACTER</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">utf8</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h2>三、DDL表结构操作</h2>
+
+<p>以下是DDL对表结构的常用操作。</p>
+
+<table>
+<thead>
+<tr>
+  <th>功能</th>
+  <th>SQL语句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>创建表</td>
+  <td><code>CREATE TABLE 表名();</code></td>
+</tr>
+<tr>
+  <td>查看当前数据库所有表</td>
+  <td><code>SHOW TABLES;</code></td>
+</tr>
+<tr>
+  <td>查看指定表的创建语句</td>
+  <td><code>SHOW CREATE TABLE 表名;</code></td>
+</tr>
+<tr>
+  <td>查看表结构</td>
+  <td><code>DESC 表名;</code></td>
+</tr>
+<tr>
+  <td>删除表</td>
+  <td><code>DROP TABLE 表名;</code></td>
+</tr>
+</tbody>
+</table>
+
+<h3>（一）创建表</h3>
+
+<p>创建表是在数据库中构建一张空表，制定这个表的名字，这个表的列数和列名，以及每一列储存的数据类型。具体语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="p">[</span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="p">]</span><span class="err">表名</span><span class="p">(</span>
+<span class="w">    </span><span class="err">字段名</span><span class="mi">1</span><span class="w"> </span><span class="err">类型</span><span class="p">[(</span><span class="err">宽度</span><span class="p">)]</span><span class="w"> </span><span class="p">[</span><span class="err">约束条件</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;字段说明&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="err">字段名</span><span class="mi">2</span><span class="w"> </span><span class="err">类型</span><span class="p">[(</span><span class="err">宽度</span><span class="p">)]</span><span class="w"> </span><span class="p">[</span><span class="err">约束条件</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;字段说明&#39;</span><span class="p">],</span>
+<span class="w">    </span><span class="err">字段名</span><span class="mi">3</span><span class="w"> </span><span class="err">类型</span><span class="p">[(</span><span class="err">宽度</span><span class="p">)]</span><span class="w"> </span><span class="p">[</span><span class="err">约束条件</span><span class="p">]</span><span class="w"> </span><span class="p">[</span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;字段说明&#39;</span><span class="p">],</span>
+<span class="p">)[</span><span class="err">其他表设置</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>其中，字段名实际上就是列名，类型则是需要选择的数据类型。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 创建表</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+<span class="n">USE</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">student</span><span class="p">(</span>
+<span class="w">    </span><span class="n">sid</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">gender</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">birth</span><span class="w"> </span><span class="nb">DATE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">address</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">score</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>以上代码重新创建了数据库<code>mydb1</code>，并确定使用此数据库进行编辑。随后，创建了一个表<code>student</code>，表中有7个列，分别是学生号<code>sid</code>、名字<code>name</code>、性别<code>gender</code>、年龄<code>age</code>、出生日期<code>birth</code>、地址<code>address</code>和成绩<code>score</code>。
+在Navicat中点击mydb1库进入表即可看到student表的空表如下。
+<img src="https://img-blog.csdnimg.cn/direct/e96f97f2f85349abb51f171faf5e3e5d.png#pic_center" alt="创建表" /></p>
+
+<h3>（二）查看所有表</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 查看所有表</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="n">TABLES</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>输入以上命令，结果栏即可查看当前数据库的所有表。当然，作为图形化界面，在Navicat的左侧依然可以查看到所有的库和表。</p>
+
+<h3>（三）查看表创建语句</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 查看表创建语句</span>
+<span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>承接之前创建的表<code>student</code>，输入以上命令就能在结果栏返回当时创建表<code>student</code>的语句。返回结果如下。</p>
+
+<blockquote>
+  <p>CREATE TABLE `student` (
+  `sid` int DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `gender` varchar(10) DEFAULT NULL,
+  `age` int DEFAULT NULL,
+  `birth` date DEFAULT NULL,
+  `address` varchar(20) DEFAULT NULL,
+  `score` double DEFAULT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3</p>
+</blockquote>
+
+<h3>（四）查看表结构</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 查看表结构</span>
+<span class="k">DESC</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用以上语句，就可以查询到表<code>student</code>的相应表结构。返回结果如下图。
+<img src="https://img-blog.csdnimg.cn/direct/6b9ff9043b86433d83632a42d25c8a8d.png#pic_center" alt="查看表结构返回结果" /></p>
+
+<h3>（五）删除表</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 删除表</span>
+<span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用以上语句即可删除刚刚创建和操作的表<code>student</code>。</p>
+
+<h3>（六）修改表结构</h3>
+
+<p>在创建表后，若希望增添或者删除表的某列，修改表名等操作，就需要用到对表结构的修改语句。</p>
+
+<h4>1.添加列</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="err">列名</span><span class="w"> </span><span class="err">类型</span><span class="p">(</span><span class="err">长度</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="err">约束</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>使用以上的语法结构再给表<code>student</code>中添加一个系别（department）字段名<code>dept</code>，其代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>使用<code>DESC</code>命令即可查看添加后的表结构如图所示。
+<img src="https://img-blog.csdnimg.cn/direct/ead2f386b1e344d5b23ed12dccfd86ad.png#pic_center" alt="添加列" /></p>
+
+<h4>2.更改列</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="err">旧列名</span><span class="w"> </span><span class="err">新列名</span><span class="w"> </span><span class="err">类型</span><span class="p">(</span><span class="err">长度</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="err">约束</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>使用以上的语法结构给表<code>student</code>中刚刚添加的系别字段名<code>dept</code>更改为<code>department</code>，其代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="n">CHANGE</span><span class="w"> </span><span class="n">dept</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">30</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>此时查看的表结构如图所示。
+<img src="https://img-blog.csdnimg.cn/direct/91da76d0011e4eaabf58f066351b7390.png" alt="更改列" /></p>
+
+<h4>3.删除列</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="err">列名</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用以上的语法结构将表<code>student</code>的系别列删除，其代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="n">department</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>如此，再使用<code>DESC</code>命令查看表结构，发现此列已经删除。
+<img src="https://img-blog.csdnimg.cn/direct/ef40143a89ec435198ea7b75d04b3201.png" alt="删除列" /></p>
+
+<h4>4.修改表名</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">RENAME</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">旧表名</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="err">新表名</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用以上的语法将表<code>student</code>的更名为<code>stu</code>，其代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">RENAME</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">stu</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>此时左侧库中的表名就可以发现从student改名为stu。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

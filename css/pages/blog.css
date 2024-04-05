@@ -1,0 +1,251 @@
+body {
+    background-image: url("../../images/background/blogBackground.png");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/* ======================================================================================= */
+
+/* 1.页眉 */
+#header {
+    position: relative;
+    top: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* 1.1.页首栏 */
+#headbar {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+#back {
+    margin: 3vw;
+    width: 3vw;
+}
+#pageTitle {
+    font-size: 1.5vw;
+    font-weight: 1000;
+    color: #fff;
+}
+#searchInput {
+    position: absolute;
+    left: 50%;
+    padding: 0.7vw 2vw;
+    width: 60vw;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    outline: none;
+    transform: translateX(-50%);
+} 
+#searchInput::placeholder {
+    color: #999;
+} 
+#searchInput:focus {
+    outline: none;
+}
+#search {
+    margin-left: 70vw;
+    width: 2vw;
+    cursor: pointer;
+}
+/* 1.2.筛选器 */
+#filterBoard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#filterBar {
+    position: relative;
+    width: 75vw;
+    height: 5vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+}
+#filterButton {
+    position: relative;
+    padding-right: 3vw;
+    width: 15vw;
+    height: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #fff;
+    font-size: 2vw;
+    font-weight: 800;
+    background: none;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+#filterButton img{
+    margin-left: 10px;
+}
+#filterButton:hover {
+    background-color: #fff;
+    color: #000;
+}
+.filterIcon {
+    transition: opacity 0.3s, visibility 0.3s;
+    position: absolute;
+    left: 62%;
+    top: 22%;
+    width: 3vw;
+}
+#filterWhite {
+    opacity: 1;
+    visibility: visible;
+}
+#filterBlack {
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+#filterButton:hover #filterBlack {
+    opacity: 1;
+    visibility: visible;
+}
+#filterButton:hover #filterWhite {
+    opacity: 0;
+    visibility: hidden;
+}
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16vw;
+    height: 5vw;
+    padding: 1vw;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid #fff;
+    background: #fff;
+    font-size: 1.5vw;
+    font-weight: 800;
+    color: #000;
+    transition: border 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+select:hover {
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+select:focus {
+    outline: none;
+    border: 2px solid #000;
+    background-color: #000;
+    color: #fff;
+}
+option {
+    font-size: 1vw;
+}
+
+/* ======================================================================================= */
+
+/* 2.内容 */
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.blogContent {
+    width: 60%;
+}
+#blogList {
+    position: relative;
+    margin-top: 3vw;
+}
+#blogList li {
+    margin-bottom: 2vw;
+    width: 60vw;
+}
+#blogList li a {
+    position: relative;
+    width: 100%;
+    height: 10vw;
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3); /* 设置背景颜色并调低透明度 */
+    backdrop-filter: blur(10px); /* 应用高斯模糊效果 */
+    transition: transform 0.3s ease; /* 添加过渡效果 */
+}
+#blogList li a:hover {
+    transform: scale(1.05); /* 添加放大效果 */
+}
+#blogList li a img {
+    float: left;
+    width: auto;
+    height: 10vw;
+}
+.blogInfo{
+    position: relative;
+    padding: 1vw;
+    width: 100%;
+    height: 8vw;
+    display: flex;
+    flex-direction: column;
+}
+.blogInfo b {
+    width: 40vw;
+    height: 3vw;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5vw;
+    font-weight: 600;
+    color: #fff;
+}
+.blogInfo p {
+    margin: 0.5vw;
+    width: 40vw;
+    word-wrap: break-word;
+    font-size: 0.8vw;
+    font-weight: 300;
+    color: #fff;
+}
+.tagDiv {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 2vw;
+    float: right;
+    display: flex;
+    flex-direction: row;
+}
+.tags {
+    position: relative;
+    margin-left: 2vw;
+    padding-left: 3vw;
+    padding-right: 1.8vw;
+    height: 1.6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8vw;
+    font-weight: bold;
+    color: #fff;
+    background-image: url("../../images/component/tag.png");
+    background-size: cover;
+}
+.tags::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    background-color: white;
+}

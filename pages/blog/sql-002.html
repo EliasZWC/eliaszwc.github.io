@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】MySQL数据库（一）——认识与环境搭建</h1>
+
+<h2>一、认识SQL</h2>
+
+<h3>（一）SQL语言概述</h3>
+
+<p><strong>SQL（Structured Query Language，结构化查询语言）</strong>，是用于管理关系型数据库系统的标准化语言。它提供了一组用于定义、操作和管理数据库及其数据的命令和语法。
+SQL 的历史可以追溯到上世纪70年代早期，当时 IBM 的一些研究员在关系型数据库领域进行了重要的研究和开发。1970年代初，Edgar F. Codd 提出了关系型数据库理论，即基于关系模型的数据库管理系统（DBMS）。1974年，IBM 的研究员 Donald D. Chamberlin 和 Raymond F. Boyce 开发了结构化查询语言（SQL），作为在关系型数据库系统中进行数据操作和检索的标准化语言。到了1979年，ANSI（美国国家标准协会）和ISO（国际标准化组织）开始制定 SQL 的标准。该标准仍在不断演变，形成了多个 SQL 标准版本。1986年第一个 SQL 标准（SQL-86）发布，并获得了广泛的认可和采用。这个标准定义了 SQL 的基本语法和功能。而后SQL标准几经修改和完善，其功能更加强大。</p>
+
+<h3>（二）SQL语法特点</h3>
+
+<p>SQL语言语法具有以下重要特点。</p>
+
+<ul>
+<li>SQL语言对关键字的大小写不敏感</li>
+<li>SQL语句可以以单行或者多行书写，以分号<code>;</code>结尾</li>
+<li>SQL注释分为单行注释和多行注释</li>
+</ul>
+
+<p>注释的使用如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 单行注释</span>
+<span class="o">#</span><span class="w"> </span><span class="err">单行注释</span>
+<span class="cm">/*</span>
+<span class="cm">    多行注释</span>
+<span class="cm">    多行注释</span>
+<span class="cm">*/</span>
+</code></pre>
+</div>
+
+<h3>（三）数据库系统介绍</h3>
+
+<p><strong>数据库（Database）</strong>，是一个以某种组织方式存储在磁盘上的数据的集合，用于存储、管理和操作数据。它是构建应用程序、网站和其他数据驱动系统的基础之一。
+数据库可以分为不同的类型，其中最常见的是关系型数据库和非关系型数据库。
+<strong>关系型数据库（RDBMS）</strong>：关系型数据库使用表格的形式组织数据，数据以结构化的方式存储，并通过行和列的交叉点来表示。关系型数据库使用 SQL（结构化查询语言）进行数据操作和查询，具备事务的 ACID（原子性、一致性、隔离性和持久性）特性。常见的关系型数据库包括 MySQL、Oracle、Microsoft SQL Server 和 PostgreSQL。
+<strong>非关系型数据库（NoSQL）</strong>：非关系型数据库不使用传统的表格结构，而是使用键值对、文档、列族或图形等数据模型来存储数据。非关系型数据库通常更灵活，可扩展性更好，对于大规模数据和高并发访问可以提供更好的性能。一些常见的非关系型数据库有 MongoDB、Redis、Cassandra 和 Neo4j。</p>
+
+<h2>二、MySQL安装</h2>
+
+<h3>（一）MySQL简介</h3>
+
+<p>MySQL最初由瑞典的开发者Michael Widenius、David Axmark和Allan Larsson于1995年创建，并以其速度、可靠性和易用性而受到欢迎。后来被Oracle公司收购，因此MySQL目前属于Oracle旗下产品。
+MySQL所使用的SQL语言是用于访问数据库的最常用标准化语言。MySQL软件采用了双授权政策，分为社区版和商业版，由于其体积小、速度快、总体拥有成本低，一般中小型 网站的开发都选择MySQL作为网站数据库。
+MySQL的特点有很多：</p>
+
+<ul>
+<li>MySQL数据库是用C和C++语言编写的，以保证源码的可移植性</li>
+<li>支持多个操作系统：Windows、Linux、MacOS等等</li>
+<li>支持多线程，可以充分利用CPU资源</li>
+<li>为多种编程语言提供API，包括C语言、Java、PHP、Python语言等</li>
+<li>MySQL开放源代码且无版权制约，自主性强，使用成本低</li>
+<li>MySQL历史悠久，社区和用户非常活跃，遇到问题可以很快得到帮助</li>
+</ul>
+
+<p>而MySQL版本有很多：</p>
+
+<table>
+<thead>
+<tr>
+  <th>版本</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>MySQL Community Server</td>
+  <td>社区版本，免费，但是MySQL不提供官方技术支持</td>
+</tr>
+<tr>
+  <td>MySQL Enterprise Edition</td>
+  <td>商业版本，付费，可以试用30天，MySQL提供官方技术支持</td>
+</tr>
+<tr>
+  <td>MySQL Cluster</td>
+  <td>集群版本，开源免费，可以将几个MySQL Server封装成一个Server</td>
+</tr>
+<tr>
+  <td>MySQL Cluster CGE</td>
+  <td>高级集群版本，付费</td>
+</tr>
+<tr>
+  <td>MySQL Workbench</td>
+  <td>为MySQL设计的ER/数据库建模工具，也分为社区版和商业版</td>
+</tr>
+</tbody>
+</table>
+
+<h3>（二）MySQL安装</h3>
+
+<p>此次安装的版本为MySQL社区版，即MySQL Community Server。
+具体安装内容可在<a href="https://blog.csdn.net/EliasChang/article/details/136096268?spm=1001.2014.3001.5501">最新MySQL8.3.0社区版安装指南（超详细）</a>这个链接查看MySQL安装。</p>
+
+<h2>三、图形管理工具</h2>
+
+<h3>（一）常用图形管理工具</h3>
+
+<p>如果日常的开发和维护均在类似DOS窗口中进行，明显过于麻烦。对此，可以使用MySQL的图形管理工具来连接MySQL，然后再图形化页面上操作MySQL。
+常用的图形管理工具有很多：</p>
+
+<ul>
+<li><strong>Navicat</strong>：是一套快速、可靠的数据库管理工具，以直觉化的图形用户界面创建的兼容多种数据库和操作系统的图形管理工具</li>
+<li><strong>SQLyog</strong>：是一个快速而简洁的图形化管理MySQL数据库的工具，其能够在任何地点有效地管理数据库，由webyog公司出品</li>
+<li><strong>MySQL Workbench</strong>：由Oracle官方提供的图形化挂历工具，分为社区版和商业版，支持多种操作系统</li>
+<li><strong>Data Grip</strong>：由大名鼎鼎的JetBrains公司出品的一款数据库管理客户端工具，方便连接到数据库服务器进行各种数据库操作</li>
+</ul>
+
+<p>除此之外还有phpMyAdmin、MySQLDumper、MySQL GUI Tools、MySQL ODBC Connector等图形化管理工具，但相比以上四种主流工具而言，使用相对较少。
+本系列文章主要使用Navicat作为图形化管理工具来使用MySQL。</p>
+
+<h3>（二）Navicat安装</h3>
+
+<p>进入<a href="https://www.navicat.com.cn/download/navicat-premium">Navicat premium下载链接</a>网页，点击直接下载即可使用。Navicat试用期14天。
+下载完毕后，进入安装程序跟随流程安装即可。
+安装完成后，进入Navicat，点击页面中的“连接”，选择MySQL进入连接窗口。
+<img src="https://img-blog.csdnimg.cn/direct/abd0ba30c35e4c15b96cb227795a7ae5.png#pic_center" alt="在这里插入图片描述" />
+在此设置连接名，由于连接对象是本地主机，所以默认为localhost即可，填写MySQL设置的root密码，点击左下角“测试连接”按钮，提示连接成功即可点击确定保存设置。
+<img src="https://img-blog.csdnimg.cn/direct/785c45f31eb5439b8b2f0d2f12fb351f.png#pic_center" alt="在这里插入图片描述" />
+连接后，在左侧栏中就可以看到连接名所代表的MySQL数据库了。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

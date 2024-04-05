@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】Kotlin语言（四）——方法</h1>
+
+<p>在 Kotlin 中，<strong>方法（Method）</strong> 是用于执行特定任务或操作的一段代码块，它可以包含在类中（成员方法）或者独立存在（扩展方法、顶层函数）。</p>
+
+<h2>一、方法声明</h2>
+
+<p>方法的声明包括方法名、参数列表、返回类型和方法体。下面是方法声明的语法。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="err">方法名称(参数1: 数据类型1, 参数2: 数据类型2, ...): 返回值数据类型 {</span>
+<span class="w">    </span><span class="c1">// 方法体</span>
+<span class="w">    </span><span class="c1">// 可以包含具体的代码逻辑</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>其中，<code>fun</code>是声明方法的关键字，用于声明这是一个方法；声明这是一个方法后，要填入此方法的参数并定义这些参数的数据类型；然后定义返回值的数据类型，最后设置方法体<code>{}</code>中的实现逻辑。</p>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>在上面的示例中，<code>sum</code> 是方法名，它接受两个 <code>Int</code> 类型的参数 <code>a</code> 和 <code>b</code>，并返回它们的和，返回类型为 <code>Int</code>。</p>
+
+<h3>（一）普通类</h3>
+
+<p><strong>普通类（Class）</strong> 是一种用于创建具有一组方法和属性的数据类型，它们可以被实例化为对象并用于存储数据和实现特定的功能。普通类可以包含构造函数、成员变量、成员函数和其他类型的嵌套类等成员。</p>
+
+<p>普通类的方法通常是指成员方法，即定义在类中的方法。普通类的方法声明方式与其他方法相似，但它们是与特定类相关联的。下面是普通类的方法声明的基本语法结构。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="err">方法名(参数1: 数据类型1, 参数2: 数据类型2, ...): 返回值数据类型 {</span>
+<span class="w">        </span><span class="c1">// 方法体</span>
+<span class="w">        </span><span class="c1">// 可以包含具体的代码逻辑</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 普通类的成员方法声明与调用</span>
+<span class="w">    </span><span class="c1">// 需要构建出实例对象才能访问成员方法</span>
+<span class="w">    </span><span class="c1">// 构建实例对象只需要只需要在类名后面加上()</span>
+<span class="w">    </span><span class="n">Person</span><span class="p">().</span><span class="na">test</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">test</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;成员方法&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上的代码创建了一个名为<code>Person</code>的普通类，并在这个类中创建了一个叫做<code>test</code>的成员方法，方法体的逻辑就是打印字符串“成员方法”。</p>
+
+<p>需要注意的是，普通类必须创建出实例对象，才能够访问类的成员方法。</p>
+
+<h3>（二）静态类</h3>
+
+<p>Kotlin 并没有提供静态类的概念。相对地，Kotlin 在采用 Kotlin 单例模式时，使用了伴生对象来解决问题。</p>
+
+<p><strong>单例对象（Singleton Object）</strong> 是一种设计模式，用于确保一个类只有一个实例，并提供一个全局访问点以获取该实例。在 Kotlin 中，实现单例模式非常简单，可以使用 <code>object</code>关键字创建单例对象。</p>
+
+<p>而之所以强调“静态类”这个概念，就是因为在 Kotlin 中，通常将包含一组实用函数或工具方法的类命名为 <strong>Util</strong> 或 <strong>Utils</strong> 即工具类，这些类通常被用来存放各种通用的函数，方法或常量，方便在项目中重复使用——它们往往就是用类似静态类的概念创建一个单例对象，作为静态类。</p>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 静态类中的方法都是静态方法</span>
+<span class="w">    </span><span class="c1">// 不需要构建实例对象，可以直接通过类名访问静态方法</span>
+<span class="w">    </span><span class="n">NumUtil</span><span class="p">.</span><span class="na">double</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 静态类</span>
+<span class="kd">object</span><span class="w"> </span><span class="nc">NumUtil</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">double</span><span class="p">(</span><span class="n">num</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上的代码创建了一个单例对象（静态类）<code>NumUtil</code>，并在其中创建了一个名为<code>double</code>的方法，令输出结果为输入实参的2倍。</p>
+
+<p>同普通类对比，调用静态类的静态方法不需要构建实例对象，直接通过类名就可以调用方法。</p>
+
+<h3>（三）伴生类</h3>
+
+<p>结合上面普通类和静态类调用方法的特点，如果想要在创建的是普通类的同时依旧希望直接通过类名来调用方法，就需要使用伴生类。</p>
+
+<p><strong>伴生类（Companion Class）</strong> 是一个与其所在的类绑定的内部类，可以通过类名直接访问其内部的成员，而不需要实例化外部类。伴生类常用于创建静态成员或工厂方法。其声明方法需要先创建一个普通类，再在普通类的块中使用<code>companion object</code>关键字创建伴生的对象，</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 直接通过类名访问伴生对象中的方法</span>
+<span class="w">    </span><span class="n">Person</span><span class="p">.</span><span class="na">test2</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="c1">// 伴生类</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 伴生对象</span>
+<span class="w">    </span><span class="kd">companion</span><span class="w"> </span><span class="kd">object</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="kd">fun</span><span class="w"> </span><span class="nf">test2</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;伴生类&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>套用普通类的示例，仍然创建的是名为<code>Person</code>的类，但此时类中由于存在了伴生对象，所以成为了一个伴生类，于是可以像静态类一样通过类名直接访问方法。</p>
+
+<h2>二、方法参数</h2>
+
+<p>方法参数是用于接收输入值以在方法中进行处理的变量。这些参数可以是必需的参数，也可以是可选的参数，也可以是具有默认值的参数。</p>
+
+<p>在Kotlin中，方法参数通常被分为三种类型：</p>
+
+<ul>
+<li>默认参数</li>
+<li>具名参数</li>
+<li>可变参数</li>
+</ul>
+
+<h3>（一）默认参数</h3>
+
+<p><strong>默认参数</strong> 指的是对于某些方法参数，本身具有默认值，所以往往在声明中省略。</p>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// 默认参数</span>
+<span class="w">    </span><span class="n">greet</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出 &quot;Hello, Alice!&quot;</span>
+<span class="w">    </span><span class="n">greet</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Hey&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出 &quot;Hey, Bob!&quot;</span>
+<span class="p">}</span>
+
+<span class="c1">// 方法参数</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">message</span><span class="s">, </span><span class="si">$</span><span class="n">name</span><span class="s">!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>从以上的代码可以看到，不同于常规的方法声明，这里<code>greet</code>方法的<code>message</code>参数在确定数据类型为字符串后，使用了<code>=</code>赋值运算符设置了默认值为字符串<code>Hello</code>。此时在调用这个方法时，输入一个值自动识别为未定义默认值的<code>name</code>参数的实参；而只有两个实参都输入时，才能够修改默认参数的值。</p>
+
+<h3>（二）具名参数</h3>
+
+<p><strong>具名参数</strong> 是指使用参数名称来传递参数值的一种方式，在调用函数或方法时可以根据参数名称来为参数赋值，而不必严格按照参数顺序传递参数值。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">message</span><span class="s">, </span><span class="si">$</span><span class="n">name</span><span class="s">!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">greet</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出 &quot;Hello, Alice!&quot;</span>
+<span class="n">greet</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hey&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出 &quot;Hey, Bob!&quot;</span>
+</code></pre>
+</div>
+
+<p>仍旧使用默认参数的示例，可以从代码中看到在输入实参的时候，只需要使用<code>参数 =</code>的方式就可以通过参数名定位方法中的具体参数进行赋值，此时即便有默认参数，也可以随意输入实参。</p>
+
+<h3>（三）可变参数</h3>
+
+<p><strong>可变参数（varargs）</strong> 允许向方法传递可变数量的参数。通过<code>vararg</code>关键字，可以在方法声明中指定一个参数，该参数允许传递零个或多个值。</p>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">printNumbers</span><span class="p">(</span><span class="k">vararg</span><span class="w"> </span><span class="n">numbers</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">numbers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 使用可变参数进行调用</span>
+<span class="n">printNumbers</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>上面代码创建了一个名为<code>printNumbers</code>的方法，相比于普通方法建立形参的方式，这里在<code>numbers</code>参数前使用了<code>varag</code>关键字表示此参数是一个可变参数。可变参数实际上是一组参数，所以可以在方法体中，建立一个for循环，遍历可变参数这个组中的所有参数，打印出传递的实参数字值。</p>
+
+<p>上面代码并没有规定返回值类型，这就代表返回<code>Unit</code>类型（类似于其他语言的<code>void</code>类型）。</p>
+
+<p>此外，当创建一个变量，而如果希望此变量可以直接传入可变参数作为实参，就可以使用展开运算符<code>*</code>将变量直接传入。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">fun</span><span class="w"> </span><span class="nf">printNumbers</span><span class="p">(</span><span class="k">vararg</span><span class="w"> </span><span class="n">numbers</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">number</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">numbers</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">intArrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+
+<span class="w">    </span><span class="c1">// 使用展开运算符将数组元素作为参数传递给可变参数</span>
+<span class="w">    </span><span class="n">printNumbers</span><span class="p">(</span><span class="o">*</span><span class="n">arr</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>需要注意的是如果可变参数不是最后一个参数，给后面的参数传递值需要使用具名参数的方法。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

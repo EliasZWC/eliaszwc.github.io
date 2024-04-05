@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【解决】Android Studio建立apk报错Execution failed for task ‘:app:checkDebugAarMetadata‘</h1>
+
+<p>作为初学者，好不容易配置好gradle，刚想建立一个apk测试一下，结果发现之前调试时的proxy代理哪怕在设置中关闭也没法禁用，又匆忙设置了一下代理，再打包终于不报错了。</p>
+
+<p>当我以为一切就绪时，结果新建了一个用于测试的项目，打包又报错Execution failed for task ':app:checkDebugAarMetadata'，上网搜索都搜索不出什么结果来。</p>
+
+<p>好在第一次打包的成功代码还在，于是经过我对代码的仔细甄别，发现app也就是模块下的build.gradle.kts代码不一样（顺便说一句，kotlin学习资源对比java真的少，都在说kotlin成为安卓主流开发语言，结果报错一搜解决方法都是java的）。</p>
+
+<p>截止此时，最新的dependencies应该就是报错时的代码：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.core:core-ktx:1.9.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.appcompat:appcompat:1.6.1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.android.material:material:1.10.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.constraintlayout:constraintlayout:2.1.4&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-livedata-ktx:2.6.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-fragment-ktx:2.7.5&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-ui-ktx:2.7.5&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">&quot;junit:junit:4.13.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">androidTestImplementation</span><span class="p">(</span><span class="s">&quot;androidx.test.ext:junit:1.1.5&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">androidTestImplementation</span><span class="p">(</span><span class="s">&quot;androidx.test.espresso:espresso-core:3.5.1&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>但使用起来就会报错，鄙人技术力低，解决方法就是将版本调低增强兼容性：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">dependencies</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.core:core-ktx:1.9.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.appcompat:appcompat:1.6.1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.android.material:material:1.8.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.constraintlayout:constraintlayout:2.1.4&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-livedata-ktx:2.6.1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-fragment-ktx:2.5.3&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-ui-ktx:2.5.3&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">testImplementation</span><span class="p">(</span><span class="s">&quot;junit:junit:4.13.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">androidTestImplementation</span><span class="p">(</span><span class="s">&quot;androidx.test.ext:junit:1.1.5&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">androidTestImplementation</span><span class="p">(</span><span class="s">&quot;androidx.test.espresso:espresso-core:3.5.1&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>对比可以看到，以下原代码的这些版本：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;com.google.android.material:material:1.10.0&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-livedata-ktx:2.6.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-fragment-ktx:2.7.5&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">implementation</span><span class="p">(</span><span class="s">&quot;androidx.navigation:navigation-ui-ktx:2.7.5&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>都在更改后的代码里调低了版本号，再次运行发现打包成功。</p>
+
+<p>另外要说一句的是通过这种调低版本号的解决方案我不清楚在往后的开发中是否还会存在隐患，但受限于本人作为初学者的技术力，实在是有心无力，如果有大佬能给出更好的解决方案，欢迎留言。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

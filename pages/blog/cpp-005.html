@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（五）——Vector向量</h1>
+
+<p><strong>Vector（向量）</strong>是一个封装了动态大小数组的<strong>顺序容器（Sequence Container）</strong>，跟任意其他类型容器一样，能够存放各种类型的对象。可以简单的认为，向量是一个能够存放任意类型的动态数组。
+Vector容器有以下特性。</p>
+
+<ol>
+<li>顺序序列：顺序容器的元素按照严格的线性顺序排序，可以通过元素在序列中的位置访问对应的元素。</li>
+<li>动态数组：支持对序列中的任意元素进行快速直接访问，甚至可以通过指针进行该操作，提供了在序列末尾相对快速地添加/删除元素的操作。</li>
+<li>能够感知内存分配器（Allocator-aware）容器使用一个内存分配器对象来动态地处理它的储存需求。
+<h2>一、Vector初始化</h2></li>
+</ol>
+
+<p>想要使用vector，就必须添加类似<code>&lt;iostream&gt;</code>的系统库头文件<code>&lt;vector&gt;</code>。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+</code></pre>
+</div>
+
+<p>而在创建vector对象时遵循以下初始化语法。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span><span class="w"> </span><span class="n">变量名</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">元素1</span><span class="p">,</span><span class="w"> </span><span class="n">元素2</span><span class="p">,</span><span class="w"> </span><span class="p">...};</span>
+</code></pre>
+</div>
+
+<p>同时，若想使用重复值初始化，也可以使用以下语法。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">类型</span><span class="o">&gt;</span><span class="w"> </span><span class="n">变量名</span><span class="p">(</span><span class="n">个数</span><span class="p">,</span><span class="w"> </span><span class="n">值</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>使用test.cpp文件进行代码实验。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">;</span><span class="c1">// 空的整型vec1，无元素</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span><span class="c1">// 容器大小为3个元素的浮点型vec2，编译器自动默认为初始值</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec3</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;a&quot;</span><span class="p">);</span><span class="c1">// 容器大小为3个元素的字符串vec3，并且初始值为a</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec4</span><span class="p">(</span><span class="n">vec3</span><span class="p">);</span><span class="c1">// 令字符串vec4复制vec3的内容</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;vec1:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;vec2:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vec2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;vec3:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec3</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vec3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;vec4:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec4</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vec4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>以上代码建立了四个vector容器，第一个是空的整型vector，第二个则是容器大小为3个元素的浮点型vector，第三个是容器大小为3个元素并且初始值都为a的字符串vector，最后的第四个vector则复制第三个vector的内容。然后遍历打印各个vector的内容。
+返回结果如下。</p>
+
+<blockquote>
+  <p>vec1:
+  vec2:
+  0
+  0
+  0
+  vec3:
+  a
+  a
+  a
+  vec4:
+  a
+  a
+  a</p>
+</blockquote>
+
+<p>由返回结果可以看到，vec1果然为空；vec2虽然返回了三个元素，但由于没有设置初始值，所以元素初始值均默认为0；vec3则返回了设置的初始值a，相应的vec4完全相同地返回了和vec3同样的结果。</p>
+
+<h2>二、Vector成员函数</h2>
+
+<p>Vector容器在使用时，提供了许多实用的成员函数来操作和管理向量（vector），以下是常用的<code>std::vector</code>的成员函数。</p>
+
+<table>
+<thead>
+<tr>
+  <th>函数</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>push_back()</code></td>
+  <td>将元素添加到向量的末尾</td>
+</tr>
+<tr>
+  <td><code>pop_back()</code></td>
+  <td>删除向量末尾的元素</td>
+</tr>
+<tr>
+  <td><code>size()</code></td>
+  <td>返回向量中元素的数量</td>
+</tr>
+<tr>
+  <td><code>resize()</code></td>
+  <td>更改向量中元素的数量</td>
+</tr>
+<tr>
+  <td><code>max_size()</code></td>
+  <td>返回向量所能容纳的最大元素数量</td>
+</tr>
+<tr>
+  <td><code>capacity()</code></td>
+  <td>返回向量当前占用空间大小</td>
+</tr>
+<tr>
+  <td><code>reserve()</code></td>
+  <td>更改向量当前占用空间大小</td>
+</tr>
+<tr>
+  <td><code>at()</code></td>
+  <td>访问指定索引处的元素，提供越界检查</td>
+</tr>
+<tr>
+  <td><code>begin()</code></td>
+  <td>返回向量开始指针，即第一个元素头部的指针</td>
+</tr>
+<tr>
+  <td><code>end()</code></td>
+  <td>返回向量结束指针，即最后一个元素尾部的指针</td>
+</tr>
+<tr>
+  <td><code>rbegin()</code></td>
+  <td>返回反转向量开始指针，即最后一个元素头部的指针</td>
+</tr>
+<tr>
+  <td><code>rend()</code></td>
+  <td>返回反转向量结束指针，即第一个元素尾部的指针</td>
+</tr>
+<tr>
+  <td><code>front()</code></td>
+  <td>访问向量第一个元素</td>
+</tr>
+<tr>
+  <td><code>back()</code></td>
+  <td>访问向量最后一个元素</td>
+</tr>
+<tr>
+  <td><code>clear()</code></td>
+  <td>清空向量中的所有元素</td>
+</tr>
+<tr>
+  <td><code>erase()</code></td>
+  <td>删除向量中指定位置的一个或多个元素</td>
+</tr>
+<tr>
+  <td><code>empty()</code></td>
+  <td>检查向量是否为空</td>
+</tr>
+<tr>
+  <td><code>swap()</code></td>
+  <td>与另一个向量交换数据</td>
+</tr>
+</tbody>
+</table>
+
+<p>对于以上所罗列出的各种vector成员函数，并非所有都非常常用，以下仅对较为常用的几个成员函数作出介绍。
+使用test.cpp代码进行实验。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// empty()方法</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">vec1</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;vec1是空&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// push_back()方法</span>
+<span class="w">    </span><span class="n">vec1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">vec1</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// pop_back()方法</span>
+<span class="w">    </span><span class="n">vec1</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// size()方法</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">vec1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>vec1是空
+  1</p>
+</blockquote>
+
+<p>在没有设置vec1的内容时，使用了一个<code>empty()</code>方法来返回vec1是否为空的字符串；随后的<code>push_back()</code>方法添加1和99两个元素，但之所以没有返回1和99,两个for循环的遍历结果，是因为之后用的<code>pop_back()</code>删除了尾部的99元素。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

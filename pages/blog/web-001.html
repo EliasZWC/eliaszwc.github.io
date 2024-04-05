@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【Web开发】基于Github Pages搭建个人博客静态网页</h1>
+
+<p><strong>个人网页</strong>作为仅服务个人的网页，一切都由个人说了算，没有平台限制，想添加什么内容就添加什么内容，尤其是在展示自己的应聘方面，附上一份个人网页不仅仅能让HR眼前一亮，更多地还能让招聘官更简便地深入了解你。</p>
+
+<p>然而，除非个人定制（实际上别人设计给你的个人网页也不一定合你心思），否则搭建起来需要个人负责所有技术，相对个人来说其实比较复杂。此时，使用Github却可以简化许多过程和支持，本篇将介绍如何依托Github建立个人网页。</p>
+
+<h2>一、技术基础</h2>
+
+<p>搭建个人静态网页至少需要Github使用基础和网页前端基础。</p>
+
+<ul>
+<li><strong>Github使用基础</strong>：登录Github账号、创建仓库、上传代码、分支管理等。</li>
+<li><strong>网页前端基础</strong>：HTML5、CSS、JavaScript等前端语言</li>
+</ul>
+
+<p>对于Github使用基础不熟悉的人，这里附上我的Github环境搭建文章（<a href="https://blog.csdn.net/EliasChang/article/details/136561863?spm=1001.2014.3001.5502">点击阅读《【教程】Github环境配置新手指南（超详细）》</a>），请没有Github使用基础的先阅读此文章，并做好相关配置。</p>
+
+<p>对于网页前端基础不熟悉可以在以后深入学习，这里仅使用最简单的HTML骨架网页作为示例探讨Github搭建静态网页的可能性。同时，如果技术储备充足，希望建立个人动态网页的请探索更多延伸技术，这里不做探讨。</p>
+
+<h2>二、新建特殊仓库</h2>
+
+<p>相比于普通仓库，个人网页的项目名有固定的要求：<code>用户名.github.io</code>，如下所示。
+<img src="https://img-blog.csdnimg.cn/direct/405f440c9f5e4cabab42719b3706f71b.png#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2>三、上传网页文件</h2>
+
+<p>网页工程文件通常由index.html、htmls、css、js、images等项目组成，这里仅上传一个最主要的index.html文件。可以使用VS Code创建一个完整的网页工程项目进行编写，由于示例简单，本人直接在Github网页端编辑上传的。下面是index.html文件代码。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&quot;X-UA-Compatible&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;IE=edge&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>EliasChang<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>你好<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p>除了HTML骨架之外，此文件只在内容中添加了一级标题“你好”。添加后仓库如图所示。
+<img src="https://img-blog.csdnimg.cn/direct/8235daba8662429fa53744b9ea4c1cc6.png#pic_center" alt="在这里插入图片描述" /></p>
+
+<h2>四、Github Pages设置</h2>
+
+<p>进入此仓库的设置，点击Pages设置，左侧即可显示个人网页网址。
+<img src="https://img-blog.csdnimg.cn/direct/c98db6d7ab1642029a658faee1679b03.png#pic_center" alt="在这里插入图片描述" />
+进入网址结果如下。
+<img src="https://img-blog.csdnimg.cn/direct/b134e7b57ee649a090fef6cc129f57a3.png#pic_center" alt="在这里插入图片描述" /></p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

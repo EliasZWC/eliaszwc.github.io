@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（八）——函数</h1>
+
+<h2>一、函数定义</h2>
+
+<p>在C++中，函数是一段可重复使用的代码块，用于执行特定的任务。它可以接受参数并返回一个值。其作用实质上是将一段经常使用的代码封装起来，减少重复代码。
+而对于函数的定义，主要有五个步骤。</p>
+
+<ol>
+<li>返回值类型</li>
+<li>函数名</li>
+<li>参数表列</li>
+<li>函数体语句</li>
+<li>return表达式</li>
+</ol>
+
+<p>其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">返回值类型</span><span class="w"> </span><span class="nf">函数名</span><span class="p">(</span><span class="n">参数列表</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">函数体语句</span>
+
+<span class="w">    </span><span class="n">return表达式</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>其中，以下是函数的声明部分。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">返回值类型</span><span class="w"> </span><span class="nf">函数名</span><span class="p">(</span><span class="n">参数列表</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>函数声明是为了告诉编译器函数名称以及如何调用函数。而相比于函数的完整定义，函数声明可以声明多次，定义则只能有一次。
+以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num2</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里就是定义返回值类型为整型，函数名为add，设置了<code>num1</code>和<code>num2</code>两个整型参数。在函数体语句中，定义一个整型变量<code>sum</code>承接<code>num1</code>和<code>num2</code>相加的和，最后返回变量<code>sum</code>内的值。
+函数调用方法如下所示。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">add</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>3</p>
+</blockquote>
+
+<p>值得注意的是，在定义函数时括号内的参数叫做形参（形式参数），而调用函数时括号内实际输入的参数则被称为实参（实际参数）。</p>
+
+<h2>二、函数值传递</h2>
+
+<p>在C++中，函数参数可以通过值传递的方式进行传递。值传递是指将参数的值复制到函数的形参中，函数在执行期间使用这个副本来处理数据。简单来说，就是函数在调用时实参将数值传入给形参。而在值传递时，如果形参中发生任何改变，并不会影响实参。
+具体示例如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">num2</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换前:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;num1:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;num2:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">num2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换前:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;num1:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;num2:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>首先定义一个交换函数<code>swap(num1, num2)</code>，从函数体内部语句可以看到其作用是将输入的参数内容互换。另外，当不需要返回值时，可以使用void的返回值类型，return语句也可以省略，就如同这个定义的函数一样。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换前a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换前b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">swap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">);</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换后a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;交换后b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>接着，定义变量<code>a</code>与<code>b</code>并赋值，在用<code>std::cout</code>对象输出一下交换前和交换后作为实参的<code>a</code>和<code>b</code>的值。
+返回结果如下。</p>
+
+<blockquote>
+  <p>交换前a = 10
+  交换前b = 20
+  交换前:
+  num1:10
+  num2:20
+  交换前:
+  num1:20
+  num2:10
+  交换后a = 10
+  交换后b = 20</p>
+</blockquote>
+
+<p>从输出结果可以看到，在函数交换功能使用后，函数的形参<code>num1</code>和<code>num2</code>改变了，但作为实参的<code>a</code>和<code>b</code>却并没有改变，这就是值传递令形参改变却不会改变实参。</p>
+
+<h2>三、函数常见样式</h2>
+
+<p>常见函数样式有4种。</p>
+
+<ol>
+<li>无参数无返回值</li>
+<li>有参数无返回值</li>
+<li>无参数有返回值</li>
+<li>有参数有返回值</li>
+</ol>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="c1">// 1. 无参数无返回值</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test1</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;this is test1&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 2. 有参数无返回值</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">test2</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;this is test2 a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 3. 无参数有返回值</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">test3</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;this is test3&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// 4. 有参数有返回值</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">test4</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;this is test4 a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 无参无返函数调用</span>
+<span class="w">    </span><span class="n">test1</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// 有参无返函数调用</span>
+<span class="w">    </span><span class="n">test2</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 无参有返函数调用</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test3</span><span class="p">();</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;test3 return:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 有参有返函数调用</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">test4</span><span class="p">(</span><span class="mi">23</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;test4 return:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">num2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回值结果如下。</p>
+
+<blockquote>
+  <p>this is test1
+  this is test2 a = 23
+  this is test3
+  test3 return:1000
+  this is test4 a = 23
+  test4 return:1000</p>
+</blockquote>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（九）——指针</h1>
+
+<h2>一、指针定义</h2>
+
+<p>指针（Pointer）是C++中的一种数据类型，用于存储变量的内存地址。它提供了直接访问内存位置的功能，并可以用于实现高效的数据结构和操作。
+指针变量存储着其他变量的内存地址，可以通过解引用操作符<code>*</code>来访问指向的内存地址上存储的值。解引用操作符用于返回指针指向位置的值。
+在C++中，可以使用以下语法来定义指针变量。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">数据类型</span><span class="o">*</span><span class="w"> </span><span class="n">指针变量名</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 定义变量</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="c1">// 定义指针</span>
+<span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
+<span class="c1">// 让指针记录变量a的地址</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a的值为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a的地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;指针p：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="c1">// 使用指针</span>
+<span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;通过指针更改后a的值为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;解引用后的*p：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>a的值为：10
+  a的地址为：0000000B8CB6FA64
+  指针p：0000000B8CB6FA64
+  通过指针更改后a的值为：1000
+  解引用后的*p：1000</p>
+</blockquote>
+
+<p>从示例可以看到，定义了一个变量后，可以通过定义指针的方式找到变量的储存空间（地址），表现在取址后的变量<code>&amp;a</code>和指针<code>p</code>直接储存的信息相同；而通过解引用的方式可以找到指针指向的内存中的数据，从而可以更改其数据，这里就是通过解引用指针<code>*p</code>，向此数据重新赋值了1000的值，再次输出可以发现解引用指针<code>*p</code>与原本的变量<code>a</code>都随之改变。
+其中，指向变量<code>a</code>的指针定义方式也可以简化为如下所示。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>而指针既然也属于一种数据类型，同样也会占用一定的内存空间。一般情况下，指针变量的大小为机器的字长（即指针所占的位数），通常为4个字节（32位系统）或8个字节（64位系统）。指针变量保存的是一个内存地址，这个地址指向存储在内存中的某个变量或对象。因此，即使指针变量本身只占用很小的空间，它所引用的对象可能会占用更多的空间。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sizeof(int*) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sizeof(float*) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sizeof(double*) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;sizeof(char*) = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>使用x86调试器（32位）返回结果如下。</p>
+
+<blockquote>
+  <p>sizeof(int<em>) = 4
+  sizeof(float</em>) = 4
+  sizeof(double<em>) = 4
+  sizeof(char</em>) = 4</p>
+</blockquote>
+
+<p>使用x64调试器（64位）返回结果如下。</p>
+
+<blockquote>
+  <p>sizeof(int<em>) = 8
+  sizeof(float</em>) = 8
+  sizeof(double<em>) = 8
+  sizeof(char</em>) = 8</p>
+</blockquote>
+
+<p>可以看到，无论是32位还是64位，各种数据类型的指针占用的字节数都一样，这说明无论指向什么数据类型，其储存地址的指针所占用的内存都是相同的，不会因为指向的数据类型本身的数据大小而改变。</p>
+
+<h2>二、特殊指针</h2>
+
+<p>除了指向各种数据类型的普通指针，在C++中同样还有着特殊的指针类型。</p>
+
+<h3>（一）空指针</h3>
+
+<p>空指针（Null Pointer）是指没有指向任何有效对象或者函数的指针，也就是指向内存中编号为0的空间（0~255是系统储存的空间，是无法访问的），其用途主要是初始化指针变量。在C++中，可以用常量值<code>0</code>或者特殊关键字<code>nullptr</code>表示空指针。
+需要注意的是，空指针指向的内存是不可以访问的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初始化为空指针</span>
+</code></pre>
+</div>
+
+<p>当定义一个指针变量时，如果没有为其赋予初始值，可以将其初始化为空指针，这避免了指针悬空的风险。</p>
+
+<h3>（二）野指针</h3>
+
+<p>野指针（Dangling Pointer）是指指针仍然保留在内存中，但指向的内存已经被释放或者无效的情况。使用野指针是一种常见的编程错误，可能导致程序崩溃、错误的读写内存数据或产生不可预测的行为。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="mh">0x1100</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>例如以上的代码，使用<code>(int*)</code>可以手动将一段地址<code>0x1100</code>输入到指针内，但由于这样的地址并没有通过系统的申请，以至于虽然语法正确，编译器仍然无法为这样一个非法地址分配空间，进而导致系统报错。</p>
+
+<h3>（三）const修饰指针</h3>
+
+<p>const修饰指针有三种情况。</p>
+
+<ol>
+<li>const修饰指针——常量指针</li>
+<li>const修饰常量——指针常量</li>
+<li>const既修饰指针，又修饰常量</li>
+</ol>
+
+<p>对于第一种情况的常量指针，其特点是指针的指向可以修改，但是指针指向的值不可以修改。
+以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="c1">// 错误，指针指向的值从10到了20，值发生了改变</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span><span class="c1">// 正确，指针的指向从a转移到了b，但值为10没有发生改变</span>
+</code></pre>
+</div>
+
+<p>从代码可以看到，此示例<code>const</code>关键字后是<code>int*</code>这个确定的内存空间，即指针指向的常量。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="c1">// 正确，指针指向的值从10到了20，但指向a没有发生改变</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span><span class="c1">// 错误，指针的指向从a转移到了b，指向发生了改变</span>
+</code></pre>
+</div>
+
+<p>而对于第二种情况，此示例<code>const</code>关键字后是<code>p = &amp;a</code>这个指向确定的指针，即指针本身。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+<span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="c1">// 错误，指针指向的值从10到了20，值发生了改变</span>
+<span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">;</span><span class="c1">// 错误，指针的指向从a转移到了b，指向发生了改变</span>
+</code></pre>
+</div>
+
+<p>综合以上两个案例即为第三种情况：此示例的两个<code>const</code>关键字既有<code>int*</code>这个确定的内存空间，又有<code>p = &amp;a</code>这个指向确定的指针，所以此时指针的指向和值都被锁定，无法发生改变。</p>
+
+<h2>三、指针与数组</h2>
+
+<p>在C++中，同样可以利用指针来访问数组。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="w"> </span><span class="p">};</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;第一个元素为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;利用指针访问第一个元素：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">p</span><span class="o">++</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;利用指针访问第二个元素：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>第一个元素为：1
+  利用指针访问第一个元素：1
+  利用指针访问第二个元素：2</p>
+</blockquote>
+
+<p>以上示例代码中，首先定义了一个数组，由于本系列第七章已经证明数组本身的首地址既是第一行元素的首地址也是第一个元素的首地址，所以指针<code>p</code>直接指向数组<code>arr</code>本身就可以直接得到第一个元素的首地址；而<code>p++</code>则将首地址增加了4个字节，由此得到第二个元素的首地址，输出解引用的指针即可访问相应元素。</p>
+
+<h2>四、指针与函数</h2>
+
+<p>在本系列第八章中已经说明，函数的值传递只会令函数形参发生改变却不会改变实参。然而，通过指针的地址传递，函数的实参同样可以被改变。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">swap</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p1</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">p2</span><span class="p">;</span>
+<span class="w">    </span><span class="o">*</span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">    </span><span class="n">swap</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;b = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>a = 20
+  b = 10</p>
+</blockquote>
+
+<p>在此次定义的<code>swap()</code>函数中，定义的函数内部通过解引用指针的方式重新给内存数据赋值，使得最后的结果表现为作为实参的变量<code>a</code>和<code>b</code>的值也发生了改变，这就是地址传递。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

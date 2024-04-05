@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【解决】Ubuntu环境下更换网络下载源</h1>
+
+<p>准备做一下线性规划的模型发现需要用到pulp，本来是挺简单的</p>
+
+<div class="codehilite">
+<pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>pulp
+</code></pre>
+</div>
+
+<p>就是这么简单的一个命令，直接提示“<strong>Defaulting to user installation because normal site-packages is not writeable</strong>”，显示不可写，后来用了sudo的管理员命令能写是有权限能写了，但发现下载了0.1mb的时候就停止了，我就觉得是pip工具的网络源问题。</p>
+
+<p>遇到这个问题的小伙伴可以修改一下网络源，换一个清华的镜像源（这里展示的是永久修改pip源）。</p>
+
+<ul>
+<li>创建pip.conf的文件</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code>mkdir<span class="w"> </span>~/.pip<span class="w"> </span><span class="c1">#如果有这个文件夹的不需要建立</span>
+<span class="nb">cd</span><span class="w"> </span>~/.pip<span class="w"> </span><span class="c1">#转到.pip这个文件夹</span>
+touch<span class="w"> </span>pip.conf<span class="w"> </span><span class="c1">#建立这个文件</span>
+sudo<span class="w"> </span>vi<span class="w"> </span>~/.pip/pip.conf<span class="w"> </span><span class="c1">#用vim编辑器编辑这个文件</span>
+</code></pre>
+</div>
+
+<ul>
+<li>接下来用vim编辑器编辑pip.conf这个文件</li>
+</ul>
+
+<div class="codehilite">
+<pre><span></span><code><span class="o">[</span>global<span class="o">]</span>
+index-url<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn/simple<span class="w"> </span><span class="c1">#改为清华镜像源</span>
+<span class="o">[</span>install<span class="o">]</span>
+trusted-host<span class="w"> </span><span class="o">=</span><span class="w"> </span>https://pypi.tuna.tsinghua.edu.cn<span class="w"> </span><span class="c1">#此参数为了保证受信任，避免麻烦</span>
+</code></pre>
+</div>
+
+<ul>
+<li>接下来保存好退出vim就好，然后再使用最初那个pip的下载命令就没关系了</li>
+</ul>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

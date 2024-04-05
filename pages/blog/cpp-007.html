@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（七）——Array数组</h1>
+
+<p>C++支持数组数据结构，其可以储存一个固定大小的相同类型元素的顺序集合。数组被用来储存一系列数据，但它往往被认为是一系列相同类型的变量。
+数组的声明并不是声明一个个单独的变量，比如<code>number0</code>、<code>number1</code>、……、<code>number99</code>等，而是声明一个数组变量，比如<code>numbers</code>，然后使用<code>numbers[0]</code>、<code>numbers[1]</code>、……、<code>numbers[99]</code>等来代表一个个单独的变量。数组中的特定元素可以通过索引访问。
+所有的数组都是由连续的内存位置组成。最低的地址对应第一个元素，最好的地址对应最后一个元素。</p>
+
+<h2>一、一维数组</h2>
+
+<h3>（一）一维数组定义方式</h3>
+
+<p>在C++中要声明一个数组，一般有三种方式。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="w"> </span><span class="n">数组长度</span><span class="w"> </span><span class="p">];</span><span class="c1">// 第一种定义方式</span>
+<span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="w"> </span><span class="n">数组长度</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">值1</span><span class="p">,</span><span class="w"> </span><span class="n">值2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span><span class="c1">// 第二种定义方式</span>
+<span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">值1</span><span class="p">,</span><span class="w"> </span><span class="n">值2</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">};</span><span class="c1">// 第三种定义方式</span>
+</code></pre>
+</div>
+
+<p>以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 第一种</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr1</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="n">arr1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="n">arr1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span>
+<span class="c1">// 第二种</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr2</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">17</span><span class="w"> </span><span class="p">};</span>
+<span class="c1">// 第三种</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr3</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">17</span><span class="w"> </span><span class="p">};</span>
+</code></pre>
+</div>
+
+<p>第一种方式定义了一个数组<code>arr1</code>具有三个元素，然后逐一赋值。值得注意的是数组元素下标的引用是从0开始的。
+第二种方式定义数组<code>arr2</code>也具有三个元素，但此方式将三个元素的值直接通过<code>{}</code>分别赋予。而当给元素赋值不完全时（如四个元素赋三个值），按顺序剩下的没有赋值的元素初始化值默认为0，即没有赋值完的元素用0填充。
+第三种方式定义的数组<code>arr3</code>不需要定义数组长度，直接初始化各个元素的具体值即可。但也需要注意的是不能不初始化任何元素的值，会导致编译器检测不出这个数组的长度，以至于报错。</p>
+
+<h3>（二）一维数组数组名</h3>
+
+<p>一维数组的数组名是指数组在内存中存储的起始地址。在C语言中，声明一个一维数组时，可以将一个标识符用作数组名。例如，如果声明一个名为arr的一维整型数组，那么arr就是该数组的数组名。
+总结来说，一维数组名称的用途有两个。</p>
+
+<ol>
+<li>可以统计整个数组在内存中的长度</li>
+<li>可以获取数组在内存中的首地址</li>
+</ol>
+
+<p>统计占用内存的长度也是使用<code>sizeof()</code>来查看。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span><span class="p">};</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;整个数组占用内存空间为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;每个元素占用内存空间为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;数组中的元素个数为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>整个数组占用内存空间为：12
+  每个元素占用内存空间为：4
+  数组中的元素个数为：3</p>
+</blockquote>
+
+<p>而获取数组首地址直接输出数组即可。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="w"> </span><span class="p">};</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;数组首地址（十六进制）为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="c1">// 十六进制</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;数组首地址（十进制）为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="c1">// 十进制</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;数组中第一个元素地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>数组首地址（十六进制）为：00000018F958FB28
+  数组首地址（十进制）为：-111609048
+  数组中第一个元素地址为：00000018F958FB28</p>
+</blockquote>
+
+<p>承接上一个示例，如果希望得到十六进制的首地址返回结果，直接输出数组即可；而如果希望得到十进制结果，则需要将数组转换为整型；若希望得知数组内某个元素的首地址，则需要使用取值运算符<code>&amp;</code>来输出。
+值得注意的是数组名是常量，不可以进行赋值操作。</p>
+
+<h3>（三）冒泡排序算法</h3>
+
+<p>冒泡排序是一种简单的排序算法，它通过依次比较相邻的元素并交换它们的位置来将一个数组按照升序或降序排列。冒泡排序的基本思想是，每一轮扫描将相邻的两个元素比较并交换位置，使得最大（或最小）的元素像气泡一样逐渐浮到数组的末尾。
+简单来讲就是对数组内的元素实现了从小到大（从大到小）顺序的排列。由于结构简单，使得冒泡排序成为最常用的排序算法。
+其规则如下。</p>
+
+<ol>
+<li>从第一个元素开始，依次比较相邻的两个元素。</li>
+<li>如果前一个元素大于（或小于）后一个元素，则交换它们的位置。</li>
+<li>继续向后比较并交换，直到最后一个元素，这样一轮比较下来，最大（或最小）的元素就会被交换到最后。</li>
+<li>重复执行步骤 1~3，每一轮比较都会确定一个最大（或最小）的元素的位置。</li>
+<li>当没有发生元素交换时，排序结束。</li>
+</ol>
+
+<p>下面是利用冒泡排序算法实现升序序列的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="w"> </span><span class="p">};</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;排序前：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>首先，定义一个乱序的数组，用循环遍历输出一下此时数组内的排序。
+返回结果如下。</p>
+
+<blockquote>
+  <p>排序前：
+  4 2 8 0 5 7 1 3 9</p>
+</blockquote>
+
+<p>此时回想冒泡排序算法的原理，可以得知对9个数的排列，从需要比较的第一个数字到最后一个数字其实只有8轮（第8个数字和第9个数字比较即为最后一轮），所以排序总轮数=元素个数-1；而观察可以得知，每轮对比次数=元素个数-排序轮数-1，以此规律设计冒泡排序算法。
+全部代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">9</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;排序前：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 冒泡排序</span>
+<span class="w">    </span><span class="c1">// 总共排序轮数=元素个数-1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 内层循环对比=每轮对比次数=元素个数-排序轮数-1</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// 如果第一个数字比第二个数字大，则交换两个数字</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">])</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// 创建临时变量承载第一个位置上较大的数字</span>
+<span class="w">                </span><span class="kt">int</span><span class="w"> </span><span class="n">temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+<span class="w">                </span><span class="c1">// 令第二个位置上较小的数字转移到第一个位置上</span>
+<span class="w">                </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">];</span>
+<span class="w">                </span><span class="c1">// 令第二个位置取回原本第一个位置上那个较大的数字</span>
+<span class="w">                </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;排序后：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>排序前：
+  4 2 8 0 5 7 1 3 9
+  排序后：
+  0 1 2 3 4 5 7 8 9</p>
+</blockquote>
+
+<h2>二、二维数组</h2>
+
+<p>C++支持多维数组。在 C++语言中，可以使用多维数组来存储具有多个维度的元素集合。多维数组实际上是数组的数组，每个维度都可以有自己的大小。多维数组声明的一般形式如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">type</span><span class="w"> </span><span class="n">name</span><span class="p">[</span><span class="n">size1</span><span class="p">][</span><span class="n">size2</span><span class="p">]...[</span><span class="n">sizeN</span><span class="p">];</span>
+</code></pre>
+</div>
+
+<p>这里主要以二维数组作为示例进行介绍。</p>
+
+<h3>（一）二维数组定义方式</h3>
+
+<p>在C++中要声明一个二维数组，一般有四种方式。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="w"> </span><span class="n">行数</span><span class="w"> </span><span class="p">][</span><span class="w"> </span><span class="n">列数</span><span class="w"> </span><span class="p">];</span><span class="c1">// 第一种定义方式</span>
+<span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="w"> </span><span class="n">行数</span><span class="w"> </span><span class="p">][</span><span class="w"> </span><span class="n">列数</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">数据1</span><span class="p">,</span><span class="n">数据2</span><span class="w"> </span><span class="p">},{</span><span class="w"> </span><span class="n">数据3</span><span class="p">,</span><span class="n">数据4</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span><span class="c1">// 第二种定义方式</span>
+<span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="w"> </span><span class="n">行数</span><span class="w"> </span><span class="p">][</span><span class="w"> </span><span class="n">列数</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">数据1</span><span class="p">,</span><span class="n">数据2</span><span class="p">,</span><span class="n">数据3</span><span class="p">,</span><span class="n">数据4</span><span class="w"> </span><span class="p">};</span><span class="c1">// 第三种定义方式</span>
+<span class="n">数据类型</span><span class="w"> </span><span class="n">数组名</span><span class="p">[][</span><span class="w"> </span><span class="n">列数</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">数据1</span><span class="p">,</span><span class="n">数据2</span><span class="p">,</span><span class="n">数据3</span><span class="p">,</span><span class="n">数据4</span><span class="w"> </span><span class="p">};</span><span class="c1">// 第四种定义方式</span>
+</code></pre>
+</div>
+
+<p>对于第一种定义方式，test.cpp示例代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 第一种定义方式</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">arr1</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">arr1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 外层循环打印行数，内层循环打印列数</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>按第一种方式，定义一个2行3列的<code>arr1</code>二维数组，并逐个赋值，结果可以用for循环来遍历数组内容。返回结果如下。</p>
+
+<blockquote>
+  <p>1 2 3
+  4 5 6</p>
+</blockquote>
+
+<p>对于第二、三、四种定义方法，承接上一个示例，test.cpp代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 第二种定义方式</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr2</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">// 第三种定义方式</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr3</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">};</span>
+<span class="c1">// 第四种定义方式</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">arr4</span><span class="p">[][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">};</span>
+</code></pre>
+</div>
+
+<p>对于第二种定义方式，行和列的元素赋值明显，通常是最常用也是可读性最强的一种定义方式；而第三种则是在定义了行数和列数后，编译器仍能正确分类每个元素的行数和列数，从而达到预期赋值效果；第四种的原理同第三种定义方式，面对一串元素，在只有两个维度的条件下，即便仅定义了列数，编译器也能从总元素数中得出行数，从而分配赋值。需要注意的是，虽然在定义中可以省略行数，但列数却不可以省略。
+代码返回结果和上一个示例相同，故不再展示。</p>
+
+<h3>（二）二维数组数组名</h3>
+
+<p>与一维数组同理，二维数组数组名也可以查看占用内存空间大小和首地址。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="w"> </span><span class="p">}</span>
+<span class="p">};</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组占用内存空间为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第一行占用内存空间为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第一个元素占用内存空间为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组中的行数为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组中的列数为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组首地址（十进制）为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第一行首地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第二行首地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第一个元素首地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;二维数组第五个元素首地址为：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>二维数组占用内存空间为：24
+  二维数组第一行占用内存空间为：12
+  二维数组第一个元素占用内存空间为：4
+  二维数组中的行数为：2
+  二维数组中的列数为：3
+  二维数组首地址（十进制）为：1781529192
+  二维数组第一行首地址为：1781529192
+  二维数组第二行首地址为：1781529204
+  二维数组第一个元素首地址为：1781529192
+  二维数组第五个元素首地址为：1781529212</p>
+</blockquote>
+
+<p>从返回结果来看，二维数组本身、其某一行和某个具体元素之间占用的空间都是成比例的，也就是说每个元素的占用组成了二维数组行列的占用和二维数组本身的占用。对于首地址，值得注意的是二维数组本身的首地址、第一行的首地址、第一个元素的首地址是相同的；而对于第一行和第二行的首地址相差正好是第一行的占用数。</p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

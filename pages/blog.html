@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChangBlog</title>
+    <link rel="icon" href="../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages/blog.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="./knowledge.html"><img id="back" src="../images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+            <input type="text" id="searchInput" name="q" placeholder="Please enter your keywords...">
+            <img id="search" src="../images/icon/search.png" onclick="searchClick()">
+        </div>
+
+        <!-- 1.2.筛选器 -->
+        <div id="filterBoard">
+            
+            <!-- 1.2.1.筛选栏 -->
+            <div id="filterBar">
+
+                <!-- 1.2.1.学科筛选 -->
+                <select id="subjectSelect">
+                    <option value="">All Subjects</option>
+                    <option value="Literature">Literature</option>
+                    <option value="History">History</option>
+                    <option value="IT">IT</option>
+                </select>
+
+                <!-- 1.2.2.标签选择 -->
+                <select id="subcategory1">
+                    <option value="">Subcategory1</option>
+                </select>
+                <select id="subcategory2">
+                    <option value="">Subcategory2</option>
+                </select>
+                <select id="subcategory3">
+                    <option value="">Subcategory3</option>
+                </select>
+
+            </div>
+
+            <!-- 1.2.2.启动筛选 -->
+            <button id="filterButton" onclick="filterBlogs()">FILTER
+                <img src="../images/icon/filter_white.png" class="filterIcon" id="filterWhite" width="50px">
+                <img src="../images/icon/filter_black.png" class="filterIcon" id="filterBlack" width="50px">
+            </button>
+        </div>
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div class="blogContent">
+            <ul id="blogList">
+            </ul>
+        </div>
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="./blog/blogList.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/blog.js"></script>
+    <script>
+        // 博客列表#初始渲染全部列表
+        renderBlogList(blogData.blogs);
+    </script>
+</body>
+</html>

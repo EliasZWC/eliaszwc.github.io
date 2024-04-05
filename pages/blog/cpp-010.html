@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（十）——结构体</h1>
+
+<h2>一、结构体定义</h2>
+
+<p>结构体（Struct）是一种自定义的数据类型，可以用于组织和管理多个不同类型的数据成员。在C++中，结构体可以用来定义一个包含多个相关数据的复合数据类型。
+结构体的定义通常包含以下几个部分：</p>
+
+<ol>
+<li>关键字<code>struct</code>标识结构体的开始。</li>
+<li>结构体名称，用来标识这个结构体类型。</li>
+<li>花括号<code>{}</code>，括号内是结构体的成员列表。</li>
+<li>每个成员的类型和名称。</li>
+</ol>
+
+<p>语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">结构体名</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">结构体成员列表</span><span class="w"> </span><span class="p">};</span>
+</code></pre>
+</div>
+
+<p>通过结构体创建变量的方式有三种：</p>
+
+<ul>
+<li><code>struct</code> 结构体名 变量名</li>
+<li><code>struct</code> 结构体名 变量名 = { 成员1值,成员2值... }</li>
+<li>定义结构体时顺便创建变量</li>
+</ul>
+
+<p>定义的示例如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="c1">// 成员类型</span>
+
+<span class="w">    </span><span class="c1">// 姓名</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 年龄</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 分数</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>以上示例创建了一个名叫<code>Student</code>的结构体，并在成员列表中添加了姓名<code>name</code>、年龄<code>age</code>和分数<code>score</code>三个属性。从定义成员列表的方式其实可以看到，成员的组成也是由自定义各种数据类型来实现的。
+在已经创建了结构体的前提下，通过结构体创建变量则如下所示。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// 成员类型</span>
+
+<span class="w">        </span><span class="c1">// 姓名</span>
+<span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// 年龄</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// 分数</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="n">s3</span><span class="p">;</span><span class="c1">//第三种方式</span>
+
+<span class="w">    </span><span class="c1">// 第一种方式</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s1</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;小张&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s1</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s1</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 分数：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s1</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 第二种方式</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;小李&quot;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">80</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 分数：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s2</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 第三种方式</span>
+<span class="w">    </span><span class="n">s3</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;小王&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s3</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+<span class="w">    </span><span class="n">s3</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s3</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s3</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 分数：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s3</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>阅读以上代码：第一种方式是在声明结构体建立一个变量<code>s1</code>后，通过成员运算符<code>.</code>访问结构体<code>Student</code>的各个属性（成员），然后逐个赋值；第二种方式是在声明建立变量<code>s2</code>后直接在花括号<code>{}</code>内依次赋值；第三种方法则是在结构体定义后紧跟着建立一个变量<code>s3</code>，接着再通过与第一种方式相同的操作依次访问成员进行赋值。
+但在实际应用中，通常使用第一种和第二种方式较多，因为第三种定义方式变量定义和赋值语句很可能相隔太远，可读性较差，一般不进行使用。
+示例代码返回结果如下。</p>
+
+<blockquote>
+  <p>姓名：小张 年龄：18 分数：100
+    姓名：小李 年龄：19 分数：80
+    姓名：小王 年龄：20 分数：60</p>
+</blockquote>
+
+<h2>二、结构体使用</h2>
+
+<h3>（一）结构体数组</h3>
+
+<p>结构体数组是指以结构体作为元素类型的数组。它可以用来同时存储和管理多个结构体对象的集合。通过结构体数组，可以方便地对多个结构体对象进行批量操作。
+其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">结构体名</span><span class="w"> </span><span class="n">数组名</span><span class="p">[</span><span class="n">元素个数</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{},{},</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">,{}}</span>
+</code></pre>
+</div>
+
+<p>仍然使用之前定义的<code>Student</code>结构体作为示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="c1">// 创建结构体数组</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="p">{</span><span class="s">&quot;小张&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">100</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="s">&quot;小李&quot;</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">80</span><span class="p">},</span>
+<span class="w">        </span><span class="p">{</span><span class="s">&quot;小王&quot;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">60</span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="c1">// 给结构体数组的元素赋值</span>
+<span class="w">    </span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">70</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// 遍历打印结构体数据</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">age</span>
+<span class="w">            </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 分数：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>从代码可以看到，通过数组赋值结构体，可以使得成员赋值更为简略，同时，还可以通过访问数组中元素的属性方式直接修改赋值。</p>
+
+<h3>（二）结构体指针</h3>
+
+<p>结构体指针是指向结构体类型的指针变量。它可以用来存储和操作结构体对象的地址，通过指针可以方便地访问和修改结构体对象的成员。
+以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">Student</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">Student</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;小张&quot;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">100</span><span class="w"> </span><span class="p">};</span>
+<span class="w">    </span><span class="n">Student</span><span class="o">*</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 分数：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">p</span><span class="o">-&gt;</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>从示例代码中，可以看到指针的类型必须和结构体创建的类型相同，而不能用普通的类似整型、浮点型的数据类型来作为指针的数据类型。
+值得注意的是，在C++中，一旦定义了相应的结构体数据类型，在定义变量时可以不声明结构体关键字<code>struct</code>，直接使用结构体创建的数据类型<code>Student</code>即可。还有一点是，在访问结构体的属性时，这里使用的成员操作符是通过箭头<code>-&gt;</code>来访问指针的属性。
+返回结果如下。</p>
+
+<blockquote>
+  <p>姓名：小张 年龄：18 分数：100</p>
+</blockquote>
+
+<h2>三、结构体嵌套</h2>
+
+<p>结构体嵌套是指在一个结构体中包含另一个结构体作为成员。通过结构体嵌套，可以创建更复杂的数据结构，将多个结构体对象组合在一起，形成更复杂的数据类型。
+以下是简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">student</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="p">;</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">teacher</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="c1">// 教师姓名</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="c1">// 教师年龄</span>
+<span class="w">        </span><span class="n">student</span><span class="w"> </span><span class="n">stu</span><span class="p">;</span><span class="c1">// 辅导的学生</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="n">teacher</span><span class="w"> </span><span class="n">t</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;老刘&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;小张&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span>
+<span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 老师姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 老师年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 老师辅导的学生姓名：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 学生年龄：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">age</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; 学生成绩：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">t</span><span class="p">.</span><span class="n">stu</span><span class="p">.</span><span class="n">score</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>根据以上代码，只有首先创建一个<code>student</code>结构体，在创建<code>teacher</code>结构体内的嵌套属性时才可以访问。一旦结构体作为另一个结构体的属性创建完成，就可以作为那个结构体的属性进行访问。
+返回结果如下。</p>
+
+<blockquote>
+  <p>老师姓名：老刘
+    老师年龄：50
+    老师辅导的学生姓名：小张
+    学生年龄：18
+    学生成绩：100</p>
+</blockquote>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

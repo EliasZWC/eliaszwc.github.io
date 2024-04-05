@@ -1,0 +1,231 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】MySQL数据库（二）——数据类型</h1>
+
+<p>在SQL语言中，预置了各种基本的数据类型，在MySQL中更是可以使用。</p>
+
+<h2>一、整数类型</h2>
+
+<p>在 SQL 中，整数类型用于存储整数值。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>整型</td>
+  <td><code>INT</code>或<code>INTEGER</code></td>
+  <td>用于存储正整数、负整数和零。通常表示范围为 -2,147,483,648 到 2,147,483,647 的整数</td>
+</tr>
+<tr>
+  <td>短整型</td>
+  <td><code>SMALLINT</code></td>
+  <td>用于存储小范围的整数。通常表示范围为 -32,768 到 32,767 的整数</td>
+</tr>
+<tr>
+  <td>长整型</td>
+  <td><code>BIGINT</code></td>
+  <td>用于存储大范围的整数。通常表示范围为 -9,223,372,036,854,775,808 到 9,223,372,036,854,775,807 的整数</td>
+</tr>
+<tr>
+  <td>超小整型</td>
+  <td><code>TINYINT</code></td>
+  <td>用于存储非负的小整数。通常表示范围为 0 到 255 的整数</td>
+</tr>
+</tbody>
+</table>
+
+<h2>二、浮点数类型</h2>
+
+<p>在 SQL 中，浮点数类型用于存储具有小数部分的数值。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>浮点型</td>
+  <td><code>FLOAT</code></td>
+  <td>用于存储浮点数值。它通常表示的是单精度浮点数，可以存储大约 7 位有效数字</td>
+</tr>
+<tr>
+  <td>单精度浮点型</td>
+  <td><code>REAL</code></td>
+  <td>用于存储单精度浮点数值。它的精度通常为 7 位有效数字</td>
+</tr>
+<tr>
+  <td>双精度浮点型</td>
+  <td><code>DOUBLE</code></td>
+  <td>用于存储双精度浮点数值。它的精度通常为 15 位有效数字</td>
+</tr>
+</tbody>
+</table>
+
+<h2>三、字符串类型</h2>
+
+<p>在 SQL 中，字符串类型用于存储字符序列。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>字符型</td>
+  <td><code>CHAR</code></td>
+  <td>用于存储固定长度的字符序列，需要指定字符的最大长度</td>
+</tr>
+<tr>
+  <td>变长字符型</td>
+  <td><code>VARCHAR</code></td>
+  <td>用于存储可变长度的字符序列，需要指定字符的最大长度</td>
+</tr>
+<tr>
+  <td>文本型</td>
+  <td><code>TEXT</code></td>
+  <td>用于存储大量文本数据</td>
+</tr>
+<tr>
+  <td>Unicode可变长字符型</td>
+  <td><code>NCHAR</code>或<code>NVARCHAR</code></td>
+  <td>用于存储 Unicode 字符的固定长度和可变长度字符序列</td>
+</tr>
+</tbody>
+</table>
+
+<h2>四、日期和时间类型</h2>
+
+<p>在 SQL 中，日期和时间类型用于存储日期、时间和日期时间值。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>日期型</td>
+  <td><code>DATE</code></td>
+  <td>用于存储日期值。它表示年、月和日，格式为 YYYY-MM-DD</td>
+</tr>
+<tr>
+  <td>时间型</td>
+  <td><code>TIME</code></td>
+  <td>用于存储时间值。它表示时、分和秒，格式为 HH:MM:SS</td>
+</tr>
+<tr>
+  <td>时间戳型</td>
+  <td><code>DATETIME</code> 或<code>TIMESTAMP</code></td>
+  <td>用于存储日期和时间值。它表示日期和时间的组合，格式通常为 YYYY-MM-DD HH:MM:SS</td>
+</tr>
+<tr>
+  <td>年份型</td>
+  <td><code>YEAR</code></td>
+  <td>用于存储年份值。它表示一个年份，格式为 YYYY</td>
+</tr>
+<tr>
+  <td>精确时间戳型</td>
+  <td><code>DATETIME2</code></td>
+  <td>用于存储高精度日期和时间值，可以指定精确到纳秒级别的时间戳</td>
+</tr>
+<tr>
+  <td>时区时间戳型</td>
+  <td><code>TIMESTAMPTZ</code></td>
+  <td>用于存储带有时区的日期时间值。</td>
+</tr>
+<tr>
+  <td>间隔型</td>
+  <td><code>INTERVAL</code></td>
+  <td>用于存储时间间隔或持续时间</td>
+</tr>
+</tbody>
+</table>
+
+<h2>五、布尔与二进制类型</h2>
+
+<p>除以上的数据类型职位，在SQL中还有布尔类型和二进制类型。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>布尔型</td>
+  <td><code>BOOLEAN</code></td>
+  <td>用于存储真或假的布尔值</td>
+</tr>
+<tr>
+  <td>二进制型</td>
+  <td><code>BINARY</code></td>
+  <td>用于存储固定长度的二进制数据</td>
+</tr>
+<tr>
+  <td>变长二进制型</td>
+  <td><code>VARBINARY</code></td>
+  <td>用于存储可变长度的二进制数据。它允许存储不同长度的二进制数据，最大长度根据所定义的列的规定而定</td>
+</tr>
+<tr>
+  <td>二进制大对象型</td>
+  <td><code>BLOB</code></td>
+  <td>用于存储大量的二进制数据，例如图像、音频、视频文件等。它通常用于存储超过VARBINARY类型长度限制的二进制数据</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

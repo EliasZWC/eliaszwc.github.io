@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（一）——项目与程序结构</h1>
+
+<h2>一、创建第一个项目</h2>
+
+<h3>（一）选择IDE</h3>
+
+<p>选择C++语言开发，通常使用微软公司旗下的VS也就是Visual Studio作为IDE来开发项目——实际上，VS非常常用，不仅C++，其他多种语言也都可以使用VS来开发。毫无疑问，VS作为目前使用最广的IDE，其功能健全而强大。</p>
+
+<p>而由于VS的通用性，无论是在VS的官网，还是电脑自带的应用商店，通常都可以下载Visual Studio到电脑。</p>
+
+<h3>（二）创建文件</h3>
+
+<p>进入VS，点击“控制台项目”自动创建项目，将文件名命名为“CBase”（可更改），选择项目文件夹路径，勾选“将解决方案和项目放在同一目录中”，随即自动生成一个“Hello World!”的CBase.cpp文件，而.cpp扩展名的文件则是C++语言的源代码文件形式，其中自动生成的代码如下（无注释）：</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果为：</p>
+
+<blockquote>
+  <p>Hello World!</p>
+</blockquote>
+
+<p>由于C++是编译型语言，所以在运行时会形成一个exe为后缀的执行文件来执行代码，按F5调试代码时即可在项目路径的Debug目录中自动生成一个exe文件来执行文件内的代码。</p>
+
+<h3>（三）项目结构</h3>
+
+<h4>1.头文件</h4>
+
+<p>头文件（header file）通常具有.h或.hpp的文件扩展名，主要用于声明和定义类、函数、变量以及常量的接口。头文件中通常包含类的声明、函数原型和常量定义等内容。它们充当代码库的接口，允许在其他源文件中使用这些声明，实现代码的重用和模块化。</p>
+
+<h4>2.源文件</h4>
+
+<p>源文件（source file）通常具有.cpp的文件扩展名，主要用于实现在头文件中声明的类、函数和变量。源文件中包含的是具体的实现细节，它们定义了头文件中声明的内容的具体实现。源文件通过包含对应的头文件来使用其中的声明，以便在编译时将声明和实现组合在一起。</p>
+
+<h4>3.外部依赖项</h4>
+
+<p>外部依赖项（External Dependencies）是指项目中使用的来自外部源的库、框架或其他第三方组件。这些外部依赖项提供了额外的功能和功能扩展，例如图形界面工具包、网络库等。</p>
+
+<h4>4.资源文件</h4>
+
+<p>资源文件（Resource Files）是指项目中使用的非代码文件，如图像、声音、配置文件等。将这些文件作为资源文件可以方便地管理和访问它们，并使程序具备可配置性。C++中可以使用特定的库或框架来访问和操作资源文件，例如Qt框架中的资源系统。</p>
+
+<h2>二、程序结构</h2>
+
+<h3>（一）预处理指令</h3>
+
+<blockquote>
+  <p>#include</p>
+</blockquote>
+
+<p>这里的<code>#include</code>是预处理指令，是为了方便编译器处理的一些指令，而常用的预处理指令和语句会被称为预处理系统。而“#include”则是使预处理器通过指定的文件名找到相应文件，并把找到的文件内的代码内容包含到本文件中。</p>
+
+<p>其中，指令后面的尖括号&lt;&gt;是寻找系统库的内容，而指令后面的“”是寻找本项目文件中的内容。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+</code></pre>
+</div>
+
+<p>例如这行语句，就是将“iostream”这个文件的内容导入到本文件。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+</code></pre>
+</div>
+
+<p>而这行代码则代表将“test.h”这样一个头文件的文本内容导入到本文件。</p>
+
+<h3>（二）入口函数</h3>
+
+<blockquote>
+  <p>int main()</p>
+</blockquote>
+
+<p>这样的语句代表此时定义了一个入口函数main()，其作用是启动程序编写逻辑，是程序一旦开始运行就调用的函数。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这样的入口函数就是定义了一个返回值为int类型（无返回值的用void定义）的main函数，其中“{}”中的为函数体。要注意的是，如果没有入口函数，代码将无法被解析，运行代码通常会导致错误。</p>
+
+<h3>（三）调用库</h3>
+
+<blockquote>
+  <p>std</p>
+</blockquote>
+
+<p>“std”即C++标准库的空间名称，使用此指令可调用C++的库。</p>
+
+<blockquote>
+  <p>::</p>
+</blockquote>
+
+<p>“::”为域操作符，用来标注调用内容属于哪一个操作域。</p>
+
+<blockquote>
+  <p>&lt;&lt;</p>
+</blockquote>
+
+<p>“&lt;&lt;”为操作运算符，是被重载后的运算符，属于cout的一个运算符，主要用来表示对后面的内容进行输出调用。</p>
+
+<blockquote>
+  <p>;</p>
+</blockquote>
+
+<p>“;”为逻辑终止符，表示这一部分语句逻辑表达完毕，下面开始新的代码逻辑，用来表示一部分的功能代码编辑完毕。需要注意的是逻辑终止符是必须添加的，否则运行代码时无法判断代码起止的位置。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>所以，这行代码就表示调用cout库，输出“Hello World!”（“\n”代表换行，详情请看本系列第二部分转义符内容）。</p>
+
+<p>同时，使用using语句还可以进一步简化此输出。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Hello World!</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>using语句通常用于简化对命名空间的引用，而在C++标准库中，几乎所有的类、函数和对象都在<code>std</code>命名空间中定义。因此，为了使用这些标准库提供的功能，通常需要使用std::前缀来引用它们。而通过using语句将std命名空间中的所有成员引入到了当前作用域，使得在代码中可以直接使用cout而不需要写成std::cout。</p>
+
+<h3>（四）注释</h3>
+
+<p>注释是用来解释代码的作用、功能、注意事项等。注释部分的内容不会被编译器编译执行，它们只是给开发人员提供理解、维护和调试代码的便利。在编写代码时，合理使用注释可以使代码更易读、易理解，方便团队协作和代码维护。</p>
+
+<p>而在C++中，注释方式分为单行注释和多行注释。</p>
+
+<h4>1.单行注释</h4>
+
+<p>单行注释是使用双斜线（//）开始，从双斜线后的位置开始注释，直到该行的末尾。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 这是一个单行注释</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// 这是给变量x赋值的语句</span>
+</code></pre>
+</div>
+
+<h4>2.多行注释</h4>
+
+<p>多行注释是使用斜线和星号（/<em>）开始，使用星号和斜线（</em>/）结束，其中位于/<em>和</em>/之间的内容都将被注释掉。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cm">/* 这是一个</span>
+<span class="cm">   多行注释 */</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span><span class="w"> </span><span class="cm">/*</span>
+<span class="cm">             这是给变量y赋值的语句</span>
+<span class="cm">             */</span>
+</code></pre>
+</div>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

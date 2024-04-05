@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知识 | EliasChang</title>
+    <link rel="icon" href="../images//logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages/knowledge.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <header>
+
+        <!-- 1.1.标志 -->
+        <h1 class="logo">
+            <a href="./homeCN.html"><img src="../images/logo/logo.png" width="80"></a>
+        </h1>
+
+        <!-- 1.2.导航 -->
+        <div class="nav">
+            <ul>
+                <li><a href="./homeCN.html"><b>主页</b></a></li>
+                <li><a id="current" href="knowledge.html"><b>知识</b></a></li>
+                <li><a href="./resourceCN.html"><b>资源</b></a></li>
+                <li><a href="./aboutCN.html"><b>关于</b></a></li>
+                <li><a href="./contactCN.html"><b>联系</b></a></li>
+            </ul>
+        </div>
+        
+        <!-- 1.3.语言 -->
+        <div class="language">
+            <a href="./knowledge.html"><b>English</b></a>
+        </div>
+
+        <!-- 1.4.菜单 -->
+        <div class="menu">
+            <img src="../images/icon/menu.png" width="60">
+        </div>
+
+        <!-- 1.5.侧边栏 -->
+        <div class="sidebar">
+
+            <!-- 1.5.1.说明 -->
+            <div class="instructions">
+                <div><img src="../images/logo/logoLight.png" width="100"></div>
+                <div class="instructionsTitle"><b>知识分类</b></div>
+                <div class="pill-container">
+
+                    <!-- 1.5.1.1.人文科学 -->
+                    <div class="pill">
+                        <p class="pill-text">人文科学</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>人文科学是研究人类文化和价值观的学科</b>
+                        <ul>
+                            <li>艺术学</li>
+                            <li>历史学</li>
+                            <li>文学</li>
+                            <li>哲学</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.2.社会科学 -->
+                    <div class="pill">
+                        <p class="pill-text">社会科学</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>社会科学是研究人类社会行为和社会关系的学科</b>
+                        <ul>
+                            <li>经济学</li>
+                            <li>教育学</li>
+                            <li>法学</li>
+                            <li>管理学</li>
+                            <li>军事学</li>
+                            <li>政治学</li>
+                            <li>心理学</li>
+                            <li>社会学</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.3.自然科学 -->
+                    <div class="pill">
+                        <p class="pill-text">自然科学</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>自然科学是通过观察、实验和分析来研究自然规律和机制的学科</b>
+                        <ul>
+                            <li>生物学</li>
+                            <li>化学</li>
+                            <li>地球科学</li>
+                            <li>数学</li>
+                            <li>物理学</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.4.应用科学 -->
+                    <div class="pill">
+                        <p class="pill-text">应用科学</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>应用科学是使用科学原理和方法解决实际问题的学科</b>
+                        <ul>
+                            <li>农学</li>
+                            <li>工程学</li>
+                            <li>医学</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- 2.内容 -->
+    <main>
+
+        <!-- 2.1.封面 -->
+        <div class="cover">
+            <img id="knowledgeCoverWord" src="../images/word/knowledgeCoverWord.png">
+            <!-- 2.1.2.进入博客 -->
+            <a class="enterBlog" href="./blogCN.html">进入博客</a>
+        </div>
+        <!-- 2.2.封面向下 -->
+        <a class="nextButton" href="#hierarchy">
+            <img src="../images/component/downButton.png" width="60">
+        </a>
+
+        <!-- 2.3.人类知识体系 -->
+        <section id="hierarchy">
+
+            <!-- 2.3.1.人文科学 -->
+            <div class="category">
+                <p class="category-text">人文科学</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Art')">艺术学
+                        <div class="leftbar" id="Art">
+                            <img src="../images/scienceBranch/艺术学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('History')">历史学
+                        <div class="leftbar" id="History">
+                            <img src="../images/scienceBranch/历史学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Literature')">文学
+                        <div class="leftbar" id="Literature">
+                            <img src="../images/scienceBranch/文学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Philosophy')">哲学
+                        <div class="leftbar" id="Philosophy">
+                            <img src="../images/scienceBranch/哲学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.2.社会科学 -->
+            <div class="category">
+                <p class="category-text">社会科学</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Economics')">经济学
+                        <div class="leftbar" id="Economics">
+                            <img src="../images/scienceBranch/经济学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Education')">教育学
+                        <div class="leftbar" id="Education">
+                            <img src="../images/scienceBranch/教育学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Law')">法学
+                        <div class="leftbar" id="Law">
+                            <img src="../images/scienceBranch/法学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Management')">管理学
+                        <div class="leftbar" id="Management">
+                            <img src="../images/scienceBranch/管理学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Military')">军事学
+                        <div class="leftbar" id="Military">
+                            <img src="../images/scienceBranch/军事学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Politics')">政治学
+                        <div class="leftbar" id="Politics">
+                            <img src="../images/scienceBranch/政治学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Psychology')">心理学
+                        <div class="leftbar" id="Psychology">
+                            <img src="../images/scienceBranch/心理学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Sociology')">社会学
+                        <div class="leftbar" id="Sociology">
+                            <img src="../images/scienceBranch/社会学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.3.自然科学 -->
+            <div class="category">
+                <p class="category-text">自然科学</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Biology')">生物学
+                        <div class="leftbar" id="Biology">
+                            <img src="../images/scienceBranch/生物学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Chemistry')">化学
+                        <div class="leftbar" id="Chemistry">
+                            <img src="../images/scienceBranch/化学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Geoscience')">地球科学
+                        <div class="leftbar" id="Geoscience">
+                            <img src="../images/scienceBranch/地球科学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Mathematics')">数学
+                        <div class="leftbar" id="Mathematics">
+                            <img src="../images/scienceBranch/数学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Physics')">物理学
+                        <div class="leftbar" id="Physics">
+                            <img src="../images/scienceBranch/物理学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.4.应用科学 -->
+            <div class="category">
+                <p class="category-text">应用科学</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Agriculture')">农学
+                        <div class="leftbar" id="Agriculture">
+                            <img src="../images/scienceBranch/农学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Engineering')">工程学
+                        <div class="leftbar" id="Engineering">
+                            <img src="../images/scienceBranch/工程学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Medicine')">医学
+                        <div class="leftbar" id="Medicine">
+                            <img src="../images/scienceBranch/医学.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+            <!-- 隐藏侧边栏 -->
+            <img class="hide" onclick="hideLeftbar()" src="../images/icon/leftFill_white.png" width="100px">
+
+        </section>
+
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../js/main.js"></script>
+</body>
+</html>

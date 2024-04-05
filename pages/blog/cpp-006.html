@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（六）——String字符串</h1>
+
+<p>在C++中，string是一个标准库类，用于处理字符串，而string字符串可以看做元素为char的vector。因此，vector的基本操作都适用于string。</p>
+
+<h2>一、String初始化</h2>
+
+<h3>（一）常规初始化</h3>
+
+<p>与vector相同，想使用string就必须插入系统库<code>&lt;string&gt;</code>。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+</code></pre>
+</div>
+
+<p>然后再定义字符串。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">string</span><span class="w"> </span><span class="n">mystring</span><span class="err">；</span>
+</code></pre>
+</div>
+
+<p>唯一不同的是不需要同vector定义时在尖括号中标明类型，其他的初始化方法也完全一样。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s3</span><span class="p">(</span><span class="s">&quot;value&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s4</span><span class="p">(</span><span class="n">s3</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s1:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s2:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s3:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;s4:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s4</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>s1:
+  s2:aaa
+  s3:value
+  s4:value</p>
+</blockquote>
+
+<p>值得注意的是，在定义string前需要预处理将<code>&lt;string&gt;</code>系统库插入到代码中；另一个则是由于字符串内元素只能是字符，所以重复定义如<code>string s2(3, 'a');</code>中，a必须由单引号括起来，而不能用双引号。</p>
+
+<h3>（二）cin对象</h3>
+
+<p>在系统库<code>&lt;iostream&gt;</code>中，除了用于标准输出流的<code>std::cout</code>对象，还有<code>std::cin</code>用于标准输入流的对象，通过输入运算符<code>&gt;&gt;</code>可以读取用户输入的数据，并将其存储在程序中的变量中。而定义字符串时，就可以用到这个方法。
+使用test.cpp代码实验。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;请输入字符串s1:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;请输入字符串s2:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;输出s1结果:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;输出s2结果:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>此时调试整个代码，进入终端。
+首先返回结果如下。</p>
+
+<blockquote>
+  <p>请输入字符串s1:</p>
+</blockquote>
+
+<p>为了实验，此时我们使用键盘在终端中输入55，将55作为元素输入进s1这个字符串中。
+输入结果如下。</p>
+
+<blockquote>
+  <p>55</p>
+</blockquote>
+
+<p>接着，会继续弹出返回结果如下。</p>
+
+<blockquote>
+  <p>请输入字符串s2:</p>
+</blockquote>
+
+<p>为了实验，此时我们继续使用键盘在终端中输入23，将23作为元素输入进s2这个字符串中。
+输入结果如下。</p>
+
+<blockquote>
+  <p>42</p>
+</blockquote>
+
+<p>此时输出（返回）结果如下。</p>
+
+<blockquote>
+  <p>输出s1结果:55
+  输出s2结果:23</p>
+</blockquote>
+
+<p>此时，整个代码运行完毕。所有终端操作如下。</p>
+
+<blockquote>
+  <p>请输入字符串s1:
+  55
+  请输入字符串s2:
+  23
+  输出s1结果:55
+  输出s2结果:23</p>
+</blockquote>
+
+<p>以上的代码使用的<code>cin</code>仅能对固有个数的输入结果向变量进行导入，如果输入数量不确定，而最后将累计输入内容全部输出，可以使用while循环和for循环进行实现。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">storage</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">input</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;请输入：&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">input</span><span class="p">;</span>
+<span class="w">        </span><span class="n">storage</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">input</span><span class="p">);</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;输出结果：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">storage</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">storage</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里分别定义了两个变量作为容器，一个是向量<code>storage</code>作为总体储存容器，另一个字符串<code>input</code>作为临时输入储存容器。
+在while循环的判定条件中，并没有实际给出一个布尔表达式作为判定条件，而是输出一个“请输入：”的信息作为引导终端用户输入的循环开始提示；进入while循环，用<code>std::cin</code>准备将键盘输入的结果导入到<code>input</code>这个临时输入储存容器中；接着，使用<code>push_back()</code>把在<code>input</code>这个临时输入储存容器的输入结果转移到<code>storage</code>总体储存容器中，再使用for循环来将<code>storage</code>的内容逐个遍历输出出来。
+值得注意的是，这里之所以用vector作为总体储存容器是因为vector可以将临时储存在字符串的内容按字符型变量依次再输入到vector中；而如果使用字符串来承接字符串的结果，就没有办法进行自动类型转换从而使得从临时输入储存容器中的内容转换到总体储存容器里。
+终端操作结果如下。</p>
+
+<blockquote>
+  <p>请输入：1
+  输出结果：
+  1
+  请输入：3.25
+  输出结果：
+  1 3.25
+  请输入：char
+  输出结果：
+  1 3.25 char
+  请输入：汉
+  输出结果：
+  1 3.25 char 汉</p>
+</blockquote>
+
+<p>从终端操作结果可以看到，在测试了多个类型的输入后，最后输出结果也都是成为了字符串形式。</p>
+
+<h2>二、String比较与连接</h2>
+
+<h3>（一）String的比较</h3>
+
+<p>String作为字符串，同样可以被比较。其比较规则如下。</p>
+
+<ol>
+<li>字符的字典序：字符串的比较从左到右逐个字符进行，根据字符的字典序进行比较。字符的字典序是根据字符的编码值来决定的。</li>
+<li>字符编码：C++使用ASCII码（或其扩展字符集如UTF-8）来表示字符，每个字符都被赋予一个唯一的编码值。在比较字符串时，程序会比较字符的编码值来确定其顺序。</li>
+<li>大小写敏感：C++默认区分大写字母和小写字母。所以，在比较字符串时，大写字母和小写字母被认为是不同的字符。例如，"apple"和"Apple"被认为是不同的字符串。</li>
+</ol>
+
+<p>String可以用比较运算符<code>&lt;</code>和<code>&gt;</code>来比较，也可以使用<code>std::string</code>类的成员函数<code>std::string::compare</code>来比较。以下仅使用比较运算符<code>&lt;</code>和<code>&gt;</code>进行比较。
+使用代码实验，在终端的操作结果如下。</p>
+
+<blockquote>
+  <p>请输入str1：abcde
+  请输入str2：abcdef
+  字符串：abcde小于abcdef
+  请输入str1：abcde
+  请输入str2：abcdf
+  字符串：abcde小于abcdf
+  请输入str1：abcde
+  请输入str2：abcdE
+  字符串：abcde大于abcdE</p>
+</blockquote>
+
+<p>输入各种字符串后，通过比较结果就可以看到，按照从左到右的比较顺序：同长度的字符串ASCII小的字符串小；不同长度的字符串长度短的字符串小；相同字母的字符串小写字母的字符串小。</p>
+
+<h3>（二）String的连接</h3>
+
+<p>字符串之间可以互相将内容连接，可以使用加法运算符<code>+</code>或者<code>std::string</code>类的成员函数<code>std::string::append</code>来实现。这里仅介绍使用加法运算符的情况。
+使用加法运算符<code>+</code>来实现的test.cpp代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;test.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span>
+
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::Test</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">str1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;哈哈&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">str2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;55&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">str3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">str2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字符串连接结果为：&quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">str3</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>返回结果如下。</p>
+
+<blockquote>
+  <p>字符串连接结果为：哈哈55</p>
+</blockquote>
+
+<h2>三、String成员函数</h2>
+
+<p>同Vector容器一样，String字符串在使用时，也提供了许多实用的成员函数来操作和管理字符串（string），以下是常用的<code>std::string</code>的成员函数。</p>
+
+<table>
+<thead>
+<tr>
+  <th>函数</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>length()</code>或<code>size()</code></td>
+  <td>返回字符串的长度</td>
+</tr>
+<tr>
+  <td><code>empty()</code></td>
+  <td>判断字符串是否为空，返回布尔值</td>
+</tr>
+<tr>
+  <td><code>clear()</code></td>
+  <td>清空字符串中的内容</td>
+</tr>
+<tr>
+  <td><code>c_str()</code></td>
+  <td>返回一个以<code>null</code>结尾的C风格字符串（<code>const char*</code> 类型）</td>
+</tr>
+<tr>
+  <td><code>substr(pos, len)</code></td>
+  <td>返回从位置<code>pos</code>开始的<code>len</code>个字符的子字符串</td>
+</tr>
+<tr>
+  <td><code>find(str)</code></td>
+  <td>在字符串中查找子字符串<code>str</code>的出现位置，返回首次出现的位置索引；如果找不到则返回<code>std::string::npos</code></td>
+</tr>
+<tr>
+  <td><code>replace(pos, len, new_str)</code></td>
+  <td>用<code>new_str</code>替换从位置<code>pos</code>开始的<code>len</code>个字符</td>
+</tr>
+<tr>
+  <td><code>insert(pos, str)</code></td>
+  <td>在指定位置<code>pos</code>插入字符串<code>str</code></td>
+</tr>
+<tr>
+  <td><code>erase(pos, len)</code></td>
+  <td>从指定位置<code>pos</code>开始删除<code>len</code>个字符</td>
+</tr>
+<tr>
+  <td><code>push_back(ch)</code></td>
+  <td>在字符串末尾添加字符<code>ch</code></td>
+</tr>
+<tr>
+  <td><code>pop_back()</code></td>
+  <td>在字符串末尾删除最后一个字符</td>
+</tr>
+<tr>
+  <td><code>compare(str)</code></td>
+  <td>比较字符串与<code>str</code>的大小关系，返回一个整数表示结果</td>
+</tr>
+<tr>
+  <td><code>append(str)</code></td>
+  <td>将一个字符串追加到另一个字符串的末尾</td>
+</tr>
+</tbody>
+</table>
+
+<h2>四、字符处理</h2>
+
+<p><code>ctype.h</code> 是 C 语言标准库中的头文件，其中包含了一些用于字符处理的函数和字符分类宏。这个头文件中定义的函数和宏可以用来对字符进行分类、转换和判断。
+字符串可以通过插入这个系统库的内容进行字符处理。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ctype.h&gt;</span>
+</code></pre>
+</div>
+
+<p>以下是常用的函数和宏。</p>
+
+<table>
+<thead>
+<tr>
+  <th>函数</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>isalpha(int c)</code></td>
+  <td>判断字符<code>c</code>是否为字母（a-z 或 A-Z）</td>
+</tr>
+<tr>
+  <td><code>isdigit(int c)</code></td>
+  <td>判断字符<code>c</code>是否为数字（0-9）</td>
+</tr>
+<tr>
+  <td><code>isalnum(int c)</code></td>
+  <td>判断字符<code>c</code>是否为字母或数字</td>
+</tr>
+<tr>
+  <td><code>isupper(int c)</code></td>
+  <td>判断字符<code>c</code>是否为大写字母（A-Z）</td>
+</tr>
+<tr>
+  <td><code>islower(int c)</code></td>
+  <td>判断字符<code>c</code>是否为小写字母（a-z）</td>
+</tr>
+<tr>
+  <td><code>isspace(int c)</code></td>
+  <td>判断字符<code>c</code>是否为空白字符（空格、制表符、换行符等）</td>
+</tr>
+<tr>
+  <td><code>toupper(int c)</code></td>
+  <td>将字符<code>c</code>转换为大写字母</td>
+</tr>
+<tr>
+  <td><code>tolower(int c)</code></td>
+  <td>将字符<code>c</code>转换为小写字母</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

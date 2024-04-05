@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】Kotlin语言（三）——数据容器</h1>
+
+<p>在 Kotlin 中，有多种数据容器可用于存储和组织数据。容器分为数组、集合。</p>
+
+<h2>一、数组</h2>
+
+<p><strong>数组（Array）</strong>，是指用于存储具有相同类型的固定长度元素序列的数据容器。Kotlin 的数组是不可变的，长度固定，不能添加或删除元素。</p>
+
+<h3>（一）数组定义</h3>
+
+<p>创建数组的方式有很多种。</p>
+
+<p>首先就是通过<code>arrayOf</code>来创建数组，其能够创建一个数组并传递元素给它，而其中的元素可以是任意类型。以下代码的JSON对象<code>JSONObject</code>类型需要导入新的类，这里仅做示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">arr1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">JSONObject</span><span class="p">())</span><span class="c1">// 内部的元素可以是任何类型</span>
+</code></pre>
+</div>
+
+<p>如果想要指定类型，则需要再声明制定的数据类型。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">arrInt</span><span class="p">:</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="c1">// 指定类型为Int</span>
+</code></pre>
+</div>
+
+<p>同时，还可以使用<code>arrayOfNulls</code>创建一个指定大小的，所有元素都为空的数组。但必须指定集合中的数据类型。构造完成，则可以使用索引操作符<code>[]</code>访问每个元素，然后逐个给元素赋值。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">arrayOfNulls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrOfNulls</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="c1">// 创建一个元素类型为字符串的5个元素的空数组</span>
+<span class="n">arrayOfNulls</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;element1&quot;</span>
+<span class="n">arrayOfNulls</span><span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;element2&quot;</span>
+<span class="n">arrayOfNulls</span><span class="o">[</span><span class="m">2</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;element3&quot;</span>
+<span class="n">arrayOfNulls</span><span class="o">[</span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;element4&quot;</span>
+<span class="n">arrayOfNulls</span><span class="o">[</span><span class="m">4</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;element5&quot;</span>
+</code></pre>
+</div>
+
+<p>除此之外，还可以用Array构造函数来创建数组，虽然比较少用，但还是予以介绍，其基本语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Array</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c1">// 创建一个包含 5 个元素的数组，每个元素的值是索引值的两倍</span>
+</code></pre>
+</div>
+
+<p>这里的参数<code>5</code>是数组的长度，<code>{ index -&gt; index * 2 }</code> 是一个 lambda 表达式（下一章详细讲解），用于初始化数组的元素。在 lambda 表达式中，index 表示当前元素的索引。</p>
+
+<h3>（二）原生类型数组</h3>
+
+<p><strong>原生类型数组（Primitive Type Arrays）</strong> 来使用指定的原生数据类型来表示数组的元素，而不是使用对应的包装类型。这种表示方式避免了自动装箱和拆箱的开销，可以直接在数组中存储原生数据类型的值。</p>
+
+<table>
+<thead>
+<tr>
+  <th>原生类型数组函数</th>
+  <th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>ByteArray()</code></td>
+  <td>字节型数组</td>
+</tr>
+<tr>
+  <td><code>ShortArray()</code></td>
+  <td>短整型数组</td>
+</tr>
+<tr>
+  <td><code>IntArray()</code></td>
+  <td>整型数组</td>
+</tr>
+<tr>
+  <td><code>LongArray()</code></td>
+  <td>长整型数组</td>
+</tr>
+<tr>
+  <td><code>FloatArray()</code></td>
+  <td>浮点型数组</td>
+</tr>
+<tr>
+  <td><code>DoubleArray()</code></td>
+  <td>双精度浮点型数组</td>
+</tr>
+<tr>
+  <td><code>CharArray()</code></td>
+  <td>字符型数组</td>
+</tr>
+<tr>
+  <td><code>BooleanArray()</code></td>
+  <td>布尔型数组</td>
+</tr>
+</tbody>
+</table>
+
+<p>原生类型数组的创建和普通数组的定义基本相同。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntArray</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w">  </span><span class="c1">// 创建一个包含5个整数元素的数组，初始值默认为0</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BooleanArray</span><span class="p">(</span><span class="m">3</span><span class="p">)</span><span class="w">  </span><span class="c1">// 创建一个包含3个布尔元素的数组，初始值默认为0即false</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ByteArray</span><span class="p">(</span><span class="m">10</span><span class="p">)</span><span class="w">  </span><span class="c1">// 创建一个包含10个字节元素的数组，初始值默认为0</span>
+</code></pre>
+</div>
+
+<h3>（三）数组元素遍历</h3>
+
+<p><strong>遍历（iterate）</strong> 是指逐个访问数据结构中的元素或项的过程。在编程中，我们经常需要遍历数组、列表、集合或其他类型的数据结构来处理其中的元素。</p>
+
+<p>遍历可以用于执行各种操作，例如打印元素、计算总和、查找特定元素、过滤元素等。这里可以使用for循环进行遍历。</p>
+
+<h4>1.for循环遍历</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">intArr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 元素遍历</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>其中<code>item</code>代表变量<code>intArr</code>中的每个元素。
+同时，还可以通过<code>indices</code>属性来获得创建的数组的索引。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">intArr</span><span class="p">.</span><span class="na">indices</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-&gt;&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">intArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>对于上面的代码，是通过在for循环的<code>in</code>关键字访问每一个索引，从而达到的遍历效果。返回结果如下。</p>
+
+<blockquote>
+  <p>0->1
+  1->2
+  2->3</p>
+</blockquote>
+
+<p>也可以使用带索引的方法来遍历。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span><span class="w"> </span><span class="p">((</span><span class="n">index</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">intArr</span><span class="p">.</span><span class="na">withIndex</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$</span><span class="n">index</span><span class="s">-&gt;</span><span class="si">$</span><span class="n">item</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这种方式使用了<code>withIndex()</code>函数获取了一个包含数组元素和索引的序列。然后再通过解构声明将元素和索引序列填入<code>(index, item)</code>这两个变量中，随后输出。输出结果同上一个示例。</p>
+
+<h4>2.forEach遍历</h4>
+
+<p><code>forEach()</code>是 Kotlin 标准库中可用于遍历集合的函数。它接受一个 lambda 表达式作为参数，并使用 lambda 表达式对集合中的每个元素执行操作。这里就可以用<code>forEach()</code>来遍历数组中的元素。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">intArr</span><span class="p">.</span><span class="na">forEach</span><span class="p">{</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="c1">// 这里的it代表数组的元素，同样也是lambda表达式</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h2>二、集合</h2>
+
+<p>在 Kotlin 中，<strong>集合（Collections）</strong> 是一种常用的数据结构，用于存储多个元素。Kotlin 标准库提供了多种集合类型，每种类型在不同的使用场景下有不同的特点和优势。</p>
+
+<h3>（一）集合分类</h3>
+
+<p>集合分为不可变集合和可变集合。</p>
+
+<h4>1.不可变集合</h4>
+
+<p><strong>不可变集合（Immutable Collections）</strong> 是指创建后不可进行添加、删除或修改等操作的集合。不可变集合是线程安全的，可以在多个线程中共享使用，因为不会发生并发修改的情况。</p>
+
+<p>Kotlin 的标准库提供了以下不可变集合类型：</p>
+
+<ul>
+<li><strong>列表（List）</strong>：是一个有序的集合，可以包含重复的元素，可通过索引（下标）访问元素。</li>
+<li><strong>集合（Set）</strong>：是一个无序的集合，不能包含重复的元素，要求元素必须唯一。</li>
+<li><strong>映射（Map）</strong>：是一种键值对的集合，每个元素由键和值组成。键是唯一的，值可以重复，类似其他语言中的字典数据类型。</li>
+</ul>
+
+<p>要注意的是，不可变集合虽然无法直接进行元素的增删改操作，但可以通过操作符和函数进行集合操作，例如过滤、映射、排序等。</p>
+
+<h4>2.可变集合</h4>
+
+<p><strong>可变集合（Mutable Collections）</strong> 是指在创建后可以进行添加、删除或修改等操作的集合。可变集合不是线程安全的，需要注意在多线程环境下使用时进行适当的同步。</p>
+
+<p>Kotlin 的标准库提供了对应的可变集合类型：</p>
+
+<ul>
+<li><strong>可变列表（MutableList）</strong>：可变的有序集合。</li>
+<li><strong>可变集合（MutableSet）</strong>：可变的无序集合。</li>
+<li><strong>可变映射（MutableMap）</strong>：可变的键值对集合。</li>
+</ul>
+
+<p>通过可变集合的函数和操作符，可以对集合进行增删改操作，例如使用<code>add()</code>添加元素，使用<code>remove()</code>删除元素，使用索引进行修改等。</p>
+
+<h3>（二）集合定义</h3>
+
+<h4>1.列表</h4>
+
+<p>对于不可变列表的创建，需要使用<code>listOf</code>函数进行创建。其创建语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list1</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>不可变列表的元素是只读的，一旦创建，就不能通过索引来进行修改，也无法直接添加新元素。不可变列表的长度不可变，元素在创建后也不能更改。</p>
+
+<p>而对于可变列表，则需要使用<code>mutableListOf()</code>函数进行创建，其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>不同于不可变列表，可变列表的长度和元素都可以在运行时进行更改。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">list2</span><span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="n">println</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出: [10, 2, 3, 4, 5]</span>
+</code></pre>
+</div>
+
+<p>或者使用<code>add()</code>和<code>remove()</code>等方法更改元素。</p>
+
+<p><code>add()</code>用于在列表末尾添加一个元素。这个方法会修改原始列表。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="m">6</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出: [1, 2, 3, 4, 5, 6]</span>
+</code></pre>
+</div>
+
+<p><code>remove()</code>用于删除列表中的指定元素。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">list2</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">mutableNumberList</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出: [1, 2, 4, 5]</span>
+</code></pre>
+</div>
+
+<h4>2.集合</h4>
+
+<p>对于不可变列表的创建，需要使用<code>setOf</code>函数进行创建。其创建语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">set1</span><span class="p">:</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">setOf</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>而对于可变列表，则需要使用<code>mutableSetOf()</code>函数进行创建，其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">set2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableSet</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableSetOf</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p><code>add()</code>用于在集合末尾添加一个元素。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">list2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableList</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableListOf</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">)</span>
+<span class="n">list2</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="m">6</span><span class="p">)</span>
+<span class="n">println</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 输出: [1, 2, 3, 4, 5, 6]</span>
+</code></pre>
+</div>
+
+<p>但需要注意的是如果想要添加的元素已经在集合中出现，就无法再添加进去。</p>
+
+<h4>3.映射</h4>
+
+<p>对于不可变映射的创建，需要使用<code>mapOf</code>函数进行创建。其创建语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">map1</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;banana&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>可以看到，对于映射，需要同时定义键和值的数据类型，这里定义键的数据类型为字符串<code>String</code>，值的数据类型为整型<code>Int</code>；赋值也需要同时赋值键和值，首先赋值键，然后用<code>to</code>关键字连接键值对，最后赋值值。这里“apple”、“banana” 和 “orange” 是键，它们分别映射到对应的值为1、2和3。</p>
+
+<p>定义映射还可以用<code>pair()</code>函数还创建一对数据，使得定义映射时不需要再使用<code>to</code>关键字。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">map1</span><span class="p">:</span><span class="w"> </span><span class="n">Map</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mapOf</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;banana&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">    </span><span class="n">Pair</span><span class="p">(</span><span class="s">&quot;orange&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre>
+</div>
+
+<p>而对于可变列表，则需要使用<code>mutableMapOf()</code>函数进行创建，其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kd">val</span><span class="w"> </span><span class="nv">map2</span><span class="p">:</span><span class="w"> </span><span class="n">MutableMap</span><span class="o">&lt;</span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kt">Int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mutableMapOf</span><span class="p">(</span><span class="s">&quot;apple&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;banana&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;orange&quot;</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="m">3</span><span class="p">)</span>
+<span class="n">mutableMap</span><span class="o">[</span><span class="s">&quot;apple&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="c1">// 修改值</span>
+<span class="n">mutableMap</span><span class="o">[</span><span class="s">&quot;grape&quot;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="c1">// 添加新的键值对</span>
+</code></pre>
+</div>
+
+<h3>（三）集合操作</h3>
+
+<p>集合操作是指对集合（如列表、集、映射等）进行常见的操作。在 Kotlin 中，标准库提供了丰富的集合操作函数，可以方便地操作集合数据。</p>
+
+<table>
+<thead>
+<tr>
+  <th>操作函数</th>
+  <th>描述</th>
+  <th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>isEmpty()</code></td>
+  <td>判断集合是否为空</td>
+  <td><code>set1.isEmpty()</code></td>
+</tr>
+<tr>
+  <td><code>contains(元素)</code></td>
+  <td>判断是否包含某元素</td>
+  <td><code>set1.contains("6")</code></td>
+</tr>
+<tr>
+  <td><code>get(索引)</code></td>
+  <td>通过索引获取某元素</td>
+  <td><code>set1.get(0)</code></td>
+</tr>
+<tr>
+  <td><code>indexOf(元素)</code></td>
+  <td>获取某元素首次出现的索引</td>
+  <td><code>set1.indexOf("banana")</code></td>
+</tr>
+<tr>
+  <td><code>lastIndexOf(元素)</code></td>
+  <td>获取某元素最后出现的索引</td>
+  <td><code>set1.lastIndexOf("apple")</code></td>
+</tr>
+<tr>
+  <td><code>iterator()</code></td>
+  <td>获取集合迭代器</td>
+  <td><code>list1.iterator()</code></td>
+</tr>
+<tr>
+  <td><code>add(元素)</code></td>
+  <td>添加元素</td>
+  <td><code>set1.add("grape")</code></td>
+</tr>
+<tr>
+  <td><code>remove(元素)</code></td>
+  <td>删除元素</td>
+  <td><code>set1.remove("grape")</code></td>
+</tr>
+<tr>
+  <td><code>addAll(集合)</code></td>
+  <td>另一个集合添加此集合的所有元素</td>
+  <td><code>set1.addAll(set2)</code></td>
+</tr>
+<tr>
+  <td><code>removeAll(集合)</code></td>
+  <td>另一个集合移除此集合的所有元素</td>
+  <td><code>set1.removeAll(set2)</code></td>
+</tr>
+<tr>
+  <td><code>retainAll(集合)</code></td>
+  <td>另一个集合保留与此集合共有的元素</td>
+  <td><code>set1.removeAll(set2)</code></td>
+</tr>
+<tr>
+  <td><code>cleaer()</code></td>
+  <td>清空集合所有元素</td>
+  <td><code>set1.clear()</code></td>
+</tr>
+<tr>
+  <td><code>set(索引, 元素 )</code></td>
+  <td>修改指定索引的元素</td>
+  <td><code>set1.set(0, "grape")</code></td>
+</tr>
+<tr>
+  <td><code>add(索引, 元素)</code></td>
+  <td>指定位置添加元素</td>
+  <td><code>list1.add(0, 6)</code></td>
+</tr>
+<tr>
+  <td><code>removeAt(索引)</code></td>
+  <td>指定位置删除元素</td>
+  <td><code>list1.removeAt(0)</code></td>
+</tr>
+<tr>
+  <td><code>reverse()</code></td>
+  <td>反转集合中元素位置</td>
+  <td><code>set1.reverse()</code></td>
+</tr>
+<tr>
+  <td><code>shuffle()</code></td>
+  <td>随机排列元素位置</td>
+  <td><code>set1.shuffle()</code></td>
+</tr>
+<tr>
+  <td><code>sort()</code></td>
+  <td>从小到大排列元素位置</td>
+  <td><code>set1.sort()</code></td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge | EliasChang</title>
+    <link rel="icon" href="../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pages/knowledge.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <header>
+
+        <!-- 1.1.标志 -->
+        <h1 class="logo">
+            <a href="../index.html"><img src="../images/logo/logo.png" width="80"></a>
+        </h1>
+
+        <!-- 1.2.导航 -->
+        <div class="nav">
+            <ul>
+                <li><a href="./home.html"><b>Home</b></a></li>
+                <li><a id="current" href="knowledge.html"><b>Knowledge</b></a></li>
+                <li><a href="./resource.html"><b>Resource</b></a></li>
+                <li><a href="./about.html"><b>About</b></a></li>
+                <li><a href="./contact.html"><b>Contact</b></a></li>
+            </ul>
+        </div>
+        
+        <!-- 1.3.语言 -->
+        <div class="language">
+            <a href="./knowledgeCN.html"><b>中文</b></a>
+        </div>
+
+        <!-- 1.4.菜单 -->
+        <div class="menu">
+            <img src="../images/icon/menu.png" width="60">
+        </div>
+
+        <!-- 1.5.侧边栏 -->
+        <div class="sidebar">
+
+            <!-- 1.5.1.说明 -->
+            <div class="instructions">
+                <div><img src="../images/logo/logoLight.png" width="100"></div>
+                <div class="instructionsTitle"><b>KONWLEDGE</b></div>
+                <div class="pill-container">
+
+                    <!-- 1.5.1.1.人文科学 -->
+                    <div class="pill">
+                        <p class="pill-text">Human Science</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>Human Science is the study of human culture and values</b>
+                        <ul>
+                            <li>Art</li>
+                            <li>History</li>
+                            <li>Literature</li>
+                            <li>Philosophy</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.2.社会科学 -->
+                    <div class="pill">
+                        <p class="pill-text">Social Science</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>Social science is the study of human social behavior and social relations</b>
+                        <ul>
+                            <li>Economics</li>
+                            <li>Education</li>
+                            <li>Law</li>
+                            <li>Management</li>
+                            <li>Military</li>
+                            <li>Politics</li>
+                            <li>Psychology</li>
+                            <li>Sociology</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.3.自然科学 -->
+                    <div class="pill">
+                        <p class="pill-text">Natural Science</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>Natural science is the study of the laws and mechanisms of nature through observation, experiment and analysis</b>
+                        <ul>
+                            <li>Biology</li>
+                            <li>Chemistry</li>
+                            <li>Geoscience</li>
+                            <li>Mathematics</li>
+                            <li>Physics</li>
+                        </ul>
+                    </span>
+                    <!-- 1.5.1.4.应用科学 -->
+                    <div class="pill">
+                        <p class="pill-text">Applied Science</p>
+                        <div class="pill-line"></div>
+                    </div>
+                    <span class="hidden">
+                        <b>Applied science is the study of solving practical problem with appling scientific principles and methods</b>
+                        <ul>
+                            <li>Agriculture</li>
+                            <li>Engineering</li>
+                            <li>Medicine</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </header>
+
+    <!-- 2.内容 -->
+    <main>
+
+        <!-- 2.1.封面 -->
+        <div class="cover">
+            <img id="knowledgeCoverWord" src="../images/word/knowledgeCoverWord.png">
+            <!-- 2.1.2.进入博客 -->
+            <a class="enterBlog" href="./blog.html">ENTER BLOG</a>
+        </div>
+        <!-- 2.2.封面向下 -->
+        <a class="nextButton" href="#hierarchy">
+            <img src="../images/component/downButton.png" width="60">
+        </a>
+
+        <!-- 2.3.人类知识体系 -->
+        <section id="hierarchy">
+
+            <!-- 2.3.1.人文科学 -->
+            <div class="category">
+                <p class="category-text">Human Science</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Art')">Art
+                        <div class="leftbar" id="Art">
+                            <img src="../images/scienceBranch/Art.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('History')">History
+                        <div class="leftbar" id="History">
+                            <img src="../images/scienceBranch/History.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Literature')">Literature
+                        <div class="leftbar" id="Literature">
+                            <img src="../images/scienceBranch/Literature.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Philosophy')">Philosophy
+                        <div class="leftbar" id="Philosophy">
+                            <img src="../images/scienceBranch/Philosophy.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.2.社会科学 -->
+            <div class="category">
+                <p class="category-text">Social Science</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Economics')">Economics
+                        <div class="leftbar" id="Economics">
+                            <img src="../images/scienceBranch/Economics.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Education')">Education
+                        <div class="leftbar" id="Education">
+                            <img src="../images/scienceBranch/Education.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Law')">Law
+                        <div class="leftbar" id="Law">
+                            <img src="../images/scienceBranch/Law.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Management')">Management
+                        <div class="leftbar" id="Management">
+                            <img src="../images/scienceBranch/Management.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Military')">Military
+                        <div class="leftbar" id="Military">
+                            <img src="../images/scienceBranch/Military.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Politics')">Politics
+                        <div class="leftbar" id="Politics">
+                            <img src="../images/scienceBranch/Politics.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Psychology')">Psychology
+                        <div class="leftbar" id="Psychology">
+                            <img src="../images/scienceBranch/Psychology.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Sociology')">Sociology
+                        <div class="leftbar" id="Sociology">
+                            <img src="../images/scienceBranch/Sociology.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.3.自然科学 -->
+            <div class="category">
+                <p class="category-text">Natural Science</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Biology')">Biology
+                        <div class="leftbar" id="Biology">
+                            <img src="../images/scienceBranch/Biology.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Chemistry')">Chemistry
+                        <div class="leftbar" id="Chemistry">
+                            <img src="../images/scienceBranch/Chemistry.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Geoscience')">Geoscience
+                        <div class="leftbar" id="Geoscience">
+                            <img src="../images/scienceBranch/Geoscience.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Mathematics')">Mathematics
+                        <div class="leftbar" id="Mathematics">
+                            <img src="../images/scienceBranch/Mathematics.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Physics')">Physics
+                        <div class="leftbar" id="Physics">
+                            <img src="../images/scienceBranch/Physics.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+
+            <!-- 2.3.4.应用科学 -->
+            <div class="category">
+                <p class="category-text">Applied Science</p>
+                <div class="category-line"></div>
+            </div>
+            <span class="catContent">
+                <ul>
+                    <li onclick="showLeftbar('Agriculture')">Agriculture
+                        <div class="leftbar" id="Agriculture">
+                            <img src="../images/scienceBranch/Agriculture.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Engineering')">Engineering
+                        <div class="leftbar" id="Engineering">
+                            <img src="../images/scienceBranch/Engineering.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                    <li onclick="showLeftbar('Medicine')">Medicine
+                        <div class="leftbar" id="Medicine">
+                            <img src="../images/scienceBranch/Medicine.svg" width="1000px" loading="lazy">
+                        </div>
+                    </li>
+                </ul>
+            </span>
+            <!-- 隐藏侧边栏 -->
+            <img class="hide" onclick="hideLeftbar()" src="../images/icon/leftFill_white.png" width="100px">
+
+    </main>
+    
+    <!-- JS文件 -->
+    <script src="../js/main.js"></script>
+    <script>
+        // 对于每个轮播图组件，创建一个Carousel轮播图实例
+        var Carousel1 = new Carousel('#human_science');
+        var Carousel2 = new Carousel('#social_science');
+        // 启动轮播导航点
+        Carousel1.showSlides();
+        Carousel2.showSlides();
+    </script>
+</body>
+</html>

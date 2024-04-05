@@ -1,0 +1,437 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliasChang - Blog</title>
+    <link rel="icon" href="../../images/ECIcon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/fonts.css">
+    <link rel="stylesheet" href="../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../blog.html"><img id="back" src="../../images/leftButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+        <h1>【笔记】C++语言基础（二）——数据类型</h1>
+
+<h2>一、基本内置数据类型</h2>
+
+<h3>（一）基本数据类型</h3>
+
+<h4>1.数据类型分类</h4>
+
+<p>C++同别的语言一样，为编程人员提供了种类丰富的内置数据类型和用户自定义的数据类型，以下列表罗列了C++语言中内置的基本数据类型。</p>
+
+<table>
+<thead>
+<tr>
+  <th>类型</th>
+  <th>关键字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>布尔型</td>
+  <td>bool</td>
+</tr>
+<tr>
+  <td>字符型</td>
+  <td>char</td>
+</tr>
+<tr>
+  <td>整型</td>
+  <td>int</td>
+</tr>
+<tr>
+  <td>浮点型</td>
+  <td>float</td>
+</tr>
+<tr>
+  <td>双浮点型</td>
+  <td>double</td>
+</tr>
+<tr>
+  <td>无类型</td>
+  <td>void</td>
+</tr>
+<tr>
+  <td>宽字符型</td>
+  <td>wchar_t</td>
+</tr>
+</tbody>
+</table>
+
+<h4>2.储存空间</h4>
+
+<p>此时，可以右键点击“源文件”创建一个类，创建类时会同时创建相应的头文件和源文件。假设创建一个test的类，则会自动生成一个test.h的头文件和test.cpp的源文件。</p>
+
+<p>此时test.h的代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">##pragma once</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">test</span>
+<span class="p">{</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>当希望验证各个数据类型所占用的储存空间时，可在test.h文件中构建一个名为“testStorage()”的函数，并且考虑到CBase.cpp（详情请看本系列第一部分）形成exe文件执行，需要进行公共声明。</p>
+
+<p>此时test.h代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">##pragma once</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">test</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">testStorage</span><span class="p">();</span>
+<span class="p">};</span>
+</code></pre>
+</div>
+
+<p>根据头文件和源文件的关系，此时需要在test.cpp文件中使用##include预处理指令获得test.h头文件的文件内容，然后具体实现test.h中的testStorage()函数。此操作可以通过在test.h中移动鼠标光标到“testStorage()”函数位置点击词条左下角“创建testStorage()定义(在test.cpp中)”来实现，也可以在test.cpp中手动书写。</p>
+
+<p>此时test.cpp代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">##include &quot;test.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::testStorage</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>接下来需要编写代码实现测试各种数据类型的储存空间的函数功能。所用的语句即iostream的cout和sizeof方法。其中，void由于是“无类型”，所以没有准确的存储空间占用，所以不进行测试。</p>
+
+<p>此时test.cpp代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">##include &quot;test.h&quot;</span>
+<span class="cp">##include &lt;iostream&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">test::testStorage</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;bool存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">bool</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;char存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;int存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;float存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">float</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;double存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">double</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;wchar_t存储空间&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">wchar_t</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;字节&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>完成头文件test.h的接口和test.cpp的具体实现后，要想形成exe运行testStorage()方法，还需要在CBase.cpp这个源文件中使用它，具体操作是通过建立一个test类（我们自定义的）的对象来使用这个对象的testStorage()方法。</p>
+
+<p>此时CBase.cpp代码如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">##include &lt;iostream&gt;</span>
+<span class="cp">##include &quot;test.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">test</span><span class="w"> </span><span class="n">testObject</span><span class="p">;</span>
+<span class="w">    </span><span class="n">testObject</span><span class="p">.</span><span class="n">testStorage</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>这里通过test类建立了这个类型的对象testObject，然后调用了testObject对象的testStorage()方法。</p>
+
+<p>点击F5调试，返回结果如下。</p>
+
+<blockquote>
+  <p>bool存储空间1字节
+   char存储空间1字节
+   int存储空间4字节
+   float存储空间4字节
+   double存储空间8字节
+   wchar_t存储空间2字节</p>
+</blockquote>
+
+<h4>3.数据类型返回值</h4>
+
+<h5>（1）布尔型</h5>
+
+<p>当使用布尔型数据类型时，判定为true则返回1，判定为false则返回0。</p>
+
+<h5>（2）字符型</h5>
+
+<p>当字符型数据类型输入的是字符时，返回值即为字符；输入的是数字的时候，默认返回为ASCII码。</p>
+
+<h3>（二）类型修饰</h3>
+
+<p>一些基本数据类型可以使用一个或多个类型修饰进行修饰，修饰在数据类型后面。</p>
+
+<ul>
+<li>signed</li>
+<li>unsigned</li>
+<li>short</li>
+<li>long</li>
+</ul>
+
+<p>signed修饰的数据类型取值范围是正负相等的，unsigned的修饰结果则是令数据类型取非负，short可以缩小数据类型取值范围，而long则增大数据类型取值范围。 </p>
+
+<p>使用上一个方法也可以测试修饰的数据类型的储存空间，原理相同，这里仅出示返回结果。</p>
+
+<table>
+<thead>
+<tr>
+  <th>储存空间占用（字节）</th>
+  <th>short</th>
+  <th>long</th>
+  <th>signed</th>
+  <th>unsigned</th>
+  <th>signed/unsigned short</th>
+  <th>signed/unsigned long</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>bool</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+</tr>
+<tr>
+  <td>char</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>1</td>
+  <td>1</td>
+  <td>无</td>
+</tr>
+<tr>
+  <td>int</td>
+  <td>2</td>
+  <td>4</td>
+  <td>4</td>
+  <td>4</td>
+  <td>2</td>
+  <td>4</td>
+</tr>
+<tr>
+  <td>float</td>
+  <td>无</td>
+  <td>8</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+</tr>
+<tr>
+  <td>double</td>
+  <td>无</td>
+  <td>8</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+</tr>
+<tr>
+  <td>void</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+</tr>
+<tr>
+  <td>wchar_t</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+  <td>无</td>
+</tr>
+</tbody>
+</table>
+
+<p>由此可以看到，int整型是修饰最灵活的一个数据类型。</p>
+
+<h2>二、常量与变量</h2>
+
+<h3>（一）字面值常量</h3>
+
+<p>字面值常量是指在源代码中直接出现的常量值，它们具有固定的值，不会改变，省去了类型的定义。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="err">；</span>
+</code></pre>
+</div>
+
+<p>例如以上代码，x就是设置的整型变量，而10则是赋予变量x的字面值常量。同时，字面值常量在输出时可以直接输出，不通过设置变量来输出。 </p>
+
+<h4>1.标注</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">dec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span><span class="c1">// 十进制整数</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">oct</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0123</span><span class="p">;</span><span class="c1">// 八进制整数，0打头</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x4b</span><span class="p">;</span><span class="c1">// 十六进制整数，0x打头</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">uint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30u</span><span class="p">;</span><span class="c1">// 无符号整数，u结尾</span>
+<span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">lint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30l</span><span class="p">;</span><span class="c1">// 长整型，l结尾</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">ulint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30ul</span><span class="p">;</span><span class="c1">// 无符号长整型，ul结尾</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14f</span><span class="p">;</span>
+<span class="kt">double</span><span class="w"> </span><span class="n">fDouble</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14</span><span class="p">;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">fOmit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">.25f</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>在赋予变量值的时候，标注不同也会是输入变量的值不同，例如增加前缀0则可以使后面的数字变为八进制；而浮点数不增加后缀f则自动默认数字为双浮点数；浮点数小数点前的0可以省略等等。</p>
+
+<h4>2.转义符</h4>
+
+<p>转义符是一种特殊的字符组合，在编程语言中用于表示一些特殊的字符或字符序列。它们以反斜杠“\”开始，后面跟着一个或多个字符，用于表示目标字符或执行特定的操作。</p>
+
+<table>
+<thead>
+<tr>
+  <th>符号</th>
+  <th>名称</th>
+  <th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>\n</td>
+  <td>换行符（newline）</td>
+  <td>表示在字符串中换行</td>
+</tr>
+<tr>
+  <td>\t</td>
+  <td>制表符（tab）</td>
+  <td>表示在字符串中插入一个制表符</td>
+</tr>
+<tr>
+  <td>\"</td>
+  <td>双引号</td>
+  <td>在字符串中插入一个双引号</td>
+</tr>
+<tr>
+  <td>\'</td>
+  <td>单引号</td>
+  <td>在字符串中插入一个单引号</td>
+</tr>
+<tr>
+  <td>\</td>
+  <td>反斜杠自身</td>
+  <td>在字符串中插入一个反斜杠</td>
+</tr>
+<tr>
+  <td>\b</td>
+  <td>退格符（backspace）</td>
+  <td>在字符串中执行退格操作</td>
+</tr>
+<tr>
+  <td>\r</td>
+  <td>回车符（carriage return）</td>
+  <td>将光标移动到行首</td>
+</tr>
+<tr>
+  <td>\a</td>
+  <td>响铃符（alert）</td>
+  <td>发出提示声或闪烁光标</td>
+</tr>
+</tbody>
+</table>
+
+<h3>（二）变量</h3>
+
+<p>在C++中，变量是用于存储和表示数据的名称。每个变量都具有一个特定的类型（如整数、浮点数、字符等）以及一个关联的内存位置，用于存储该类型的值。变量的命名有以下的特点：</p>
+
+<ol>
+<li>变量的名称可以由字母、数字和下划线字符组成。</li>
+<li>必须以字母或下划线开头。</li>
+<li>大小写区分。</li>
+<li>不能使用C++关键字定义。</li>
+</ol>
+
+<p>完成变量命名后，则需要初始化变量，即给变量赋予特定的值。初始化变量可以单个初始化，也可以多个初始化。同时，变量间也可以相互运算。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">// 单个初始化</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">long_a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">width_b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;long_a：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">long_a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;width_b：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">width_b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="c1">// 多个初始化</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;a：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;b：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;c：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;d：&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>返回结果为：</p>
+
+<blockquote>
+  <p>long<em>a：12
+   width</em>b：23
+   a：1 b：2 c：3 d：0</p>
+</blockquote>
+
+<h3>（三）const</h3>
+
+<p>在C++中，const是一个关键字，用于声明常量（constant）。而使用const关键字可以将一个变量声明为常量，但const常量一旦初始化后，就不能再修改其值。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="err">；</span>
+<span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="err">；</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>例如以上代码，在赋值变量a为7后，在将a声明为常量8，在输出时结果即为8，证明普通定义的常量是可以修改的。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>而以上形式的const常量一经初始化，就再也无法修改。</p>
+
+<h3>（四）typedef</h3>
+
+<p>在C++中，typedef是一个关键字，用于创建类型别名（type alias）。它允许程序员为已有类型定义一个新的名称，使得代码更易读、易维护和可移植。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<span class="n">age</span><span class="w"> </span><span class="n">myAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span>
+<span class="n">age</span><span class="w"> </span><span class="n">hisAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">68</span><span class="p">;</span>
+<span class="n">age</span><span class="w"> </span><span class="n">herAge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">37</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>例如以上代码，就是用typedef定义了一个叫做“age”的整型类型名，而根据类型名age可新建其他如myAge的整型变量。</p>
+
+<p>通过使用typedef，代码中可以使用新的类型名称，而不再需要直接引用原始的类型名。这使得代码更可读，特别是对于复杂的数据类型或者涉及到多次使用的类型。 </p>
+
+        </div>
+    </main>
+
+    <!-- JS文件 -->
+    <script src="../../js/main.js"></script>
+    <script src="../../js/md.js"></script>
+
+</body>
+</html>
