@@ -21,6 +21,7 @@
 
 1. 删除了“知识”页面尾部的轮播图HTML结构
 2. 更改网页子标签为Home、Knowledge、Resource、About、Contact五个部分，并修改侧边栏介绍
+3. 使用cdn加速图片资源访问路径
 
 # 三、CSS更新
 
