@@ -5,6 +5,7 @@
 ## （一）pages目录
 
 1. 将blog目录下的文件分到了不同子目录，blogCover用于储存博客文章封面，blogJS用于储存博客JS文件，blogImg作为博客图床，blogPage用于储存转换为html文件的md博客文章图片
+2. 增加了Resource页、About页和Contact页
 
 ## （二）images目录
 
@@ -18,6 +19,7 @@
 1. 删除了“知识”页面尾部的轮播图HTML结构
 2. 更改网页子标签为Home、Knowledge、Resource、About、Contact五个部分，并修改侧边栏介绍
 3. 使用cdn加速图片资源访问路径
+4. 增加了页脚
 
 # 三、CSS更新
 

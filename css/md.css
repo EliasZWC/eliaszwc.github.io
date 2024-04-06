@@ -1,3 +1,6 @@
+body {
+    background-color: #1a1a1a;
+}
 /* 1.页眉 */
 #header {
     position: relative;
@@ -31,7 +34,6 @@
 main {
     display: flex;
     justify-content: center;
-    background-color: #1a1a1a;
 }
 #markdownContent {
     padding-top: 30px;

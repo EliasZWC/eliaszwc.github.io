@@ -1,5 +1,4 @@
 body {
-    height: 100vh;;
     background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/background/cover.png");
     background-size: cover;
 }
@@ -21,20 +20,4 @@ main p {
     font-size: 1.5vw;
     letter-spacing: 2px;
     color: #fff;
-}
-/* 3.页脚 */
-#footer {
-    position: absolute;
-    bottom: 10vh;
-    width: 100%;
-    height: 10vh;
-}
-/* 3.1.链接 */
-.link {
-    float: right;
-    margin-right: 60px;
-}
-.link li {
-    float: left;
-    margin-right: 50px;
 }

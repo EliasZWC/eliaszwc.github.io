@@ -28,6 +28,7 @@ body {
 
 /* 版心 */
 .wrapper {
+    min-height: calc(100vh - 30vh); /* 假设页脚高度为30vh，调整内容最小高度 */
     margin: 0 auto;
     width: 80%;
 }
@@ -229,7 +230,6 @@ h1 {
 /* 2.内容 */
 section {
     width: 100%;
-    height: 100vh;
 }
 
 /* 3.页脚 */
@@ -244,14 +244,22 @@ footer {
     text-align: center;
     border-top: 1px solid #555;
     color: #555;
+    background: #000;
 }
 #motto {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    text-align: center;
     height: 10vh;;
 }
-#links li {
-    width: 3vw;
+#links {
+    margin-left: 15vw;
+}
+#links a {
+    margin-left: 1vw;
+}
+#links a img {
+    width: 2vw;
 }

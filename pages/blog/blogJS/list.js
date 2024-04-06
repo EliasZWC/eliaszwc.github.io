@@ -251,7 +251,7 @@ var blogData = {
         {
             "title": "【技术】Github环境配置指南",
             "subject": "IT",
-            "tag": ["IT", "Bash", "Git"],
+            "tag": ["IT", "Shell", "Git"],
             "img": "github.png",
             "intro": "初次使用Github的环境配置步骤。",
             "filename": "0002-config-002.html"
@@ -262,7 +262,7 @@ var blogData = {
             "tag": ["IT", "Bash"," Linux"],
             "img": "ubuntu.png",
             "intro": "在Ubuntu环境下使用Vim编辑pip.conf文件来改变pip下载源。",
-            "filename": "0001-solve-001.html"
+            "filename": "0001-config-001.html"
         }
     ]
 };
