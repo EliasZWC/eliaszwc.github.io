@@ -1,0 +1,17 @@
+main {
+    width: 100%;
+    background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/background/contactCover.png");
+    background-size: cover;
+}
+#cover {
+    position: relative;
+    margin-top: 5vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 50vw;
+    background-position: top;
+    background-repeat: no-repeat;
+}
