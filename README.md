@@ -14,6 +14,10 @@
 3. 删除了无用的filterBoard.png、right_black.png、rightButton.png
 4. 将知识导图的源文件复制了一份到scienceBranch目录
 
+## （三）js目录
+
+1.
+
 # 二、HTML更新
 
 1. 删除了“知识”页面尾部的轮播图HTML结构
@@ -21,6 +25,7 @@
 3. 使用cdn加速图片资源访问路径
 4. 增加了页脚
 5. 增加了关于页
+6. 增加了联系页
 
 # 三、CSS更新
 
@@ -29,3 +34,5 @@
 3. 增加了关于页
 
 # 四、JavaScript更新
+
+1. 联系页使用了EmailJS服务设置发送
