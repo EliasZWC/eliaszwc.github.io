@@ -1,0 +1,140 @@
+/* 重构页眉 */
+#language{
+    position: absolute;
+    right: 0;
+    margin-right: 5vw;
+    font-size: 2vw;
+}
+#language a {
+    color: #fff;
+}
+
+/* 2.内容 */
+main {
+    margin-top: 8vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#content {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ======================================================================================= */
+
+/* 2.1.标题栏 */
+#title {
+    width: 100%;
+    height: 12vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1vw;
+    color: #fff;
+    background: #222;
+}
+/* 2.1.1.资源图标 */
+#resourceIcon {
+    width: 6vw;
+    height: 6vw;
+}
+/* 2.1.2.资源介绍 */
+#resourceIntro {
+    margin-left: 4vw;
+    width: 40vw;
+    height: 6vw;
+    display: flex;
+    flex-direction: column;
+}
+#resourceIntro b {
+    font-size: 2.6vw;
+}
+#resourceIntro p {
+    margin-top: 1vw;
+    font-size: 1vw;
+}
+/* 2.1.3.进入资源 */
+#enter {
+    margin-left: 4vw;
+    width: 10vw;
+    height: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.2vw solid #fff;
+    border-radius: 1vw;
+    color: #fff;
+}
+#enter:hover {
+    color: #000;
+    background: #fff;
+}
+#enter b {
+    font-size: 1.6vw;
+}
+
+/* ======================================================================================= */
+
+/* 2.2.轮播图 */
+#carousel {
+    position: relative;
+    margin-top: 4vw;
+    height: 36vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; /* 确保轮播内容居中显示 */
+    align-items: center; /* 垂直居中 */
+    border-radius: 1vw;
+    background: #222;
+}
+#slides {
+    display: flex;
+    justify-content: flex-start; /* 从左侧开始排列图片 */
+    gap: 1vw; /* 设置图片之间的间距 */
+    transition: transform 0.5s ease; /* 平滑过渡效果 */
+}
+#slides img {
+    margin-bottom: 2vw;
+    max-width: 96%; /* 最大宽度为100%，确保不超出屏幕 */
+    height: 30vw; /* 高度自适应 */
+    object-fit: contain; /* 保持原始比例 */
+    border-radius: 1vw;
+}
+#dots {
+    position: absolute;
+    bottom: 2vw; /* 导航点距底部的位置 */
+    display: flex;
+    justify-content: center; /* 导航点居中 */
+    width: 100%; /* 宽度占满父容器 */
+}
+.dot {
+    cursor: pointer;
+    height: 0.7vw;
+    width: 0.7vw;
+    margin: 0 0.5vw;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* ======================================================================================= */
+
+/* 2.3.文字介绍 */
+#wordIntro{
+    margin-top: 4vw;
+    font-size: 1.4vw;
+    color: #fff;
+}
+#wordIntro p {
+    margin-top: 1.5vw;
+    line-height: 2.4vw;
+}

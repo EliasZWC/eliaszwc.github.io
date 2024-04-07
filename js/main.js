@@ -1,4 +1,41 @@
+// 轮播图
+function carousel() {
+    let slideIndex = 0;
+    showSlides(slideIndex);
 
+    function showSlides(n) {
+        const slides = document.querySelectorAll("#slides img");
+        const dots = document.querySelectorAll(".dot");
+        const carouselWidth = document.getElementById('carousel').offsetWidth;
+        const slideWidth = slides[0].offsetWidth + (window.innerWidth * 0.01); // 图片宽度加上间距
+
+        // 计算应该移动的距离，使得图片居中
+        const offset = (carouselWidth - slideWidth) / 2 - (slideWidth * n);
+
+        // 设置slides的transform属性
+        document.getElementById("slides").style.transform = `translateX(${offset}px)`;
+
+        // 更新导航点状态
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        if(dots[slideIndex]) { // 检查是否存在对应的dot，防止越界
+            dots[slideIndex].className += " active";
+        }
+    }
+
+    window.moveSlide = function (n) {
+        slideIndex = n;
+        showSlides(slideIndex);
+    }
+
+    // 自动调整轮播图大小和位置
+    window.addEventListener('resize', function() {
+        showSlides(slideIndex);
+    });
+}
+
+carousel();
 // *******************************************************************************************
 
 // 左侧边栏#显示左侧边栏

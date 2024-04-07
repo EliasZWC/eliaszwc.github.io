@@ -11,7 +11,7 @@ var resourceData = {
             "title": "My Website",
             "tag": ["Project"],
             "img": "mywebsite.png",
-            "intro": "Elias Chang's personal website",
+            "intro": "Elias Chang's personal website project",
             "filename": "mywebsite.html"
         }
     ]

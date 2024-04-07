@@ -70,7 +70,7 @@ main {
     transform: translate(-50%, -50%);
 }
 #meContent {
-    margin-top: 4vw;
+    margin-top: 5vw;
     width: 60vw;
 }
 #meContent p {
@@ -122,4 +122,8 @@ main {
     margin-left: 2vw;
     font-size: 1.5vw;
     font-weight: bold;
+}
+#books:hover {
+    color: #000;
+    background: #fff;
 }
