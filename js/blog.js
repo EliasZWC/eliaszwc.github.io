@@ -1,48 +1,3 @@
-// 博客列表#渲染博客列表
-function renderBlogList(blogs) {
-    var blogList = document.querySelector('#blogList');
-    blogList.innerHTML = ''; // 清空当前的列表
-    var localPath = "./blog/blogPage/";
-    var imgPath = "https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogCover/";
-    var fragment = document.createDocumentFragment(); // 使用文档片段减少DOM操作
-
-    blogs.forEach(function(blog) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        var div = document.createElement("div"); // 最外层div
-        var tagDiv = document.createElement("div"); // 标签承载div
-        var img = document.createElement("img");
-        var b = document.createElement("b");
-        var p = document.createElement("p");
-
-        div.classList.add("blogInfo"); // 命名外层div
-        tagDiv.classList.add("tagDiv"); // 命名标签承载div
-
-        a.href = `${localPath}${blog.filename}`;
-        img.src = `${imgPath}${blog.img}`;
-        img.alt = blog.title; // 使用博客标题作为图片的alt文本
-        b.textContent = blog.title; // 加入博客标题
-        p.textContent = blog.intro; // 加入博客简介
-        blog.tag.forEach(function(item) { // 加入博客标签
-            var tags = document.createElement("div"); // 创建tag的div元素
-            tags.classList.add("tags");
-            tags.textContent = item;
-            tagDiv.appendChild(tags);
-        });
-        
-        div.appendChild(b);
-        div.appendChild(p);
-        div.appendChild(tagDiv);
-        a.appendChild(img);
-        a.appendChild(div);
-        li.appendChild(a);
-        fragment.appendChild(li); // 先将元素添加到文档片段中
-    });
-
-    blogList.appendChild(fragment); // 一次性将所有元素添加到DOM中
-}
-// *******************************************************************************************
-
 // 筛选器#初始化标签下拉列表
 function initTagOptions(subject) {
     const subcategory1 = document.getElementById('subcategory1');
@@ -128,3 +83,52 @@ function searchBlogs(searchTerm) {
         blog.intro.toLowerCase().includes(searchTerm)
     );
 }
+
+// *******************************************************************************************
+
+// 渲染器#渲染博客列表
+function renderBlogList(blogs) {
+    var blogList = document.querySelector('#blogList');
+    blogList.innerHTML = ''; // 清空当前的列表
+    var localPath = "./blog/blogPage/";
+    var imgPath = "https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogCover/";
+    var fragment = document.createDocumentFragment(); // 使用文档片段减少DOM操作
+
+    blogs.forEach(function(blog) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        var div = document.createElement("div"); // 最外层div
+        var tagDiv = document.createElement("div"); // 标签承载div
+        var img = document.createElement("img");
+        var b = document.createElement("b");
+        var p = document.createElement("p");
+
+        div.classList.add("blogInfo"); // 命名外层div
+        tagDiv.classList.add("tagDiv"); // 命名标签承载div
+
+        a.href = `${localPath}${blog.filename}`;
+        img.src = `${imgPath}${blog.img}`;
+        img.alt = blog.title; // 使用博客标题作为图片的alt文本
+        b.textContent = blog.title; // 加入博客标题
+        p.textContent = blog.intro; // 加入博客简介
+        blog.tag.forEach(function(item) { // 加入博客标签
+            var tags = document.createElement("div"); // 创建tag的div元素
+            tags.classList.add("tags");
+            tags.textContent = item;
+            tagDiv.appendChild(tags);
+        });
+        
+        div.appendChild(b);
+        div.appendChild(p);
+        div.appendChild(tagDiv);
+        a.appendChild(img);
+        a.appendChild(div);
+        li.appendChild(a);
+        fragment.appendChild(li); // 先将元素添加到文档片段中
+    });
+
+    blogList.appendChild(fragment); // 一次性将所有元素添加到DOM中
+}
+
+// 博客列表#初始渲染全部列表
+renderBlogList(blogData.blogs);
