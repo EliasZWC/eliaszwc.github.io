@@ -30,21 +30,81 @@ main {
 }
 /* 2.2.资源列表 */
 #resourceList {
+    position: relative;
     margin-top: 7vw;
     width: 50vw;
 }
-.resourceList li {
+#resourceList li {
     margin: 2vw 0;
+    width: 100%;
 }
-.resourceList li a {
+#resourceList li a {
     padding: 1vw;
     width: 100%;
     height: 10vw;
-    background-color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    border-radius: 1vw;
+    background-color: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
     cursor: pointer;
     transition: transform 0.3s ease; /* 添加过渡效果 */
 }
-.resourceList li a:hover {
+#resourceList li a:hover {
     transform: scale(1.05); /* 添加放大效果 */
+}
+#resourceList li a img {
+    margin-left: 2vw;
+    width: 5vw;
+}
+.resourceInfo{
+    position: relative;
+    padding: 1.5vw;
+    width: 100%;
+    height: 8vw;
+    display: flex;
+    flex-direction: column;
+}
+.resourceInfo b {
+    width: 40vw;
+    height: 3vw;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5vw;
+    font-weight: 600;
+    color: #fff;
+}
+.resourceInfo p {
+    width: 40vw;
+    word-wrap: break-word;
+    font-size: 1vw;
+    font-weight: 300;
+    color: #fff;
+}
+.tagDiv {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 3vw;
+    float: right;
+    display: flex;
+    flex-direction: row;
+}
+.tags {
+    position: relative;
+    margin-left: 2vw;
+    padding-left: 2.2vw;
+    padding-right: 1.5vw;
+    height: 1.4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.2vw;
+    font-size: 0.8vw;
+    font-weight: bold;
+    color: #000;
+    background-image: url("../../images/component/tag-fill.png");
+    background-size: auto 1.4vw;
 }

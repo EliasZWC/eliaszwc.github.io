@@ -4,28 +4,14 @@ var resourceData = {
             "title": "Cauto",
             "tag": ["Android"],
             "img": "logo_cauto.png",
-            "intro": "Autox-based automation software",
+            "intro": "An AutoX-based automation software",
             "filename": "cauto.html"
         },
         {
             "title": "Cauto",
             "tag": ["Android"],
             "img": "logo_cauto.png",
-            "intro": "Autox-based automation software",
-            "filename": "cauto.html"
-        },
-        {
-            "title": "Cauto",
-            "tag": ["Android"],
-            "img": "logo_cauto.png",
-            "intro": "Autox-based automation software",
-            "filename": "cauto.html"
-        },
-        {
-            "title": "Cauto",
-            "tag": ["Android"],
-            "img": "logo_cauto.png",
-            "intro": "Autox-based automation software",
+            "intro": "An AutoX-based automation software",
             "filename": "cauto.html"
         },
     ]
