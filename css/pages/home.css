@@ -1,6 +1,8 @@
 body {
     background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/background/cover.png");
-    background-size: cover;
+    background-size: 100vw 55vw;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 /* 2.内容 */
 main {
