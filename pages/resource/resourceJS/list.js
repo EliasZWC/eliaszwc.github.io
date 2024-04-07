@@ -3,14 +3,14 @@ var resourceData = {
         {
             "title": "Cauto",
             "tag": ["Android"],
-            "img": "logo_cauto.png",
+            "img": "cauto.png",
             "intro": "An AutoX-based automation software",
             "filename": "cauto.html"
         },
         {
             "title": "Cauto",
             "tag": ["Android"],
-            "img": "logo_cauto.png",
+            "img": "cauto.png",
             "intro": "An AutoX-based automation software",
             "filename": "cauto.html"
         },
