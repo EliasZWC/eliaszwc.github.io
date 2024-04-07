@@ -1,0 +1,30 @@
+body {
+    overflow-x: hidden;
+}
+/* 2.内容 */
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* 2.1.封面 */
+#cover {
+    position: relative;
+    margin-top: 5vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/background/resourceCover.png");
+    background-size: 100% 50vw;
+    background-position: top;
+    background-repeat: no-repeat;
+}
+#resourceCoverWord {
+    position: relative;
+    margin-top: 10vw;
+    width: 60vw;
+    height: 6vw;
+}
