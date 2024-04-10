@@ -84,6 +84,7 @@ main {
 #carousel {
     position: relative;
     margin-top: 4vw;
+    width: 70vw;
     height: 36vw;
     overflow: hidden;
     display: flex;
@@ -94,13 +95,14 @@ main {
 }
 #slides {
     display: flex;
-    justify-content: flex-start; /* 从左侧开始排列图片 */
+    justify-content: flex-start;
     gap: 1vw; /* 设置图片之间的间距 */
     transition: transform 0.5s ease; /* 平滑过渡效果 */
 }
 #slides img {
     margin-bottom: 2vw;
     max-width: 96%; /* 最大宽度为100%，确保不超出屏幕 */
+    width: auto;
     height: 30vw; /* 高度自适应 */
     object-fit: contain; /* 保持原始比例 */
     border-radius: 1vw;
