@@ -1,6 +1,13 @@
 var resourceData = {
     "resources": [
         {
+            "title": "HyperMark",
+            "tag": ["Windows"],
+            "img": "hypermark.png",
+            "intro": "Easily convert Markdown articles into HTML web pages",
+            "filename": "hypermark.html"
+        },
+        {
             "title": "Cauto",
             "tag": ["Android"],
             "img": "cauto.png",
