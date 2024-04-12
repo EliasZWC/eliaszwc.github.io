@@ -35,7 +35,7 @@ var blogData = {
         {
             "title": "【古代史】中国王朝君主更迭史（一）——夏朝",
             "subject": "IT",
-            "tag": ["Ancient", "Asia", "China"],
+            "tag": ["History", "Ancient", "Asia", "China"],
             "img": "cnhist.png",
             "intro": "中国王朝君主更迭历史第一部分，夏朝的君主更迭。",
             "filename": "0029-cnhist-001.html"
