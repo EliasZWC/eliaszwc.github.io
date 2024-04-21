@@ -270,7 +270,7 @@ var blogData = {
             "tag": ["IT", "Bash"," Linux"],
             "img": "ubuntu.png",
             "intro": "在Ubuntu环境下使用Vim编辑pip.conf文件来改变pip下载源。",
-            "filename": "0001-solve-001.html"
+            "filename": "0001-config-001.html"
         }
     ]
 };
