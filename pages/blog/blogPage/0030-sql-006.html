@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | EliasChang</title>
+    <link rel="icon" href="../../../images/logo/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/fonts.css">
+    <link rel="stylesheet" href="../../../css/md.css">
+</head>
+<body>
+    <!-- 1.页眉 -->
+    <div id="header">
+
+        <!-- 1.1.页首栏 -->
+        <div id="headbar">
+            <a href="../../blog.html"><img id="back" src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/component/backButton.png" width="50"></a>
+            <b id="pageTitle">BLOG</b>
+        </div>
+
+    </div>
+
+    <!-- 2.内容 -->
+    <main>
+        <div id="markdownContent">
+            <h1>【教程】MySQL数据库学习笔记（五）——约束</h1>
+
+<h2>一、约束介绍</h2>
+
+<p><strong>约束（Constraints）</strong> 是用于强制数据库中数据完整性和一致性的规则。它们定义了对表中数据的限制，确保数据的有效性和正确性，实际上就是表中数据的限制条件。例如，用户表的有些列（比如手机号）不能为空，有些列的值（比如身份证）不能重复等规则就是添加的约束条件。</p>
+
+<p>约束主要的分类有以下常见类别：</p>
+
+<ul>
+<li><p><strong>数据完整性约束</strong></p>
+
+<ul>
+<li><strong>主键约束（Primary Key Constraint）</strong>：
+确保每行数据在指定列或列组合上具有唯一标识，并且不允许包含NULL值。
+<ul>
+<li><strong>外键约束（Foreign Key Constraint）</strong>：
+确保表中的外键列的值必须存在于另一个表的主键列中，保持引用完整性。</li>
+</ul></li>
+<li><strong>唯一约束（Unique Constraint）</strong>：
+确保指定列中的所有值都是唯一的，但允许包含NULL值。</li>
+<li><strong>检查约束（Check Constraint）</strong>：
+用于确保特定列中的值满足指定的条件，例如范围、格式等，以确保数据的一致性。</li>
+<li><strong>自增长约束（Auto Increment Constraint）</strong>：
+确保在插入新记录时，列中的值自动按顺序递增。</li>
+</ul></li>
+<li><p><strong>数据格式约束</strong></p>
+
+<ul>
+<li><strong>默认约束（Default Constraint）</strong>：
+用于确保特定列中的值满足指定的条件，例如范围、格式等，以确保数据的一致性。</li>
+<li><strong>零填充约束（Zero Padding Constraint）</strong>：
+确保列中的值采用零填充以达到特定长度的要求。</li>
+</ul></li>
+<li><p><strong>空值约束</strong></p>
+
+<ul>
+<li><strong>非空约束（Not Null Constraint）</strong>：
+用于确保特定列中的值满足指定的条件，例如范围、格式等，以确保数据的一致性。</li>
+</ul></li>
+</ul>
+
+<p>常用的约束有<strong>主键约束</strong>、<strong>自增长约束</strong>、<strong>非空约束</strong>、<strong>唯一约束</strong>、<strong>默认约束</strong>等。</p>
+
+<h2>二、常用约束</h2>
+
+<h3>（一）主键约束</h3>
+
+<p><strong>主键约束（Primary Key Constraint）</strong> 是一个列或多个列的组合，其值能唯一地标识表中的每一行，方便在关系型数据库中尽快地找到特定的某一行数据。主键约束相当于唯一约束+非空约束，即主键约束列不允许重复，也不允许出现空值（NULL值），创建主键约束时，系统会默认在所在列和列组合上建立对应的唯一索引。</p>
+
+<p>需要注意的是每个表只能有一个主键，此主键可以是一列，也可以是多列的组合（只要保证组合唯一即可）。关键字是<code>PRIMARY KEY</code>。</p>
+
+<p>关于主键约束的操作有以下几种：</p>
+
+<ul>
+<li>添加单列主键</li>
+<li>添加多列联合主键</li>
+<li>删除主键</li>
+</ul>
+
+<h4>1.添加单列主键</h4>
+
+<p>创建单列主键有两种方式，一种是在定义字段的同时指定主键，一种是定义完字段后再指定主键。</p>
+
+<p>第一种方式的语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>下面是第一种方式的一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">USE</span><span class="w"> </span><span class="n">mydb1</span><span class="p">;</span>
+<span class="c1">-- 第一种方式</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>此时就可以设置<code>eid</code>列为主键列。</p>
+
+<p>第二种方式的语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">[</span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">约束名</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="err">字段名</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>约束名由于不强制添加，不填写约束名也可以。</p>
+
+<p>下面是第二种方式的一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1">-- 第二种方式</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">pk1</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">eid</span><span class="p">)</span><span class="w"> </span><span class="c1">-- CONSTRAINT pk1可以省略</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>主键约束已经添加完毕了，具体作用可以通过一个示例验证。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1001</span><span class="p">,</span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">5000</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">1001</span><span class="p">,</span><span class="s1">&#39;Mike&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">6000</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>此时会返回错误如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">emp2</span> <span class="n">VALUES</span><span class="p">(</span><span class="n">1001</span><span class="p">,</span><span class="s1">&#39;John&#39;</span><span class="p">,</span><span class="n">10</span><span class="p">,</span><span class="n">5000</span><span class="p">)</span>
+<span class="p">&gt;</span> <span class="n">1062</span> <span class="p">-</span> <span class="n">Duplicate</span> <span class="n">entry</span> <span class="s1">&#39;1001&#39;</span> <span class="k">for</span> <span class="n">key</span> <span class="s1">&#39;emp2.PRIMARY&#39;</span>
+<span class="p">&gt;</span> <span class="n">查询时间</span><span class="p">:</span> <span class="n">0s</span>
+</code></pre>
+</div>
+
+<p>这就说明，对于已经设置主键约束的列的值不能重复。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">emp2</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;Mike&#39;</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">6000</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>而如果将添加的一行数据中<code>eid</code>值设置为空值，也会报错。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">INSERT</span> <span class="n">INTO</span> <span class="n">emp2</span> <span class="n">VALUES</span><span class="p">(</span><span class="n">NULL</span><span class="p">,</span><span class="s1">&#39;Mike&#39;</span><span class="p">,</span><span class="n">20</span><span class="p">,</span><span class="n">6000</span><span class="p">)</span>
+<span class="p">&gt;</span> <span class="n">1048</span> <span class="p">-</span> <span class="n">Column</span> <span class="s1">&#39;eid&#39;</span> <span class="n">cannot</span> <span class="n">be</span> <span class="n">null</span>
+<span class="p">&gt;</span> <span class="n">查询时间</span><span class="p">:</span> <span class="n">0s</span>
+</code></pre>
+</div>
+
+<p>这就说明，对于已经设置主键约束的列的值也不能为空。</p>
+
+<h4>2.添加联合主键</h4>
+
+<p>所谓的联合主键，就是指主键由多个字段组成，而此时就无法在某个字段定义同时指定主键了，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">[</span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">约束名</span><span class="o">&gt;</span><span class="p">]</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="err">字段</span><span class="mi">1</span><span class="p">,</span><span class="err">字段</span><span class="mi">2</span><span class="p">,...,</span><span class="err">字段</span><span class="n">n</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp3</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="n">deptID</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>此例去除了eid，转而将姓名<code>name</code>和部门ID<code>deptID</code>作为列组合设置主键约束。同单列主键一样，联合主键的每一个列都受到主键约束，即非空且唯一。</p>
+
+<h4>3.修改表结构添加主键</h4>
+
+<p>除了以上通过<code>CREATE TABLE</code>关键字设置主键约束的方法，指定主键也可以通过修改表结构来实现，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="err">指定字段</span><span class="mi">1</span><span class="p">,</span><span class="err">指定字段</span><span class="mi">2</span><span class="p">,,...,</span><span class="err">指定字段</span><span class="n">n</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp4</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp4</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">eid</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<h4>4.删除主键</h4>
+
+<p>一个表中不再需要主键约束时，就可以将主键约束删除，而这通过修改表结构来实现，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>可以看到，无论是删除单列主键还是联合主键，都不需要指定主键名，由于表中只允许出现一个主键，所以使用删除语句就会自动指定唯一主键进行删除。</p>
+
+<h3>（二）自增长约束</h3>
+
+<p>在MySQL中，当主键定义为自增长后，这个值就不需要用户输入数据了，而是数据库根据定义直接自动赋值。每增加一条记录，主键会自动以相同的步长进行增长。这可以通过给字段添加<code>AUTO_INCREMENT</code>属性来实现主键自增长，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span>
+</code></pre>
+</div>
+
+<p>下面是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="k">NULL</span><span class="p">,</span><span class="s1">&#39;John&#39;</span><span class="p">);</span>
+<span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">user1</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="s1">&#39;Mike&#39;</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>可以看到，此例插入的数据并没有指定<code>id</code>字段的值，但查看表会发现此字段被自动升序赋值数字。
+<img src="E:\github\eliaszwc.github.io\pages\blog\blogImg\9a834e06cc0646a0aae1fcf83b6a043c.png" alt="在这里插入图片描述" />
+需要注意的是，自增长约束只能增加到主键上，并且数据类型只能是整型。</p>
+
+<p>而如果想要更改自增长开始的数字，则可以在示例的基础上增加一些语句，在创建表的时候设置如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">)</span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 设置开始数字从100开始</span>
+</code></pre>
+</div>
+
+<p>通过修改表结构实现如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user1</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 设置开始数字从100开始</span>
+</code></pre>
+</div>
+
+<p>需要注意的是，当使用<code>DELETE</code>或<code>TRUNCATE</code>删除数据后，自增长的起点是不同的：如果使用<code>DELETE</code>删除了数据，增长后会在断点后继续增长；而如果使用<code>TRUNCATE</code>则默认从初始值开始增长。</p>
+
+<h3>（三）非空约束</h3>
+
+<p><strong>非空约束（Not Null Constraint）</strong> 是指令字段的值不能为空的约束。对于使用了非空约束的字段，如果用户在添加数据时没有指定值，系统就会报错，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 方式1：在创建表时指定</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 方式2：通过修改表结构指定</span>
+</code></pre>
+</div>
+
+<p>以下是一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>或者使用方式2。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>可以看到非空约束并不像主键约束一样只能指定一个，而是可以指定多个。</p>
+
+<p>而如果想要删除以上添加的约束则使用如下语句。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>可以看到，其实“删除”并非是真的通过某种语句删除了非空约束，而是通过<code>MODIFY</code>关键字重新修订表结构来去除之前指定的约束以实现“删除”的效果。</p>
+
+<h3>（四）唯一约束</h3>
+
+<p><strong>唯一约束（Unique Constraint）</strong>是指所有记录中的值不能重复出现，否则报错，其语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 方式1：在创建表时指定</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="err">约束名</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">(</span><span class="err">列</span><span class="p">);</span><span class="w"> </span><span class="c1">-- 方式2：通过修改表结构指定</span>
+</code></pre>
+</div>
+
+<p>下面是方法一的一个简单的示例。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+</code></pre>
+</div>
+
+<p>可以看到，这里对于<code>eid</code>列指定了唯一约束，这也可以通过修改表结构来实现。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">eid</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+<span class="w">    </span><span class="n">deptID</span><span class="w"> </span><span class="nb">INT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">salary</span><span class="w"> </span><span class="n">DOUBLE</span>
+<span class="p">);</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">emp1</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">u1</span><span class="w"> </span><span class="k">UNIQUE</span><span class="p">(</span><span class="n">eid</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>而删除此约束的语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="err">表名</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="err">约束名或列名</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<p>这里需要注意的是如果赋予约束名则可以通过约束名定位到约束，而如果像第一种方式在创建表的时候指定了约束，并没有约束名时，字段名（列名）也可以定位到约束。</p>
+
+<h3>（五）默认约束</h3>
+
+<p><strong>默认约束（Default Constraint）</strong> 可以用来指定某列的默认值，语法如下。</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">默认值</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 方式1：在创建表时指定</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="o">&lt;</span><span class="err">默认值</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 方式2：通过修改表结构指定</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="o">&lt;</span><span class="err">表名</span><span class="o">&gt;</span><span class="w"> </span><span class="k">MODIFY</span><span class="w"> </span><span class="o">&lt;</span><span class="err">字段名</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="err">数据类型</span><span class="o">&gt;</span><span class="p">;</span><span class="w"> </span><span class="c1">-- 删除方法</span>
+</code></pre>
+</div>
+
+<p>默认约束指定方式和使用方式也类似于非空约束，所以这里不再演示，其效果就是在不重新赋值的情况下，此列默认显示设定的默认值。</p>
+ <!-- python注入接口 -->
+        </div>
+    </main>
+
+    <!-- 3.页脚 -->
+    <footer>
+        <div id="motto">
+            <p>我是一个太空漫游者，幸好还有漫天星辰陪着我，使得我在求索的道路上显得不那么形单影只。</p>
+            <p>I am a space rover, fortunate to have the stars as my companions, alleviating the loneliness on my quest.</p>
+        </div>
+        <div id="links">
+            <a href="https://github.com/EliasZWC"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/github_gray.png"></a>
+            <a href="https://blog.csdn.net/EliasChang"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/csdn_gray.png"></a>
+            <a href="https://www.instagram.com/eliaschang321"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/instagram_gray.png"></a>
+            <a href="https://www.linkedin.com/in/elias-chang-817144289"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/linkedin_gray.png"></a>
+            <a href="https://www.zhihu.com/people/ren-min-mo-sui-74"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/zhihu_gray.png"></a>
+            <a href="https://space.bilibili.com/102762645"><img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/images/link/bilibili_gray.png"></a>
+        </div>
+    </footer>
+    
+    <!-- JS文件 -->
+    <script src="../../../js/main.js"></script>
+    <script src="../../../js/md.js"></script>
+
+</body>
+</html>
