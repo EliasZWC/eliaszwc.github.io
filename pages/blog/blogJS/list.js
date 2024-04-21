@@ -33,6 +33,14 @@ const tags = {
 var blogData = {
     "blogs": [
         {
+            "title": "【教程】MySQL数据库学习笔记（五）——约束",
+            "subject": "IT",
+            "tag": ["IT", "SQL"],
+            "img": "sql.png",
+            "intro": "MySQL数据库教程第五部分，认识字段约束，掌握常用约束类型如主键约束、自增长约束、非空约束、唯一约束、默认约束等。",
+            "filename": "0030-sql-006.html"
+        },
+        {
             "title": "【古代史】中国王朝君主更迭史（一）——夏朝",
             "subject": "History",
             "tag": ["History", "Ancient", "Asia", "China"],
