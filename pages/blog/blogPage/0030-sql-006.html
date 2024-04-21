@@ -38,11 +38,9 @@
 
 <ul>
 <li><strong>主键约束（Primary Key Constraint）</strong>：
-确保每行数据在指定列或列组合上具有唯一标识，并且不允许包含NULL值。
-<ul>
+确保每行数据在指定列或列组合上具有唯一标识，并且不允许包含NULL值。</li>
 <li><strong>外键约束（Foreign Key Constraint）</strong>：
 确保表中的外键列的值必须存在于另一个表的主键列中，保持引用完整性。</li>
-</ul></li>
 <li><strong>唯一约束（Unique Constraint）</strong>：
 确保指定列中的所有值都是唯一的，但允许包含NULL值。</li>
 <li><strong>检查约束（Check Constraint）</strong>：
@@ -260,7 +258,7 @@
 </div>
 
 <p>可以看到，此例插入的数据并没有指定<code>id</code>字段的值，但查看表会发现此字段被自动升序赋值数字。
-<img src="E:\github\eliaszwc.github.io\pages\blog\blogImg\9a834e06cc0646a0aae1fcf83b6a043c.png" alt="在这里插入图片描述" />
+<img src="https://cdn.jsdelivr.net/gh/eliaszwc/eliaszwc.github.io/pages/blog/blogImg/9a834e06cc0646a0aae1fcf83b6a043c.png" alt="在这里插入图片描述" />
 需要注意的是，自增长约束只能增加到主键上，并且数据类型只能是整型。</p>
 
 <p>而如果想要更改自增长开始的数字，则可以在示例的基础上增加一些语句，在创建表的时候设置如下。</p>
