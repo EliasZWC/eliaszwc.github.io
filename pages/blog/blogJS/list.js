@@ -33,7 +33,7 @@ const tags = {
 var blogData = {
     "blogs": [
         {
-            "title": "【教程】MySQL数据库学习笔记（五）——约束",
+            "title": "【教程】MySQL数据库（五）——约束",
             "subject": "IT",
             "tag": ["IT", "SQL"],
             "img": "sql.png",
@@ -81,7 +81,7 @@ var blogData = {
             "filename": "0025-test-001.html"
         },
         {
-            "title": "【教程】MySQL数据库学习笔记（四）——数据操作语言DML",
+            "title": "【教程】MySQL数据库（四）——数据操作语言DML",
             "subject": "IT",
             "tag": ["IT", "SQL"],
             "img": "sql.png",
