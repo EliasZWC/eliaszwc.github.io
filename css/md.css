@@ -30,7 +30,68 @@ body {
     font-weight: 1000;
     color: #fff;
 }
-/* 2.内容 */
+
+/* 2.右边栏 */
+#rightbar {
+    width: 15vw;
+    border-radius: 1vw;
+    background: #222;
+}
+#toc {
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#toc-title {
+    padding-bottom: 0.5vw;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2vw;
+    font-weight: bold;
+    color: #e0e0e0;
+    border-bottom: 1px solid #555;
+}
+#toc ul {
+    width: 100%;
+    align-items: flex-start;
+}
+#toc li {
+    border-radius: 0.5vw;
+}
+#toc li:hover{
+    background-color: #e0e0e0;
+}
+#toc li:hover a {
+    color: #222; /* 将a元素的颜色设置为#222 */
+}
+#toc li a {
+    color: #e0e0e0;
+}
+.toc-h2 {
+    padding: 0.5vw 0 0.5vw 0.5vw;
+    font-size: 0.9vw;
+    font-weight: bold;
+}
+.toc-h3 {
+    padding: 0.5vw 0 0.5vw 1vw;
+    font-size: 0.8vw;
+    font-weight: bold;
+}
+.toc-h4 {
+    padding: 0.5vw 0 0.5vw 1.5vw;
+    font-size: 0.8vw;
+}
+.toc-h5 {
+    padding: 0.5vw 0 0.5vw 2vw;
+}
+.toc-h6 {
+    padding: 0.5vw 0 0.5vw 2.5vw;
+}
+/* 3.内容 */
 main {
     display: flex;
     justify-content: center;
