@@ -1,10 +1,5 @@
 // 信息储存#分类储存
 const tags = {
-    Literature: [
-        { name: "Category", tags: [] },
-        { name: "Genre", tags: [] },
-        { name: "Country", tags: [] }
-    ],
     History: [
         { name: "Era", tags: ["Prehistory", "Ancient", "Modern", "Contemporary"] },
         { name: "Region", tags: ["Africa", "America", "Asia", "Europe"] },
@@ -14,6 +9,11 @@ const tags = {
         { name: "Direction", tags: ["Algorithm", "Android", "Configuration", "Security", "Test", "Web"] },
         { name: "Language", tags: ["Bash", "C", "C++", "CSS", "Go", "HTML", "Java", "JavaScript", "Kotlin", "Python", "Shell", "SQL", "XML"] },
         { name: "System", tags: ["Git", "Linux", "Windows"] }
+    ],
+    Business: [
+        { name: "Discipline", tags: ["Accounting", "Economics", "Finance", "Law"] },
+        { name: "Type", tags: ["Knowledge", "Share"] },
+        { name: "Country", tags: ["Britain", "China", "USA"] }
     ],
 };
 
@@ -32,6 +32,22 @@ const tags = {
  */
 var blogData = {
     "blogs": [
+        {
+            "title": "【财务】对财务专业的思考感悟（二）",
+            "subject": "Business",
+            "tag": ["Business", "Accounting", "Share", "China"],
+            "img": "accounting.png",
+            "intro": "财务管理专业对财务专业的学习思考感悟分享系列第二篇。",
+            "filename": "0032-acct-002.html"
+        },
+        {
+            "title": "【财务】对财务专业的思考感悟（一）",
+            "subject": "Business",
+            "tag": ["Business", "Accounting", "Share", "China"],
+            "img": "accounting.png",
+            "intro": "财务管理专业对财务专业的学习思考感悟分享系列第一篇。",
+            "filename": "0031-acct-001.html"
+        },
         {
             "title": "【教程】MySQL数据库（五）——约束",
             "subject": "IT",
