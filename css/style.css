@@ -82,7 +82,9 @@ h1 {
     color: #fff;
 } 
 .nav li a:hover {
-    border: 3px solid #fff;
+    /* border: 3px solid #fff; */
+    background-color: #fff;
+    color: #000;
 } 
 #current {
     width: 12vw;
