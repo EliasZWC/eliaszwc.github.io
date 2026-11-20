@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="33 33 42 42" role="img" aria-label="Scholarius">
+  <defs>
+    <linearGradient id="s1" x1="70.665" y1="37.335" x2="37.335" y2="37.335" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d1d1d1"/>
+    </linearGradient>
+    <linearGradient id="s2" x1="37.335" y1="37.335" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d1d1d1"/><stop offset="1" stop-color="#b0b0b0"/>
+    </linearGradient>
+    <linearGradient id="s3" x1="54" y1="54" x2="37.335" y2="70.665" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#b0b0b0"/><stop offset="1" stop-color="#8f8f8f"/>
+    </linearGradient>
+    <linearGradient id="s4" x1="37.335" y1="70.665" x2="61.325" y2="70.665" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8f8f8f"/><stop offset="1" stop-color="#6e6e6e"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-width="4.67" stroke-linecap="round">
+    <path d="M70.665,37.335 L37.335,37.335" stroke="url(#s1)"/>
+    <path d="M37.335,37.335 L54,54" stroke="url(#s2)"/>
+    <path d="M54,54 L37.335,70.665" stroke="url(#s3)"/>
+    <path d="M37.335,70.665 L61.325,70.665" stroke="url(#s4)"/>
+    <path d="M70.665,37.335 L70.665,46.000" stroke="#ffffff"/>
+    <path d="M70.665,70.665 L70.665,62.000" stroke="#6e6e6e"/>
+  </g>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="30 30 48 48" role="img" aria-label="Livolog">
+  <path d="M73.05,43 A22,22 0 1 1 54,32 L54,36.67 A17.33,17.33 0 1 0 69.01,45.33 Z" fill="#f2efe8"/>
+  <path d="M51.67,34.33 a2.33,2.33 0 1 0 4.67,0 a2.33,2.33 0 1 0 -4.67,0 Z" fill="#f2efe8"/>
+  <path d="M68.7,44.17 a2.33,2.33 0 1 0 4.67,0 a2.33,2.33 0 1 0 -4.67,0 Z" fill="#f2efe8"/>
+  <path d="M61.5,36.97 a2.33,2.33 0 1 0 4.67,0 a2.33,2.33 0 1 0 -4.67,0 Z" fill="#f2efe8"/>
+  <path d="M54,54 L54,43.33 M54,54 L47.65,57.67" stroke="#f2efe8" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M52,54 a2,2 0 1 0 4,0 a2,2 0 1 0 -4,0 Z" fill="#f2efe8"/>
+</svg>
