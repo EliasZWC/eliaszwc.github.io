@@ -34,9 +34,9 @@
   --accent: #a6bbf0;
   --accent-soft: #1a2234;
   --danger: #e0836b;
-  --serif: "Instrument Serif", "Xiangcui Kesong", "Songti SC", "SimSun", Georgia, serif;
+  --serif: "Instrument Serif", "Xiangcui Kesong", "Songti SC", "SimSun", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --name: "Saira Stencil One", "Instrument Serif", "Songti SC", serif;
-  --sans: "Inter", "Xiangcui Kesong", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  --sans: "Inter", "Xiangcui Kesong", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
   --w: 1180px;
   --pad: 32px;
