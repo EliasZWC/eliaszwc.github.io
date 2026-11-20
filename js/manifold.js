@@ -103,9 +103,12 @@
     ctx.clearRect(0, 0, w, h);
     const cSpin = spin + userSpin;
     const cPitch = TILT + userPitch;
-    const scale = Math.min(w, h) * 0.18;
-    const cx = w * 0.52;
-    const cy = h * 0.5;
+    // wide screens: the whole form sits on the right.
+    // narrow screens: half of the form, bleeding off the right edge.
+    const narrow = w < 700;
+    const scale = narrow ? w * 0.38 : Math.min(w, h) * 0.2;
+    const cx = narrow ? w * 0.78 : w * 0.74;
+    const cy = narrow ? h * 0.62 : h * 0.5;
 
     ctx.strokeStyle = `rgba(${accent}, 0.13)`;
     ctx.lineWidth = 1;
